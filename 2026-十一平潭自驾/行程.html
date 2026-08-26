@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>十一 · 平潭自驾 | 行动手册 v1</title>
+<script type="text/javascript">
+  window._TMapSecurityConfig = {
+    serviceHost: 'http://127.0.0.1:__WB_HTTP_PORT__/_TMapService/_wbt/__WB_TMAP_SECRET__',
+  };
+</script>
+<script src="https://map.qq.com/api/gljs?v=1.exp"></script>
+<style>
+  :root{
+    --bg:#0b0f1e; --bg2:#111731; --card:#151c38; --line:#232c52;
+    --txt:#eef1ff; --sub:#9aa3c7;
+    --go1:#ff6b35; --go2:#ffd23f;          /* 去程 橙黄 */
+    --back1:#22d3ee; --back2:#34d399;      /* 返程 青绿 */
+    --pink:#ff2e88; --violet:#8b5cf6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;line-height:1.7}
+  ::selection{background:var(--go1);color:#fff}
+
+  /* ===== 顶部导航 ===== */
+  nav{position:sticky;top:0;z-index:99;background:rgba(11,15,30,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;gap:8px;align-items:center;overflow-x:auto;white-space:nowrap}
+  nav .logo{font-weight:900;font-size:15px;background:linear-gradient(90deg,var(--go1),var(--go2));-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:8px}
+  nav a{color:var(--sub);text-decoration:none;font-size:12.5px;padding:4px 10px;border-radius:99px;border:1px solid transparent;flex:none}
+  nav a:hover{color:#fff;border-color:var(--go1)}
+  nav a.hot{color:var(--go2);border-color:rgba(255,210,63,.4)}
+
+  /* ===== Hero ===== */
+  header{position:relative;padding:70px 22px 56px;text-align:center;overflow:hidden}
+  header::before{content:"";position:absolute;inset:-40% -20%;background:
+    radial-gradient(45% 45% at 20% 30%,rgba(255,107,53,.22),transparent 70%),
+    radial-gradient(40% 40% at 80% 25%,rgba(139,92,246,.20),transparent 70%),
+    radial-gradient(50% 50% at 55% 85%,rgba(34,211,238,.14),transparent 70%);
+    animation:drift 14s ease-in-out infinite alternate}
+  @keyframes drift{to{transform:translate(3%, -4%) scale(1.06)}}
+  header .kicker{position:relative;letter-spacing:.5em;font-size:13px;color:var(--go2);font-weight:700}
+  header h1{position:relative;font-size:clamp(38px,7vw,72px);font-weight:900;letter-spacing:.04em;margin:14px 0 6px}
+  header h1 .g{background:linear-gradient(92deg,var(--go1),var(--go2) 55%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header .route{position:relative;font-size:clamp(15px,2.6vw,20px);color:var(--sub);font-weight:600}
+  header .route b{color:#fff}
+  header .route .arrow{color:var(--go1);font-weight:900;padding:0 4px}
+  header .chips{position:relative;margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  header .chip{font-size:12.5px;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:5px 14px;background:rgba(21,28,56,.6)}
+  header .chip b{color:var(--go2)}
+  header .deadline{position:relative;margin-top:18px;font-size:13px;color:var(--pink);font-weight:700;letter-spacing:.1em}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+
+  /* ===== 地图 ===== */
+  .sec-title{display:flex;align-items:baseline;gap:12px;margin:54px 0 18px}
+  .sec-title .no{font-size:13px;font-weight:900;color:var(--go1);letter-spacing:.2em}
+  .sec-title h2{font-size:clamp(22px,3.4vw,30px);font-weight:900}
+  .sec-title .sub{font-size:12.5px;color:var(--sub)}
+  #map{width:100%;height:520px;border-radius:18px;border:1px solid var(--line);position:relative;overflow:hidden}
+  #map .map-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--sub);font-size:14px;background:var(--bg2);text-align:center;padding:30px}
+  #map .map-fallback b{color:var(--txt);font-size:16px}
+  .map-legend{display:flex;gap:18px;margin-top:12px;font-size:12.5px;color:var(--sub);flex-wrap:wrap}
+  .map-legend i{display:inline-block;width:26px;height:4px;border-radius:4px;vertical-align:middle;margin-right:6px}
+  .lg-go{background:linear-gradient(90deg,var(--go1),var(--go2))}
+  .lg-back{background:linear-gradient(90deg,var(--back1),var(--back2))}
+
+  /* ===== 日程卡 ===== */
+  .day{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 26px 20px;margin-bottom:26px;position:relative;overflow:hidden;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .day.show{opacity:1;transform:none}
+  .day::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,var(--dc1),var(--dc2))}
+  .day-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:6px}
+  .day-date{font-size:12px;font-weight:800;letter-spacing:.15em;color:var(--dc1);border:1px solid var(--dc1);border-radius:99px;padding:3px 12px}
+  .day-head h3{font-size:clamp(18px,2.6vw,24px);font-weight:900}
+  .day-badge{font-size:11.5px;color:var(--sub);margin-left:auto;letter-spacing:.1em}
+  .day-sub{color:var(--sub);font-size:13.5px;margin-bottom:16px}
+  .day-sub b{color:var(--txt)}
+
+  .drive-strip{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+  .drive{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;background:rgba(255,255,255,.04);border:1px dashed var(--line);border-radius:12px;padding:8px 14px}
+  .drive .km{color:var(--dc1)}
+  .drive .arr{color:var(--sub);font-weight:400}
+
+  .tl{list-style:none}
+  .tl li{display:flex;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(35,44,82,.6)}
+  .tl li:last-child{border-bottom:none}
+  .tl .t{flex:none;width:56px;font-weight:900;font-size:13.5px;color:var(--dc1);font-variant-numeric:tabular-nums}
+  .tl .x{flex:1;font-size:14.5px}
+  .tl .x small{display:block;color:var(--sub);font-size:12.5px;margin-top:2px}
+  .tl .x .hi{color:var(--go2);font-weight:700}
+
+  .day-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .pill{font-size:12.5px;background:rgba(255,255,255,.05);border-radius:10px;padding:7px 12px;color:var(--sub)}
+  .pill b{color:var(--txt)}
+  .pill.warn{background:rgba(255,46,136,.10);color:#ff8ab8}
+  .pill.warn b{color:var(--pink)}
+  .pill.good{background:rgba(52,211,153,.10);color:#7ce8bd}
+  .pill.good b{color:#34d399}
+
+  /* ===== 水煮店 ===== */
+  .sz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .sz{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 20px 16px;position:relative;transition:transform .25s,border-color .25s}
+  .sz:hover{transform:translateY(-4px);border-color:var(--go1)}
+  .sz .rank{position:absolute;top:-10px;right:16px;background:linear-gradient(90deg,var(--go1),var(--pink));color:#fff;font-weight:900;font-size:12px;border-radius:99px;padding:3px 12px;letter-spacing:.1em}
+  .sz h4{font-size:17px;font-weight:900;margin-bottom:2px}
+  .sz .addr{font-size:12px;color:var(--sub);margin-bottom:8px}
+  .sz .eat{font-size:13.5px;margin-bottom:8px}
+  .sz .eat b{color:var(--go2)}
+  .sz .note{font-size:12.5px;color:var(--sub);border-top:1px dashed var(--line);padding-top:8px}
+
+  /* ===== 清单 & 备注 ===== */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px}
+  .ck-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px 22px}
+  .ck{display:flex;align-items:center;gap:10px;padding:8px 4px;font-size:14.5px;cursor:pointer;user-select:none;border-radius:8px}
+  .ck:hover{background:rgba(255,255,255,.04)}
+  .ck input{display:none}
+  .ck .box{flex:none;width:19px;height:19px;border:2px solid var(--sub);border-radius:6px;position:relative;transition:all .2s}
+  .ck input:checked + .box{background:linear-gradient(135deg,var(--go1),var(--go2));border-color:transparent}
+  .ck input:checked + .box::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #1a1a2e;border-width:0 2.5px 2.5px 0;transform:rotate(42deg)}
+  .ck input:checked ~ .lbl{color:var(--sub);text-decoration:line-through}
+  .ck .lvl{font-size:10px;color:var(--pink);border:1px solid var(--pink);border-radius:5px;padding:0 5px;margin-left:2px;flex:none}
+  textarea{width:100%;min-height:110px;margin-top:18px;background:var(--bg2);color:var(--txt);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px;font-family:inherit;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--go1)}
+  .saved-tip{font-size:12px;color:var(--back1);margin-top:8px;min-height:16px}
+
+  .howto{background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(34,211,238,.08));border:1px solid rgba(139,92,246,.35);border-radius:20px;padding:26px;font-size:14px}
+  .howto h3{font-size:17px;font-weight:900;margin-bottom:10px;color:#c4b5fd}
+  .howto ol{margin-left:20px}
+  .howto li{margin-bottom:6px}
+  .howto code{background:rgba(0,0,0,.4);padding:1px 7px;border-radius:6px;color:var(--go2);font-size:13px}
+
+  footer{padding:36px 20px 60px;text-align:center;color:var(--sub);font-size:12.5px}
+  footer b{color:var(--go2)}
+
+  @media (max-width:640px){
+    #map{height:380px}
+    .day{padding:20px 16px 16px}
+    .tl .t{width:46px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">平潭行动手册</span>
+  <a href="#map-sec">路线图</a>
+  <a href="#days">逐日行程</a>
+  <a href="#shuizhu" class="hot">南昌水煮</a>
+  <a href="#pack">行前清单</a>
+  <a href="#howto">怎么改行程</a>
+</nav>
+
+<header>
+  <div class="kicker">V1 · 可随时更新</div>
+  <h1>十一 <span class="g">平潭自驾</span> 行动手册</h1>
+  <div class="route">
+    <b>武汉</b><span class="arrow">→</span>景德镇<span class="arrow">→</span>篁岭<span class="arrow">→</span>武夷山<span class="arrow">→</span><b>平潭岛</b><span class="arrow">→</span>抚州<span class="arrow">→</span><b>南昌</b><span class="arrow">→</span>武汉
+  </div>
+  <div class="chips">
+    <span class="chip">2026 <b>9.30 晚 — 10.8</b></span>
+    <span class="chip">去程约 <b>1100 km</b> · 玩着走</span>
+    <span class="chip">返程约 <b>750 km</b> · 一夜+一晨</span>
+    <span class="chip">国庆高速 <b>免费</b>（10.1 0:00–10.8 24:00）</span>
+  </div>
+  <div class="deadline">硬约束：10.5 上午到南昌 · 10.7 参加婚礼 · 10.5-10.6 水煮安排上</div>
+</header>
+
+<div class="wrap">
+
+  <!-- 地图 -->
+  <div class="sec-title" id="map-sec">
+    <span class="no">01 / ROUTE</span><h2>整体路线</h2><span class="sub">橙黄=去程 · 青绿=返程 · 数字=停靠顺序</span>
+  </div>
+  <div id="map">
+    <div class="map-fallback" id="mapFallback">
+      <b>地图未能加载（当前环境可能离线）</b>
+      <span>路线：武汉 → 景德镇 → 篁岭 → 武夷山 → 平潭 → 抚州 → 南昌 → 武汉</span>
+    </div>
+  </div>
+  <div class="map-legend">
+    <span><i class="lg-go"></i>去程 · 边走边玩</span>
+    <span><i class="lg-back"></i>返程 · 平潭 → 抚州夜宿 → 南昌</span>
+  </div>
+
+  <!-- 逐日 -->
+  <div class="sec-title" id="days">
+    <span class="no">02 / DAY BY DAY</span><h2>逐日行程</h2><span class="sub">下滑展开，随时叫我改</span>
+  </div>
+  <div id="dayList"></div>
+
+  <!-- 水煮 -->
+  <div class="sec-title" id="shuizhu">
+    <span class="no">03 / EAT</span><h2>南昌水煮作战图</h2><span class="sub">朋友推荐得对，这是南昌的魂</span>
+  </div>
+  <div class="sz-grid" id="szGrid"></div>
+  <div class="sec-title"><span class="no" style="color:var(--back1)"></span><h2 style="font-size:15px;font-weight:700;color:var(--sub)">点单心法：卤水锅底烫菜 + 必点鸡脚/脚板豆干/藕丸/皮蛋，怕辣配冰绿豆汤或酒酿汤圆冲蛋；水煮店基本都兼卖油炸，炸香蕉值得一试。人均 30–60。</h2></div>
+
+  <!-- 清单 -->
+  <div class="sec-title" id="pack"><span class="no">04 / PACK</span><h2>行前清单 &amp; 备忘</h2><span class="sub">勾选自动保存在本机</span></div>
+  <div class="panel">
+    <div class="ck-grid" id="ckGrid"></div>
+    <textarea id="memo" placeholder="备忘录：想加的店、朋友说的隐藏景点、要带的杂物……写在这里，刷新不丢。"></textarea>
+    <div class="saved-tip" id="savedTip"></div>
+  </div>
+
+  <!-- how to edit -->
+  <div class="sec-title" id="howto"><span class="no">05 / EXTEND</span><h2>这是第一版，怎么继续变？</h2></div>
+  <div class="howto">
+    <h3>行程是活的，按这三步升级</h3>
+    <ol>
+      <li><b>随时口头改：</b>直接跟我说"10.3 不去武夷山了，改 XX"，我更新页面出新版本号。</li>
+      <li><b>勾选留痕：</b>清单和备忘存在浏览器本地（localStorage），订好一家酒店、约好一个票就打个勾。</li>
+      <li><b>结构已预留：</b>页面由顶部 <code>TRIP</code> 数据驱动，加一天、换一个点都是加一条数据的事，版式自动生成。</li>
+    </ol>
+    <p style="margin-top:12px;color:var(--sub);font-size:13px">国庆大流量提示：篁岭索道、九曲溪竹筏、中国陶瓷博物馆、滕王阁都必须提前在官方公众号/小程序预约，出发前 3–7 天是最后窗口。</p>
+  </div>
+</div>
+
+<footer>十一平潭行动手册 · <b>V1</b> · 由 Buddy 规划 · 数据截至 2026.08 · 里程时间为估算，出发前用导航复核</footer>
+
+<script>
+/* =====================================================
+   TRIP 数据 —— 改行程就改这里，页面自动重排
+===================================================== */
+const TRIP = {
+  days: [
+    {
+      id:"d0", date:"9.30 周三", tag:"出发夜", title:"武汉 → 景德镇",
+      c1:"#8b5cf6", c2:"#6366f1",
+      sub:"连夜干掉最长的一段直路，把国庆第一天完整留给玩",
+      drive:[{f:"武汉",t:"景德镇",km:330,h:"约4h（G70福银高速）"}],
+      tl:[
+        {t:"19:00",x:"下班直接出发，错过出城高峰",s:"出发前加满油、检查胎压"},
+        {t:"23:00",x:"抵达景德镇，入住陶溪川/人民广场附近",s:"选陶溪川边上，明晚逛夜市零距离"},
+        {t:"省钱",x:"高速免费以<b>驶离出口时间</b>为准（10.1 0:00 起）",s:"不想交过路费，可在快到景德镇的服务区磨蹭到 0 点后下高速"}
+      ],
+      stay:"景德镇 · 陶溪川周边酒店",
+      pills:[{k:"warn",t:"9.30 晚出城车多，尽量 19:30 前上高速"}]
+    },
+    {
+      id:"d1", date:"10.1 周四", tag:"瓷都日", title:"景德镇 · 陶阳里 + 陶溪川",
+      c1:"#ff6b35", c2:"#ffd23f",
+      sub:"国庆第一天的瓷器宇宙，人从众但夜市值回票价",
+      drive:[],
+      tl:[
+        {t:"上午",x:"<b>御窑厂国家考古遗址公园 + 陶阳里历史街区</b>",s:"明清窑厂原址，巷子里随手拍都出片"},
+        {t:"12:30",x:"午餐：冷粉、饺子粑、瓷泥煨鸡",s:"老鸭汤/苦槠豆腐也是本地特色"},
+        {t:"下午",x:"<b>中国陶瓷博物馆</b>（免费，必须提前预约）",s:"国庆预约名额紧张，现在就约"},
+        {t:"晚上",x:"<span class='hi'>陶溪川文创夜市</span>",s:"年轻手艺人的摊子 + 老厂房灯光，景德镇夜生活的天花板"}
+      ],
+      stay:"景德镇（连住第二晚）",
+      pills:[{k:"good",t:"<b>预约项：</b>中国陶瓷博物馆（官方公众号）"},{k:"warn",t:"热门时段人多，博物馆尽量约上午场"}]
+    },
+    {
+      id:"d2", date:"10.2 周五", tag:"晒秋日", title:"篁岭晒秋 → 武夷山",
+      c1:"#ffd23f", c2:"#ff6b35",
+      sub:"十月正是晒秋季，这天的照片会承包你整年朋友圈",
+      drive:[
+        {f:"景德镇",t:"篁岭",km:85,h:"约1.5h"},
+        {f:"篁岭",t:"武夷山",km:250,h:"约3h"}
+      ],
+      tl:[
+        {t:"08:00",x:"出发去婺源篁岭",s:"门票+索道套票提前在官方公众号买"},
+        {t:"09:30",x:"<b>索道上山 · 晒秋人家 · 五桂堂晒台</b>",s:"红辣椒黄菊花铺满晒匾，上午顺光最出片"},
+        {t:"12:30",x:"山上午餐（篁岭天街小吃）",s:"蒸汽糕、清明粿"},
+        {t:"14:00",x:"下山，出发武夷山",s:"G56 杭瑞高速一路山景"},
+        {t:"17:30",x:"抵达武夷山三姑度假区，入住",s:"顺便把明早竹筏的预约信息核对一遍"}
+      ],
+      stay:"武夷山 · 三姑度假区",
+      pills:[{k:"good",t:"<b>预约项：</b>篁岭门票索道 + 明早九曲溪竹筏"},{k:"warn",t:"竹筏国庆票放出来秒光，刷不到就找酒店老板代订"}]
+    },
+    {
+      id:"d3", date:"10.3 周六", tag:"山水日", title:"武夷山 · 九曲溪竹筏 → 夜奔平潭",
+      c1:"#34d399", c2:"#22d3ee",
+      sub:"上午在山水画里漂，晚上睡在海岛上",
+      drive:[
+        {f:"武夷山",t:"平潭",km:430,h:"约5h（含平潭海峡公铁大桥）"}
+      ],
+      tl:[
+        {t:"07:30",x:"<b>九曲溪竹筏漂流</b>（赶最早班）",s:"约1.5h，晴天清晨水面有雾气，最美"},
+        {t:"09:30",x:"<b>天游峰</b>（爬上去俯瞰九曲溪）",s:"体力有限就只在半山观景台，也够看"},
+        {t:"12:00",x:"午餐后小憩",s:"笋燕、岚谷熏鹅安排"},
+        {t:"15:00",x:"出发跨省奔赴平潭",s:"后半程跨海进岛，海风一下子就来了"},
+        {t:"20:00",x:"<span class='hi'>上岛！海鲜大排档开吃</span>",s:"鲍鱼、皮皮虾、杂鱼酱油水，问老板当天什么鲜"}
+      ],
+      stay:"平潭 · 县城或坛南湾民宿",
+      pills:[{k:"good",t:"平潭 10 月已过蓝眼泪高发期（4–6月为主），看到是彩蛋，别专门熬夜蹲"},{k:"warn",t:"岛上风大，帽子墨镜备好，停车别占环岛路应急道"}]
+    },
+    {
+      id:"d4", date:"10.4 周日", tag:"环岛日", title:"平潭环岛 · 风车田日落后连夜返程",
+      c1:"#ff2e88", c2:"#8b5cf6",
+      sub:"全行程最高潮：顺时针环岛，日落是发令枪",
+      drive:[
+        {f:"环岛",t:"全线",km:50,h:"纯玩，随停随拍"},
+        {f:"平潭",t:"抚州/南城",km:620,h:"约6.5h 夜驾"}
+      ],
+      tl:[
+        {t:"08:30",x:"<b>猴研岛 · 68海里景区</b>（门票约66）",s:"祖国大陆离台湾最近的地方，礁石海岸很震撼"},
+        {t:"11:30",x:"<b>北港村</b>：石头厝渔村 + 午餐",s:"文创小店+海景咖啡，'会唱歌的石头'文创打卡"},
+        {t:"14:00",x:"<b>北部生态廊道</b>：10km 景观带自由停靠",s:"观景台免费，一路壁纸级画面"},
+        {t:"16:00",x:"<b>猫头墘 / 国彩村</b>：山间渔村俯瞰全海",s:"小众静谧，人少景美"},
+        {t:"17:00",x:"<span class='hi'>长江澳风车田 · 等日落（约18:00）</span>",s:"风车+海面+落日，平潭封面机位；日落时段车位紧张，提前1小时占位"},
+        {t:"18:30",x:"看完日落立刻出发，G70 夜驾回撤",s:"夜宿抚州或南城（凌晨1点左右到），强烈建议双驾轮换"}
+      ],
+      stay:"抚州 / 南城 高速口附近酒店（睡4-5小时）",
+      pills:[
+        {k:"warn",t:"<b>怕夜战？</b>备选：16:00 提前离岛，22:30 到抚州，代价是错过长江澳日落"},
+        {k:"good",t:"环岛主路限速60，渔村支路30；千万别把车开上沙滩，陷车救援很贵"}
+      ]
+    },
+    {
+      id:"d5", date:"10.5 周一", tag:"抵达南昌", title:"晨抵南昌 · 修整 + 水煮第一顿",
+      c1:"#22d3ee", c2:"#8b5cf6",
+      sub:"硬约束达成：上午到南昌",
+      drive:[{f:"抚州",t:"南昌",km:100,h:"约1.5h"}],
+      tl:[
+        {t:"07:30",x:"出发，最后一段高速",s:"睡饱再走，安全第一"},
+        {t:"09:00",x:"<span class='hi'>抵达南昌，酒店寄存/入住</span>",s:"建议住东湖区/中山路一带，离水煮主战场近"},
+        {t:"中午",x:"南昌拌粉 + 瓦罐汤（民间的第一课）",s:"随便一家巷子里的老店都不错"},
+        {t:"下午",x:"休整补觉，或逛八一广场/八一馆",s:"给 7 号婚礼养状态"},
+        {t:"晚上",x:"<span class='hi'>水煮第一顿：谭记（东湖总店）或 小欧</span>",s:"点单看下方作战图"}
+      ],
+      stay:"南昌 · 东湖区/中山路周边",
+      pills:[{k:"good",t:"水煮店饭点排队凶，错峰 17:00 或 21:00 后去最舒服"}]
+    },
+    {
+      id:"d6", date:"10.6 周二", tag:"南昌日", title:"滕王阁 · 万寿宫 · 水煮第二轮",
+      c1:"#ff6b35", c2:"#ff2e88",
+      sub:"婚礼前最后一天自由活动，把南昌吃透",
+      drive:[],
+      tl:[
+        {t:"上午",x:"<b>滕王阁</b>（提前预约）",s:"登楼看赣江，'落霞与孤鹜齐飞'就在这"},
+        {t:"12:00",x:"<b>万寿宫历史文化街区</b>：午餐小吃扫街",s:"白糖糕、糊羹、凉拌粉，一条街全解决"},
+        {t:"下午",x:"八一大桥 / 滕王阁北园江边走走",s:"或者干脆回酒店躺，晚上还有硬仗"},
+        {t:"19:30",x:"<b>秋水广场音乐喷泉</b>（亚洲较大），看赣江两岸夜景",s:"喷泉场次以当日公告为准"},
+        {t:"21:00",x:"<span class='hi'>水煮第二轮：胖子 或 英嫂深夜档</span>",s:"英嫂开到凌晨3:30，是夜宵天花板"}
+      ],
+      stay:"南昌（连住）",
+      pills:[{k:"good",t:"<b>预约项：</b>滕王阁门票（公众号/小程序）"}]
+    },
+    {
+      id:"d7", date:"10.7 周三", tag:"大日子", title:"朋友婚礼 · 喝喜酒",
+      c1:"#ffd23f", c2:"#ff6b35",
+      sub:"行程的终点站，也是这次折返南昌的全部理由",
+      drive:[],
+      tl:[
+        {t:"上午",x:"收拾体面，出门赴宴",s:"红包提前包好，别像我一样现场找封套"},
+        {t:"全天",x:"<b>婚礼 · 见老朋友 · 合影</b>",s:"喝赣酒悠着点，第二天还要开长途"}
+      ],
+      stay:"南昌（如7号晚不赶路，多住一晚）",
+      pills:[{k:"warn",t:"若 7 号晚返武汉，喝完酒务必找代驾或改到 8 号早上走"}]
+    },
+    {
+      id:"d8", date:"10.8 周四", tag:"归途", title:"南昌 → 武汉 · 到家",
+      c1:"#6366f1", c2:"#8b5cf6",
+      sub:"假期最后一天返程，错峰早走",
+      drive:[{f:"南昌",t:"武汉",km:340,h:"约4h"}],
+      tl:[
+        {t:"08:00",x:"早餐：最后一碗拌粉+瓦罐汤",s:"然后上高速，G70 一路向北"},
+        {t:"12:00",x:"回到武汉，行程完结撒花",s:"注意：8号24点后下高速开始收费，中午前到家完全没问题"}
+      ],
+      stay:"家",
+      pills:[{k:"good",t:"8 号下午返程大军暴多，上午走最明智"}]
+    }
+  ],
+  shuizhu: [
+    {rank:"首推", name:"谭记水煮（东湖总店）", addr:"东湖区火神庙47号", eat:"腰花 / 卤味 / 鸡脚 / 冰绿豆汤", note:"老饕心里的水煮天花板，腰花处理得极嫩；人均偏高（随便吃吃也上百），5号晚第一顿就它"},
+    {rank:"首推", name:"小欧水煮", addr:"西湖区会堂东路45号", eat:"现炸藕丸 / 煮麻圆 / 各种卤味", note:"盗月社打卡过，丸子现炸常售罄；营业到23:30，麻圆泡咸辣汤是独一份"},
+    {rank:"排队王", name:"胖子水煮", addr:"火车站铁路三村14栋", eat:"鸡脚 / 豆泡 / 藕丸 / 大香肠 / 红豆汤", note:"居民楼里的六边形战士，人均30吃到扶墙；营业时间分午晚两段，去前看好，别扑空"},
+    {rank:"老字号", name:"丽丽水煮（洪都总店）", addr:"青云谱区新溪桥路6区01栋", eat:"凉拌皮蛋 / 卤鸡脚 / 藕丸 / 炸香蕉", note:"洪都水煮扛把子，只认总店；营业到凌晨2:30，饭点人爆炸，错峰去"},
+    {rank:"深夜档", name:"英嫂水煮", addr:"象山北路346号", eat:"拌方便面 / 鸡爪 / 油炸 / 酒酿汤圆冲蛋", note:"10:30营业到次日3:30，6号夜宵场天选；解辣全靠酒酿汤圆冲蛋"}
+  ],
+  checklist: [
+    {t:"中国陶瓷博物馆预约（10.1）", lvl:1},
+    {t:"篁岭门票+索道套票（10.2）", lvl:1},
+    {t:"九曲溪竹筏预约（10.3 早班）", lvl:1},
+    {t:"滕王阁门票预约（10.6）", lvl:1},
+    {t:"平潭住宿（10.3、10.4 不含，10.3晚一晚）", lvl:1},
+    {t:"景德镇 / 武夷山 / 抚州 / 南昌 酒店", lvl:0},
+    {t:"车辆保养：机油、胎压、玻璃水、备胎", lvl:1},
+    {t:"加满油 + 办好 ETC（免费时段也要走 ETC 车道更快）", lvl:0},
+    {t:"防晒三件套：防晒霜、墨镜、帽子（海岛风大）", lvl:0},
+    {t:"肠胃药、晕车药、创可贴", lvl:0},
+    {t:"充电宝、车载充电、行车记录仪检查", lvl:0},
+    {t:"婚礼红包 + 体面衣服", lvl:1}
+  ]
+};
+
+/* ============ 渲染日程卡 ============ */
+(function(){
+  const box = document.getElementById('dayList');
+  TRIP.days.forEach(d=>{
+    const el = document.createElement('section');
+    el.className = 'day';
+    el.style.setProperty('--dc1', d.c1);
+    el.style.setProperty('--dc2', d.c2);
+    el.innerHTML = `
+      <div class="day-head">
+        <span class="day-date">${d.date}</span>
+        <h3>${d.title}</h3>
+        <span class="day-badge">${d.tag}</span>
+      </div>
+      <div class="day-sub">${d.sub}</div>
+      ${d.drive.length ? `<div class="drive-strip">${d.drive.map(v=>`
+        <span class="drive"><span>${v.f} → ${v.t}</span><span class="km">${v.km}km</span><span class="arr">${v.h}</span></span>`).join('')}
+      </div>`:''}
+      <ul class="tl">
+        ${d.tl.map(v=>`<li><span class="t">${v.t}</span><span class="x">${v.x}${v.s?`<small>${v.s}</small>`:''}</span></li>`).join('')}
+      </ul>
+      <div class="day-foot">
+        <span class="pill">住宿 <b>${d.stay}</b></span>
+        ${d.pills.map(p=>`<span class="pill ${p.k}">${p.t}</span>`).join('')}
+      </div>`;
+    box.appendChild(el);
+  });
+  const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.day').forEach(el=>io.observe(el));
+})();
+
+/* ============ 水煮店 ============ */
+(function(){
+  const box = document.getElementById('szGrid');
+  TRIP.shuizhu.forEach(s=>{
+    const el = document.createElement('div');
+    el.className='sz';
+    el.innerHTML=`<span class="rank">${s.rank}</span><h4>${s.name}</h4>
+      <div class="addr">${s.addr}</div>
+      <div class="eat">点这些：<b>${s.eat}</b></div>
+      <div class="note">${s.note}</div>`;
+    box.appendChild(el);
+  });
+})();
+
+/* ============ 清单 + 备忘（localStorage） ============ */
+(function(){
+  const KEY='pt2026v1';
+  let state={}; try{state=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
+  const grid=document.getElementById('ckGrid');
+  TRIP.checklist.forEach((c,i)=>{
+    const lab=document.createElement('label');
+    lab.className='ck';
+    lab.innerHTML=`<input type="checkbox" data-i="${i}" ${state['ck'+i]?'checked':''}><span class="box"></span><span class="lbl">${c.t}</span>${c.lvl?'<span class="lvl">要预约</span>':''}`;
+    grid.appendChild(lab);
+  });
+  grid.addEventListener('change',e=>{
+    if(e.target.matches('input[type=checkbox]')){
+      state['ck'+e.target.dataset.i]=e.target.checked;
+      save();
+    }
+  });
+  const memo=document.getElementById('memo'), tip=document.getElementById('savedTip');
+  memo.value=state.memo||'';
+  let tmr;
+  memo.addEventListener('input',()=>{
+    state.memo=memo.value;
+    clearTimeout(tmr);
+    tmr=setTimeout(()=>{save();tip.textContent='已自动保存';setTimeout(()=>tip.textContent='',1800);},600);
+  });
+  function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+})();
+
+/* ============ 腾讯地图（合规代理模式，无密钥） ============ */
+(function(){
+  if(!window.TMap){ document.getElementById('mapFallback').style.display='flex'; return; }
+  const P = {
+    武汉:[30.5928,114.3055], 景德镇:[29.2687,117.1784], 篁岭:[29.3255,117.8623],
+    武夷山:[27.7559,118.0340], 平潭:[25.5055,119.7935], 抚州:[27.9827,116.3583], 南昌:[28.6820,115.8581]
+  };
+  const LL = n => new TMap.LatLng(P[n][0], P[n][1]);
+  const goRoute   = ['武汉','景德镇','篁岭','武夷山','平潭'].map(LL);
+  const backRoute = ['平潭','抚州','南昌','武汉'].map(LL);
+  const labels = [
+    {n:'武汉',sub:'起点 · 9.30 晚'},{n:'景德镇',sub:'10.1'},{n:'篁岭',sub:'10.2 晒秋'},{n:'武夷山',sub:'10.2-10.3'},
+    {n:'平潭',sub:'10.3晚-10.4 环岛'},{n:'抚州',sub:'10.4 深夜休整'},{n:'南昌',sub:'10.5 上午到 · 10.7 婚礼'}
+  ];
+  try{
+    const map = new TMap.Map('map', { center:new TMap.LatLng(27.9,117.3), zoom:7.6, viewMode:'2D' });
+    const bounds = new TMap.LatLngBounds();
+    Object.values(P).forEach(v=>bounds.extend(new TMap.LatLng(v[0],v[1])));
+    map.fitBounds(bounds,{padding:60});
+
+    new TMap.MultiPolyline({
+      map, styles:{
+        go:   new TMap.PolylineStyle({color:'#FF7A2F', width:6, borderWidth:1, borderColor:'#7a2f00', dashArray:[12,8], lineCap:'round'}),
+        back: new TMap.PolylineStyle({color:'#2BD9C0', width:6, borderWidth:1, borderColor:'#00473d', dashArray:[4,10], lineCap:'round'})
+      },
+      geometries:[
+        {id:'go',   styleId:'go',   paths:goRoute},
+        {id:'back', styleId:'back', paths:backRoute}
+      ]
+    });
+    new TMap.MultiMarker({
+      map, styles:{ default:new TMap.MarkerStyle({width:26,height:34,color:'#FF6B35'}) },
+      geometries: labels.map(l=>({id:l.n, styleId:'default', position:LL(l.n)}))
+    });
+    new TMap.MultiLabel({
+      map, styles:{ default:new TMap.LabelStyle({color:'#ffffff', size:13, offset:{x:20,y:-14}, strokeColor:'#000000', strokeWidth:2}) },
+      geometries: labels.map(l=>({id:'l'+l.n, styleId:'default', position:LL(l.n), content:l.n+'\n'+l.sub}))
+    });
+  }catch(e){
+    document.getElementById('mapFallback').style.display='flex';
+  }
+})();
+</script>
+</body>
+</html>
