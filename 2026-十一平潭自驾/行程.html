@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>十一 · 平潭自驾 | 行动手册 v2</title>
+<title>十一 · 平潭自驾 | 行动手册 v3</title>
 <script type="text/javascript">
   window._TMapSecurityConfig = {
     serviceHost: 'http://127.0.0.1:__WB_HTTP_PORT__/_TMapService/_wbt/__WB_TMAP_SECRET__',
@@ -30,6 +30,8 @@
   nav a:hover{color:#fff;border-color:var(--go1)}
   nav a.hot{color:var(--go2);border-color:rgba(255,210,63,.4)}
   nav a.money{color:#7ce8bd;border-color:rgba(52,211,153,.4)}
+  nav a.prep{color:#ffb35c;border-color:rgba(255,180,92,.55);font-weight:800;animation:prepPulse 2s ease-in-out infinite}
+  @keyframes prepPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,53,.25)}50%{box-shadow:0 0 0 5px rgba(255,107,53,0)}}
 
   /* ===== Hero ===== */
   header{position:relative;padding:70px 22px 56px;text-align:center;overflow:hidden}
@@ -96,6 +98,30 @@
   .pill.warn b{color:var(--pink)}
   .pill.good{background:rgba(52,211,153,.10);color:#7ce8bd}
   .pill.good b{color:#34d399}
+
+  /* ===== 出行前必看（注意事项） ===== */
+  .prep{margin-bottom:6px;border-radius:22px;padding:20px 22px 16px;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,rgba(255,107,53,.16),rgba(255,46,136,.10) 55%,rgba(255,210,63,.08));
+    border:2px dashed rgba(255,140,70,.6);box-shadow:0 0 0 5px rgba(255,107,53,.05),0 12px 34px rgba(255,60,90,.14)}
+  .prep::after{content:"⚠️";position:absolute;right:16px;top:12px;font-size:40px;opacity:.55;filter:saturate(.9)}
+  .prep-count{font-size:13px;font-weight:900;color:#ffd23f;letter-spacing:.06em}
+  .prep-form{display:flex;gap:10px;margin:12px 0 14px}
+  .prep-form input{flex:1;background:rgba(5,9,20,.55);border:1px solid rgba(255,140,70,.5);border-radius:12px;padding:11px 14px;color:var(--txt);font-size:14px;font-family:inherit}
+  .prep-form input:focus{outline:none;border-color:var(--go1);box-shadow:0 0 0 3px rgba(255,107,53,.18)}
+  .prep-list{list-style:none}
+  .prep-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;font-size:15px;background:rgba(3,7,18,.4);border:1px solid rgba(255,210,63,.18);margin-bottom:8px;transition:transform .15s,background .15s}
+  .prep-item:hover{transform:translateX(3px);background:rgba(3,7,18,.6)}
+  .prep-item .box{flex:none;width:22px;height:22px;border-radius:8px;border:2px solid #ffb35c;cursor:pointer;position:relative;transition:all .2s}
+  .prep-item .box:hover{border-color:var(--go2)}
+  .prep-item .txt{flex:1;word-break:break-word;font-weight:700;color:#ffe3c2}
+  .prep-item.done .txt{color:var(--sub);text-decoration:line-through;font-weight:400}
+  .prep-item.done .box{background:linear-gradient(135deg,#34d399,#22d3ee);border-color:transparent}
+  .prep-item.done .box::after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #06231c;border-width:0 2.5px 2.5px 0;transform:rotate(42deg)}
+  .prep-item .ic{cursor:pointer;border:none;background:none;color:var(--sub);font-size:14px;flex:none;padding:2px 5px;border-radius:6px}
+  .prep-item .ic:hover{color:#fff;background:rgba(255,255,255,.08)}
+  .prep-item .ic.del:hover{color:var(--pink);background:rgba(255,46,136,.14)}
+  .prep-item input.prep-edit{flex:1;background:var(--bg2);border:1px solid var(--go1);border-radius:8px;padding:6px 10px;color:var(--txt);font-size:14px;font-family:inherit;outline:none}
+  .prep-empty{color:var(--sub);font-size:13.5px;padding:14px;text-align:center;border:1px dashed var(--line);border-radius:12px}
 
   /* ===== 记账 ===== */
   .money-panel{background:linear-gradient(135deg,rgba(52,211,153,.08),rgba(34,211,238,.06));border:1px solid rgba(52,211,153,.3);border-radius:20px;padding:24px}
@@ -207,6 +233,7 @@
 
 <nav>
   <span class="logo">平潭行动手册</span>
+  <a href="#notices" class="prep">⚠️ 出行必看</a>
   <a href="#map-sec">路线图</a>
   <a href="#days">逐日行程</a>
   <a href="#money" class="money">随手记账</a>
@@ -216,7 +243,7 @@
 </nav>
 
 <header>
-  <div class="kicker">V2 · 景德镇已去掉 · 可随时更新</div>
+  <div class="kicker">V3 · 新增出行前必看 · 可随时更新</div>
   <h1>十一 <span class="g">平潭自驾</span> 行动手册</h1>
   <div class="route">
     <b>武汉</b><span class="arrow">→</span>篁岭<span class="arrow">→</span>武夷山<span class="arrow">→</span><b>平潭岛</b><span class="arrow">→</span>抚州<span class="arrow">→</span><b>南昌</b><span class="arrow">→</span>武汉
@@ -232,9 +259,22 @@
 
 <div class="wrap">
 
+  <!-- 出行前必看（注意事项：可增删改勾，存在浏览器本地）-->
+  <div class="sec-title" id="notices">
+    <span class="no" style="color:#ffb35c">01 / CHECK</span><h2>⚠️ 出行前必看</h2><span class="sub">每趟出发前过一遍 · 随时增删改勾 · 存本机</span>
+  </div>
+  <div class="prep">
+    <div class="prep-count" id="prepCount"></div>
+    <div class="prep-form">
+      <input id="prepInput" type="text" maxlength="60" placeholder="加一条注意事项，比如：检查车况油量、备点现金零钱……">
+      <button class="btn btn-add" id="prepAdd">＋ 追加</button>
+    </div>
+    <ul class="prep-list" id="prepList"></ul>
+  </div>
+
   <!-- 地图 -->
   <div class="sec-title" id="map-sec">
-    <span class="no">01 / ROUTE</span><h2>整体路线</h2><span class="sub">橙黄=去程 · 青绿=返程 · 数字=停靠顺序</span>
+    <span class="no">02 / ROUTE</span><h2>整体路线</h2><span class="sub">橙黄=去程 · 青绿=返程 · 数字=停靠顺序</span>
   </div>
   <div id="map">
     <div class="map-fallback" id="mapFallback">
@@ -249,13 +289,13 @@
 
   <!-- 逐日 -->
   <div class="sec-title" id="days">
-    <span class="no">02 / DAY BY DAY</span><h2>逐日行程</h2><span class="sub">下滑展开，随时叫我改</span>
+    <span class="no">03 / DAY BY DAY</span><h2>逐日行程</h2><span class="sub">下滑展开，随时叫我改</span>
   </div>
   <div id="dayList"></div>
 
   <!-- 记账 -->
   <div class="sec-title" id="money">
-    <span class="no" style="color:#34d399">03 / MONEY</span><h2>随手记账</h2><span class="sub">输完就存 · 刷新不丢 · 一键导出</span>
+    <span class="no" style="color:#34d399">04 / MONEY</span><h2>随手记账</h2><span class="sub">输完就存 · 刷新不丢 · 一键导出</span>
   </div>
   <div class="money-panel">
     <div class="money-total">
@@ -281,7 +321,7 @@
 
   <!-- 相册 & 趣事 -->
   <div class="sec-title" id="moments">
-    <span class="no" style="color:var(--pink)">04 / MOMENTS</span><h2>途中所见 · 相册 &amp; 趣事</h2><span class="sub">上传的照片自动循环播放</span>
+    <span class="no" style="color:var(--pink)">05 / MOMENTS</span><h2>途中所见 · 相册 &amp; 趣事</h2><span class="sub">上传的照片自动循环播放</span>
   </div>
   <div class="slide-box" id="slideBox">
     <div class="slide-empty" id="slideEmpty">
@@ -306,13 +346,13 @@
 
   <!-- 水煮 -->
   <div class="sec-title" id="shuizhu">
-    <span class="no">05 / EAT</span><h2>南昌水煮作战图</h2><span class="sub">朋友推荐得对，这是南昌的魂</span>
+    <span class="no">06 / EAT</span><h2>南昌水煮作战图</h2><span class="sub">朋友推荐得对，这是南昌的魂</span>
   </div>
   <div class="sz-grid" id="szGrid"></div>
   <div class="sec-title"><span class="no" style="color:var(--back1)"></span><h2 style="font-size:15px;font-weight:700;color:var(--sub)">点单心法：卤水锅底烫菜 + 必点鸡脚/脚板豆干/藕丸/皮蛋，怕辣配冰绿豆汤或酒酿汤圆冲蛋；水煮店基本都兼卖油炸，炸香蕉值得一试。人均 30–60。</h2></div>
 
   <!-- 清单 -->
-  <div class="sec-title" id="pack"><span class="no">06 / PACK</span><h2>行前清单 &amp; 备忘</h2><span class="sub">勾选自动保存在本机</span></div>
+  <div class="sec-title" id="pack"><span class="no">07 / PACK</span><h2>行前清单 &amp; 备忘</h2><span class="sub">勾选自动保存在本机</span></div>
   <div class="panel">
     <div class="ck-grid" id="ckGrid"></div>
     <textarea id="memo" placeholder="备忘录：想加的店、朋友说的隐藏景点、要带的杂物……写在这里，刷新不丢。"></textarea>
@@ -320,7 +360,7 @@
   </div>
 
   <!-- how to edit -->
-  <div class="sec-title" id="howto"><span class="no">07 / EXTEND</span><h2>第二版了，还能怎么变？</h2></div>
+  <div class="sec-title" id="howto"><span class="no">08 / EXTEND</span><h2>第三版了，还能怎么变？</h2></div>
   <div class="howto">
     <h3>行程是活的，按这三步升级</h3>
     <ol>
@@ -332,7 +372,7 @@
   </div>
 </div>
 
-<footer>十一平潭行动手册 · <b>V2</b> · 由 Buddy 规划 · 数据截至 2026.08 · 里程时间为估算，出发前用导航复核</footer>
+<footer>十一平潭行动手册 · <b>V3</b> · 由 Buddy 规划 · 数据截至 2026.08 · 里程时间为估算，出发前用导航复核</footer>
 
 <script>
 /* =====================================================
@@ -765,6 +805,53 @@ const TRIP = {
   function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
 
   open().then(d=>{db=d;refresh()}).catch(()=>{ $('phBtn').style.display='none'; });
+})();
+
+/* ============ 出行前必看（localStorage，可增删改勾） ============ */
+(function(){
+  const KEY='travel-notices-v1';
+  const DEFAULT=[{t:"确认是否需要驱蚊水家得宝",d:false}];
+  let items=[]; try{items=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+  if(!Array.isArray(items)){items=DEFAULT.map(x=>({t:x.t,d:false}))}
+  const input=document.getElementById('prepInput'), list=document.getElementById('prepList'), count=document.getElementById('prepCount');
+  function persist(){const clean=items.map(x=>({t:x.t,d:!!x.d}));localStorage.setItem(KEY,JSON.stringify(clean))}
+  function render(){
+    const rest=items.filter(x=>!x.d).length;
+    count.textContent=`还剩 ${rest} 项没确认 · 共 ${items.length} 项`;
+    if(!items.length){list.innerHTML='<li class="prep-empty">还没有注意事项，上面加一条吧。</li>';return}
+    list.innerHTML=items.map((it,i)=>{
+      const editing=!!it._e;
+      return `<li class="prep-item ${it.d?'done':''}">
+        <span class="box" data-i="${i}" title="点一下=确认完成"></span>
+        ${editing
+          ? `<input class="prep-edit" data-i="${i}" value="${esc(it.t)}" maxlength="60">`
+          : `<span class="txt">${esc(it.t)}</span>`}
+        <button class="ic edit" data-i="${i}" title="修改">✏️</button>
+        <button class="ic del" data-i="${i}" title="删除">🗑</button>
+      </li>`;
+    }).join('');
+    list.querySelectorAll('.box').forEach(b=>b.addEventListener('click',()=>{items[+b.dataset.i].d=!items[+b.dataset.i].d;persist();render()}));
+    list.querySelectorAll('.del').forEach(b=>b.addEventListener('click',()=>{
+      if(confirm('删掉这条注意事项？')){items.splice(+b.dataset.i,1);persist();render()}
+    }));
+    list.querySelectorAll('.edit').forEach(b=>b.addEventListener('click',()=>{
+      items.forEach(x=>x._e=false); items[+b.dataset.i]._e=true; render();
+    }));
+    list.querySelectorAll('.prep-edit').forEach(ed=>{
+      ed.focus(); ed.select();
+      const commit=()=>{const t=ed.value.trim();if(t)items[+ed.dataset.i].t=t;delete items[+ed.dataset.i]._e;persist();render()};
+      ed.addEventListener('keydown',e=>{
+        if(e.key==='Enter'){e.preventDefault();commit()}
+        if(e.key==='Escape'){delete items[+ed.dataset.i]._e;render()}
+      });
+      ed.addEventListener('blur',commit);
+    });
+  }
+  function add(){const t=input.value.trim();if(!t){input.focus();return}items.push({t,d:false});input.value='';persist();render()}
+  function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+  document.getElementById('prepAdd').addEventListener('click',add);
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')add()});
+  render();
 })();
 
 /* ============ 腾讯地图（合规代理模式，无密钥） ============ */
