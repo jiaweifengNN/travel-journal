@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>西安 · 徐良演唱会 | 旅途回忆 v1</title>
+<style>
+  :root{
+    --bg:#0b0814; --bg2:#150f24; --card:#1a1330; --line:#2e2452;
+    --txt:#f5f0ff; --sub:#a89cc7;
+    --pink:#ff2e88; --violet:#8b5cf6; --cyan:#22d3ee; --gold:#ffd23f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;line-height:1.7}
+  ::selection{background:var(--pink);color:#fff}
+
+  /* ===== 顶部导航 ===== */
+  nav{position:sticky;top:0;z-index:99;background:rgba(11,8,20,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;gap:8px;align-items:center;overflow-x:auto;white-space:nowrap}
+  nav .logo{font-weight:900;font-size:15px;background:linear-gradient(90deg,var(--pink),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:8px;flex:none}
+  nav a{color:var(--sub);text-decoration:none;font-size:12.5px;padding:4px 10px;border-radius:99px;border:1px solid transparent;flex:none}
+  nav a:hover{color:#fff;border-color:var(--pink)}
+  nav a.hot{color:var(--gold);border-color:rgba(255,210,63,.4)}
+  nav a.concert{color:#ff8ab8;border-color:rgba(255,46,136,.5);font-weight:800;animation:np 2s ease-in-out infinite}
+  @keyframes np{0%,100%{box-shadow:0 0 0 0 rgba(255,46,136,.3)}50%{box-shadow:0 0 0 5px rgba(255,46,136,0)}}
+
+  /* ===== Hero ===== */
+  header{position:relative;padding:74px 22px 58px;text-align:center;overflow:hidden}
+  header::before{content:"";position:absolute;inset:-40% -20%;background:
+    radial-gradient(45% 45% at 20% 30%,rgba(255,46,136,.24),transparent 70%),
+    radial-gradient(40% 40% at 80% 25%,rgba(139,92,246,.22),transparent 70%),
+    radial-gradient(50% 50% at 55% 85%,rgba(34,211,238,.14),transparent 70%);
+    animation:drift 14s ease-in-out infinite alternate}
+  @keyframes drift{to{transform:translate(3%,-4%) scale(1.06)}}
+  header .kicker{position:relative;letter-spacing:.45em;font-size:13px;color:var(--gold);font-weight:700}
+  header h1{position:relative;font-size:clamp(36px,7vw,68px);font-weight:900;letter-spacing:.04em;margin:14px 0 8px}
+  header h1 .g{background:linear-gradient(92deg,var(--pink),var(--violet) 55%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header .route{position:relative;font-size:clamp(15px,2.6vw,20px);color:var(--sub);font-weight:600}
+  header .route b{color:#fff}
+  header .chips{position:relative;margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  header .chip{font-size:12.5px;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:5px 14px;background:rgba(26,19,48,.6)}
+  header .chip b{color:var(--gold)}
+  header .tip{position:relative;margin-top:18px;font-size:12.5px;color:var(--sub)}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+
+  .sec-title{display:flex;align-items:baseline;gap:12px;margin:54px 0 18px;flex-wrap:wrap}
+  .sec-title .no{font-size:13px;font-weight:900;color:var(--pink);letter-spacing:.2em}
+  .sec-title h2{font-size:clamp(22px,3.4vw,30px);font-weight:900}
+  .sec-title .sub{font-size:12.5px;color:var(--sub)}
+
+  .btn{cursor:pointer;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:800;font-family:inherit;transition:transform .15s,filter .15s}
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+  .btn-add{background:linear-gradient(90deg,var(--pink),var(--violet));color:#fff}
+  .btn-cyan{background:linear-gradient(90deg,var(--cyan),#34d399);color:#08221d}
+  .btn-ghost{background:rgba(255,255,255,.06);color:var(--sub);border:1px solid var(--line);font-weight:600}
+  .btn-ghost:hover{color:#fff}
+
+  /* ===== 概览（可编辑） ===== */
+  .overview{background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(255,46,136,.08));border:1px solid rgba(139,92,246,.35);border-radius:20px;padding:24px 26px;font-size:15px;min-height:80px}
+  .overview:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 3px rgba(139,92,246,.18)}
+  .overview:empty:before{content:attr(data-ph);color:var(--sub)}
+  .edit-hint{font-size:11.5px;color:var(--sub);margin-top:8px}
+  .edit-hint b{color:var(--cyan)}
+
+  /* ===== 照片墙 / 相册（主舞台） ===== */
+  .gallery-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+  .gallery-tools .cnt{font-size:12.5px;color:var(--sub);margin-left:auto}
+  .gallery-tools .cnt b{color:var(--gold)}
+  .masonry{columns:3 240px;column-gap:12px}
+  .ph{position:relative;break-inside:avoid;margin-bottom:12px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--bg2)}
+  .ph img{width:100%;display:block;cursor:zoom-in;transition:transform .4s}
+  .ph:hover img{transform:scale(1.03)}
+  .ph .cap{font-size:12.5px;color:var(--sub);padding:8px 12px 10px;cursor:text}
+  .ph .cap:empty:before{content:"点这里写一句说明…";color:#5d5180}
+  .ph .cap.editing{color:var(--gold)}
+  .ph .x{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:99px;background:rgba(11,8,20,.8);color:#fff;border:none;font-size:13px;cursor:pointer;opacity:0;transition:opacity .2s}
+  .ph:hover .x{opacity:1}
+  .ph .x:hover{background:var(--pink)}
+  .gallery-empty{color:var(--sub);font-size:14px;padding:40px 20px;text-align:center;border:2px dashed var(--line);border-radius:16px}
+  .gallery-empty .big-emoji{font-size:42px;display:block;margin-bottom:10px}
+
+  /* ===== 逐日日记（可编辑时间线） ===== */
+  .day{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 26px 20px;margin-bottom:26px;position:relative;overflow:hidden}
+  .day::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,var(--dc1),var(--dc2))}
+  .day-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:6px}
+  .day-date{font-size:12px;font-weight:800;letter-spacing:.15em;color:var(--dc1);border:1px solid var(--dc1);border-radius:99px;padding:3px 12px}
+  .day-head h3{font-size:clamp(18px,2.6vw,24px);font-weight:900}
+  .day-badge{font-size:11.5px;color:var(--sub);margin-left:auto;letter-spacing:.1em}
+  .day-sub{color:var(--sub);font-size:13.5px;margin-bottom:14px}
+  .tl{list-style:none}
+  .tl-row{display:flex;gap:12px;padding:8px 0;border-bottom:1px dashed rgba(46,36,82,.6);align-items:flex-start}
+  .tl-row:last-child{border-bottom:none}
+  .tl-row .t{flex:none;width:62px;font-weight:900;font-size:13px;color:var(--dc1);font-variant-numeric:tabular-nums;padding-top:2px}
+  .tl-row .t input{width:100%;background:transparent;border:1px solid transparent;border-radius:6px;color:var(--dc1);font-weight:900;font-size:13px;font-family:inherit;padding:2px 4px}
+  .tl-row .t input:focus{outline:none;border-color:var(--dc1);background:var(--bg2)}
+  .tl-row .x{flex:1;font-size:14.5px}
+  .tl-row .x textarea{width:100%;background:transparent;border:1px solid transparent;border-radius:6px;color:var(--txt);font-size:14.5px;font-family:inherit;resize:vertical;min-height:26px;line-height:1.6;padding:2px 4px}
+  .tl-row .x textarea:focus{outline:none;border-color:var(--violet);background:var(--bg2)}
+  .tl-row .row-del{flex:none;border:none;background:none;color:var(--sub);cursor:pointer;font-size:15px;padding:4px 2px}
+  .tl-row .row-del:hover{color:var(--pink)}
+  .tl-add{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .tl-add input,.tl-add textarea{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--txt);font-size:14px;font-family:inherit}
+  .tl-add input:focus,.tl-add textarea:focus{outline:none;border-color:var(--dc1)}
+  .tl-add .ti{width:80px;flex:none}
+  .tl-add .tx{flex:1;min-width:200px}
+
+  /* ===== 演唱会专区 ===== */
+  .concert{background:linear-gradient(135deg,rgba(255,46,136,.14),rgba(139,92,246,.12));border:1px solid rgba(255,46,136,.4);border-radius:22px;padding:26px;position:relative;overflow:hidden}
+  .concert::after{content:"🎵";position:absolute;right:18px;top:12px;font-size:42px;opacity:.5}
+  .cinfo{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+  .cfield label{display:block;font-size:11.5px;color:var(--sub);margin-bottom:4px;letter-spacing:.05em}
+  .cfield input,.cfield textarea{width:100%;background:rgba(5,3,12,.5);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:var(--txt);font-size:14px;font-family:inherit}
+  .cfield input:focus,.cfield textarea:focus{outline:none;border-color:var(--pink)}
+  .cfield textarea{min-height:42px;resize:vertical}
+  .setlist-title{font-size:14px;font-weight:900;color:#ff8ab8;margin:18px 0 8px;letter-spacing:.05em}
+  .setlist{list-style:none}
+  .sl-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed rgba(46,36,82,.6)}
+  .sl-row .n{flex:none;width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--pink),var(--violet));color:#fff;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center}
+  .sl-row input{flex:1;background:transparent;border:1px solid transparent;border-radius:6px;color:var(--txt);font-size:14px;font-family:inherit;padding:4px 6px}
+  .sl-row input:focus{outline:none;border-color:var(--pink);background:var(--bg2)}
+  .sl-row .sl-del{flex:none;border:none;background:none;color:var(--sub);cursor:pointer;font-size:15px}
+  .sl-row .sl-del:hover{color:var(--pink)}
+  .sl-add{display:flex;gap:10px;margin-top:10px}
+  .sl-add input{flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--txt);font-size:14px;font-family:inherit}
+  .sl-add input:focus{outline:none;border-color:var(--pink)}
+  .feelings{margin-top:18px}
+  .feelings label{display:block;font-size:11.5px;color:var(--sub);margin-bottom:4px;letter-spacing:.05em}
+  .feelings textarea{width:100%;min-height:90px;background:rgba(5,3,12,.5);border:1px solid var(--line);border-radius:12px;padding:14px;color:var(--txt);font-size:14.5px;font-family:inherit;resize:vertical;line-height:1.7}
+  .feelings textarea:focus{outline:none;border-color:var(--gold)}
+
+  /* ===== 碎碎念 ===== */
+  .mood-form{display:flex;gap:10px;margin-bottom:14px}
+  .mood-form input{flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;color:var(--txt);font-size:14px;font-family:inherit}
+  .mood-form input:focus{outline:none;border-color:var(--cyan)}
+  .mood-list{list-style:none}
+  .mood-item{display:flex;gap:12px;padding:10px 4px;border-bottom:1px dashed rgba(46,36,82,.6);font-size:14.5px}
+  .mood-item .ts{flex:none;font-size:11.5px;color:var(--sub);font-variant-numeric:tabular-nums;padding-top:3px;width:104px}
+  .mood-item .x{flex:1}
+  .mood-item .del{flex:none;border:none;background:none;color:var(--sub);cursor:pointer;font-size:15px}
+  .mood-item .del:hover{color:var(--pink)}
+  .empty-note{color:var(--sub);font-size:13.5px;padding:16px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+
+  .local-tip{font-size:12.5px;color:var(--sub);margin-top:30px;border-top:1px dashed var(--line);padding-top:14px}
+  .local-tip b{color:var(--cyan)}
+
+  /* ===== 灯箱 ===== */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(5,3,12,.94);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+  .lightbox.on{display:flex}
+  .lightbox img{max-width:92vw;max-height:78vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .lightbox .lb-cap{margin-top:14px;font-size:14px;color:#fff;text-align:center;max-width:700px}
+  .lightbox .lb-cap input{background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:#fff;font-size:14px;font-family:inherit;width:420px;max-width:80vw;text-align:center}
+  .lightbox .lb-cap input:focus{outline:none;border-color:var(--gold)}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid var(--line);color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .lb-nav:hover{background:var(--pink)}
+  .lb-nav.prev{left:18px}.lb-nav.next{right:18px}
+  .lb-close{position:absolute;top:18px;right:22px;width:42px;height:42px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid var(--line);color:#fff;font-size:20px;cursor:pointer}
+  .lb-close:hover{background:var(--pink)}
+  .lb-counter{position:absolute;top:22px;left:24px;font-size:13px;color:var(--sub)}
+
+  footer{padding:36px 20px 60px;text-align:center;color:var(--sub);font-size:12.5px}
+  footer b{color:var(--gold)}
+
+  @media (max-width:640px){
+    .masonry{columns:2 150px}
+    .day{padding:20px 16px 16px}
+    .tl-row .t{width:54px}
+    .cinfo{grid-template-columns:1fr 1fr}
+    .mood-item .ts{width:84px}
+    .lb-nav{width:40px;height:40px;font-size:18px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">西安 · 演唱会回忆</span>
+  <a href="#overview">概览</a>
+  <a href="#wall" class="hot">📷 照片墙</a>
+  <a href="#days">逐日记</a>
+  <a href="#concert" class="concert">🎵 演唱会</a>
+  <a href="#mood">碎碎念</a>
+</nav>
+
+<header>
+  <div class="kicker">2 0 2 6 · 0 8 · 旅 途 回 忆</div>
+  <h1><span class="g">西安 · 徐良演唱会</span></h1>
+  <div class="route">8.28 抵达长安 <b>→</b> 8.29 演唱会之夜</div>
+  <div class="chips">
+    <span class="chip">📍 <b>西安</b></span>
+    <span class="chip">🎵 <b>徐良</b> 演唱会</span>
+    <span class="chip">🗓 <b>8.28 – 8.29</b></span>
+    <span class="chip">📸 <b>图文为主</b></span>
+  </div>
+  <div class="tip">下面所有文字都能直接点开改 · 照片随时上传 · 全部存在你这台设备的浏览器里</div>
+</header>
+
+<div class="wrap">
+
+  <!-- 概览 -->
+  <div class="sec-title" id="overview">
+    <span class="no">01 / OVERVIEW</span><h2>这趟旅程，一句话</h2><span class="sub">点文字直接编辑</span>
+  </div>
+  <div class="overview" contenteditable="true" data-ph="写一句开场白：为什么去西安、这趟最期待什么……（点这里开始写）"></div>
+  <div class="edit-hint">💡 直接在框里打字，<b>失焦自动保存</b>到本机；照片往下走，传到照片墙或演唱会相册。</div>
+
+  <!-- 照片墙 -->
+  <div class="sec-title" id="wall">
+    <span class="no" style="color:var(--gold)">02 / PHOTO WALL</span><h2>📷 旅途照片墙</h2><span class="sub">主舞台 · 上传后自动压缩 · 点图放大 · 每张都能写说明</span>
+  </div>
+  <div class="gallery-tools">
+    <button class="btn btn-add" id="wallBtn">＋ 上传旅途照片</button>
+    <input type="file" id="wallFile" accept="image/*" multiple style="display:none">
+    <span class="cnt" id="wallCount"></span>
+  </div>
+  <div class="masonry" id="wallGrid"></div>
+  <div class="gallery-empty" id="wallEmpty">
+    <span class="big-emoji">📷</span>
+    还没有照片。点上面「上传旅途照片」，把这一路的画面一张张放进来——城墙、回民街、肉夹馍、演唱会现场都行。
+  </div>
+
+  <!-- 逐日记 -->
+  <div class="sec-title" id="days">
+    <span class="no" style="color:var(--cyan)">03 / DAY BY DAY</span><h2>逐日回忆</h2><span class="sub">时间、内容都能改 · 随时加新的一条</span>
+  </div>
+  <div id="dayList"></div>
+
+  <!-- 演唱会专区 -->
+  <div class="sec-title" id="concert">
+    <span class="no" style="color:var(--pink)">04 / CONCERT</span><h2>🎵 徐良演唱会</h2><span class="sub">8.29 晚 · 信息、歌单、感受都能改</span>
+  </div>
+  <div class="concert">
+    <div class="cinfo">
+      <div class="cfield"><label>场馆</label><input id="cVenue" type="text" placeholder="如：西安奥体中心"></div>
+      <div class="cfield"><label>时间</label><input id="cDate" type="text" placeholder="2026.08.29 晚 19:30"></div>
+      <div class="cfield"><label>票价 / 票档</label><input id="cTicket" type="text" placeholder="如：内场 ¥XXX"></div>
+      <div class="cfield"><label>座位</label><input id="cSeat" type="text" placeholder="如：A3 区 12 排"></div>
+    </div>
+    <div class="setlist-title">🎤 歌单 / Setlist（现场听到的都记上）</div>
+    <ul class="setlist" id="setlist"></ul>
+    <div class="sl-add">
+      <input id="slInput" type="text" placeholder="加一首歌，比如：后会无期" maxlength="60">
+      <button class="btn btn-cyan" id="slAdd">＋ 加歌</button>
+    </div>
+    <div class="feelings">
+      <label>💜 现场感受（想写多长写多长）</label>
+      <textarea id="cFeel" placeholder="第一次听徐良现场是什么感觉、哪首歌唱哭了、旁边谁一起来的……"></textarea>
+    </div>
+  </div>
+
+  <!-- 演唱会相册 -->
+  <div class="sec-title">
+    <span class="no" style="color:#ff8ab8">05 / CONCERT ALBUM</span><h2>🎬 演唱会现场相册</h2><span class="sub">把舞台、灯光、大合唱的瞬间都收进来</span>
+  </div>
+  <div class="gallery-tools">
+    <button class="btn btn-add" id="concertBtn">＋ 上传演唱会照片</button>
+    <input type="file" id="concertFile" accept="image/*" multiple style="display:none">
+    <span class="cnt" id="concertCount"></span>
+  </div>
+  <div class="masonry" id="concertGrid"></div>
+  <div class="gallery-empty" id="concertEmpty">
+    <span class="big-emoji">🎬</span>
+    演唱会现场的照片传到这里。舞台灯光、荧光棒海、和朋友的合照，单独放一个相册更好翻。
+  </div>
+
+  <!-- 碎碎念 -->
+  <div class="sec-title" id="mood">
+    <span class="no" style="color:var(--violet)">06 / MOOD</span><h2>碎碎念</h2><span class="sub">一句话记下当时的念头</span>
+  </div>
+  <div class="mood-form">
+    <input id="moodInput" type="text" placeholder="比如：城墙骑行风吹得好舒服 / 这碗泡馍值了 / 前奏一响就起鸡皮疙瘩" maxlength="140">
+    <button class="btn btn-ghost" id="moodAdd" style="background:linear-gradient(90deg,var(--violet),var(--cyan));color:#fff">记下</button>
+  </div>
+  <ul class="mood-list" id="moodList"></ul>
+
+  <div class="local-tip"><b>数据说明：</b>所有文字存在浏览器本地（localStorage），照片存在浏览器数据库（IndexedDB，上传时自动压缩到长边 1600px）。都只在你当前这台设备的这个浏览器里，换设备或清缓存会丢。想把哪段永久存档，发给我，我帮你写进 GitHub 仓库的日记文件里。</div>
+</div>
+
+<!-- 灯箱 -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-counter" id="lbCounter"></div>
+  <button class="lb-close" id="lbClose">×</button>
+  <button class="lb-nav prev" id="lbPrev">‹</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-cap"><input id="lbCapInput" type="text" placeholder="给这张照片写句话…" maxlength="80"></div>
+  <button class="lb-nav next" id="lbNext">›</button>
+</div>
+
+<footer>西安 · 徐良演唱会回忆录 · <b>v1</b> · 图文并茂版 · 数据存在你的浏览器本地，记得留底</footer>
+
+<script>
+/* =====================================================
+   通用工具
+===================================================== */
+const $ = id => document.getElementById(id);
+function esc(s){const d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML}
+function save(key,val){localStorage.setItem(key,JSON.stringify(val))}
+function load(key,def){try{const v=JSON.parse(localStorage.getItem(key));return v==null?def:v}catch(e){return def}}
+
+/* =====================================================
+   概览（contenteditable → localStorage）
+===================================================== */
+(function(){
+  const el=$('overview'), KEY='xa2026-overview';
+  el.textContent=load(KEY,'')||'';
+  el.addEventListener('blur',()=>save(KEY,el.textContent));
+})();
+
+/* =====================================================
+   照片存储（IndexedDB，旅途墙 + 演唱会相册共用）
+   record: {id, data, name, caption, tag, ts}  tag: 'wall'|'concert'
+===================================================== */
+const PhotoDB=(function(){
+  const DB='xa2026photos';
+  let db;
+  function open(){
+    return new Promise((res,rej)=>{
+      const r=indexedDB.open(DB,1);
+      r.onupgradeneeded=e=>{if(!e.target.result.objectStoreNames.contains('photos'))e.target.result.createObjectStore('photos',{keyPath:'id',autoIncrement:true})};
+      r.onsuccess=e=>res(e.target.result);
+      r.onerror=()=>rej(r.error);
+    });
+  }
+  function tx(mode,fn){
+    return new Promise((res,rej)=>{
+      const t=db.transaction('photos',mode),s=t.objectStore('photos'),q=fn(s);
+      t.oncomplete=()=>res(q&&q.result);t.onerror=()=>rej(t.error);
+    });
+  }
+  // 长边1600 jpeg0.85 压缩
+  function compress(file){
+    return new Promise(res=>{
+      const img=new Image(),url=URL.createObjectURL(file);
+      img.onload=()=>{
+        const MAX=1600;let {width:w,height:h}=img;
+        if(Math.max(w,h)>MAX){const k=MAX/Math.max(w,h);w=Math.round(w*k);h=Math.round(h*k)}
+        const c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0,w,h);
+        URL.revokeObjectURL(url);
+        res({data:c.toDataURL('image/jpeg',.85),name:file.name});
+      };
+      img.onerror=()=>{URL.revokeObjectURL(url);res(null)};
+      img.src=url;
+    });
+  }
+  const api={
+    init(){return open().then(d=>{db=d})},
+    getAll:()=>tx('readonly',s=>s.getAll()),
+    add:p=>tx('readwrite',s=>s.add(p)),
+    update:p=>tx('readwrite',s=>s.put(p)),
+    del:id=>tx('readwrite',s=>s.delete(id))
+  };
+  return api;
+})();
+
+/* 灯箱（两个画廊共用） */
+const Lightbox=(function(){
+  let photos=[],idx=0,tag='';
+  const box=$('lightbox'),img=$('lbImg'),cap=$('lbCapInput'),counter=$('lbCounter');
+  function show(list,i,t){
+    photos=list;idx=i;tag=t;render();
+    box.classList.add('on');
+  }
+  function render(){
+    const p=photos[idx];if(!p)return;
+    img.src=p.data;
+    cap.value=p.caption||'';
+    counter.textContent=`${idx+1} / ${photos.length}`;
+  }
+  function nav(d){if(!photos.length)return;idx=(idx+d+photos.length)%photos.length;render()}
+  $('lbClose').addEventListener('click',()=>box.classList.remove('on'));
+  $('lbPrev').addEventListener('click',()=>nav(-1));
+  $('lbNext').addEventListener('click',()=>nav(1));
+  box.addEventListener('click',e=>{if(e.target===box)box.classList.remove('on')});
+  document.addEventListener('keydown',e=>{
+    if(!box.classList.contains('on'))return;
+    if(e.key==='Escape')box.classList.remove('on');
+    else if(e.key==='ArrowLeft')nav(-1);
+    else if(e.key==='ArrowRight')nav(1);
+  });
+  // 灯箱里改说明 → 写回 IndexedDB
+  let capTmr;
+  cap.addEventListener('input',()=>{
+    if(!photos[idx])return;
+    photos[idx].caption=cap.value;
+    clearTimeout(capTmr);
+    capTmr=setTimeout(()=>{PhotoDB.update(photos[idx]).then(()=>Gallery.refresh(tag))},500);
+  });
+  return {show};
+})();
+
+/* 画廊（wall / concert 两个实例共用逻辑） */
+const Gallery=(function(){
+  const cfg={
+    wall:{btn:'wallBtn',file:'wallFile',grid:'wallGrid',empty:'wallEmpty',count:'wallCount',tag:'wall'},
+    concert:{btn:'concertBtn',file:'concertFile',grid:'concertGrid',empty:'concertEmpty',count:'concertCount',tag:'concert'}
+  };
+  let allPhotos={wall:[],concert:[]};
+
+  function setup(name){
+    const c=cfg[name];
+    $(c.btn).addEventListener('click',()=>$(c.file).click());
+    $(c.file).addEventListener('change',async e=>{
+      for(const f of e.target.files){
+        const p=await PhotoDB.compress(f);
+        if(p) await PhotoDB.add({...p,caption:'',tag:c.tag,ts:Date.now()});
+      }
+      e.target.value='';
+      refresh('all');
+    });
+  }
+
+  function render(name){
+    const c=cfg[name];
+    const list=allPhotos[name];
+    $(c.count).innerHTML=list.length?`共 <b>${list.length}</b> 张`:'';
+    const grid=$(c.grid),empty=$(c.empty);
+    if(!list.length){grid.innerHTML='';empty.style.display='block';return}
+    empty.style.display='none';
+    grid.innerHTML=list.map(p=>`
+      <div class="ph">
+        <img src="${p.data}" data-id="${p.id}" alt="${esc(p.name)}" loading="lazy">
+        <button class="x" data-id="${p.id}" title="删除">×</button>
+        <div class="cap" data-id="${p.id}">${esc(p.caption)}</div>
+      </div>`).join('');
+    grid.querySelectorAll('img').forEach(im=>im.addEventListener('click',()=>{
+      const id=+im.dataset.id,i=list.findIndex(p=>p.id===id);
+      Lightbox.show(list,i,name);
+    }));
+    grid.querySelectorAll('.x').forEach(b=>b.addEventListener('click',async()=>{
+      if(confirm('删掉这张照片？')){await PhotoDB.del(+b.dataset.id);refresh('all')}
+    }));
+    // 行内改说明
+    grid.querySelectorAll('.cap').forEach(cap=>{
+      const startEdit=()=>{
+        cap.classList.add('editing');cap.contentEditable=true;cap.focus();
+        const range=document.createRange();range.selectNodeContents(cap);const sel=window.getSelection();sel.removeAllRanges();sel.addRange(range);
+      };
+      cap.addEventListener('click',startEdit);
+      const commit=async()=>{
+        cap.classList.remove('editing');cap.contentEditable=false;
+        const id=+cap.dataset.id,p=list.find(x=>x.id===id);
+        if(p&&p.caption!==cap.textContent){p.caption=cap.textContent;await PhotoDB.update(p)}
+      };
+      cap.addEventListener('blur',commit);
+      cap.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();cap.blur()}if(e.key==='Escape'){cap.textContent=esc(list.find(x=>x.id===+cap.dataset.id)?.caption||'');cap.blur()}});
+    });
+  }
+
+  function refresh(scope){
+    return PhotoDB.getAll().then(ps=>{
+      allPhotos.wall=ps.filter(p=>p.tag==='wall').sort((a,b)=>a.ts-b.ts);
+      allPhotos.concert=ps.filter(p=>p.tag==='concert').sort((a,b)=>a.ts-b.ts);
+      if(scope==='all'||scope==='wall')render('wall');
+      if(scope==='all'||scope==='concert')render('concert');
+    });
+  }
+
+  setup('wall');setup('concert');
+  return {refresh};
+})();
+
+/* =====================================================
+   逐日日记（localStorage，可增删改）
+===================================================== */
+(function(){
+  const KEY='xa2026-days';
+  const DEFAULT={
+    d0:{date:"8.28 周五",tag:"抵达日",title:"抵达西安 · 入夜逛吃",c1:"#22d3ee",c2:"#8b5cf6",
+      sub:"白天的奔波，换一顿扎实的碳水夜晚",
+      tl:[
+        {t:"白天",x:"抵达西安，入住酒店放行李"},
+        {t:"傍晚",x:"回民街 / 洒金桥扫街：肉夹馍、羊肉泡馍、甑糕"},
+        {t:"晚上",x:"钟鼓楼夜景，城墙根下走走"}
+      ]},
+    d1:{date:"8.29 周六",tag:"演唱会日",title:"白天暴走 · 夜晚徐良",c1:"#ff2e88",c2:"#ffd23f",
+      sub:"把白天留给长安，把夜晚留给现场",
+      tl:[
+        {t:"上午",x:"兵马俑 / 或 大唐不夜城（看体力二选一）"},
+        {t:"下午",x:"回市区休整，准备晚上的演唱会"},
+        {t:"晚上",x:"🎵 徐良演唱会现场，尽情嗨"},
+        {t:"深夜",x:"散场宵夜，回味今晚的每一首歌"}
+      ]}
+  };
+  let data=load(KEY,DEFAULT);
+
+  function saveAll(){save(KEY,data)}
+
+  function renderDay(key){
+    const d=data[key];
+    const el=document.createElement('section');
+    el.className='day';
+    el.style.setProperty('--dc1',d.c1);
+    el.style.setProperty('--dc2',d.c2);
+    el.innerHTML=`
+      <div class="day-head">
+        <span class="day-date">${esc(d.date)}</span>
+        <h3>${esc(d.title)}</h3>
+        <span class="day-badge">${esc(d.tag)}</span>
+      </div>
+      <div class="day-sub">${esc(d.sub)}</div>
+      <ul class="tl" data-key="${key}"></ul>
+      <div class="tl-add">
+        <input class="ti" type="text" placeholder="时间" maxlength="12">
+        <textarea class="tx" placeholder="记一笔：做了什么、吃了什么、看到什么…" maxlength="200"></textarea>
+        <button class="btn btn-ghost" data-add="${key}">＋ 加一条</button>
+      </div>`;
+    const ul=el.querySelector('.tl');
+    d.tl.forEach((item,i)=>ul.appendChild(makeRow(key,i,item)));
+    $('dayList').appendChild(el);
+  }
+
+  function makeRow(key,i,item){
+    const li=document.createElement('li');
+    li.className='tl-row';
+    li.innerHTML=`
+      <span class="t"><input type="text" value="${esc(item.t)}" maxlength="12"></span>
+      <span class="x"><textarea rows="1">${esc(item.x)}</textarea></span>
+      <button class="row-del" title="删除">×</button>`;
+    const ti=li.querySelector('.t input'),tx=li.querySelector('.x textarea');
+    ti.addEventListener('input',()=>{data[key].tl[i].t=ti.value;saveAll()});
+    tx.addEventListener('input',()=>{data[key].tl[i].x=tx.value;saveAll();autoGrow(tx)});
+    li.querySelector('.row-del').addEventListener('click',()=>{
+      data[key].tl.splice(i,1);saveAll();rebuild();
+    });
+    setTimeout(autoGrow,0,tx);
+    return li;
+  }
+  function autoGrow(tx){tx.style.height='auto';tx.style.height=tx.scrollHeight+'px'}
+
+  function rebuild(){
+    $('dayList').innerHTML='';
+    Object.keys(data).forEach(renderDay);
+    bindAdds();
+  }
+
+  function bindAdds(){
+    document.querySelectorAll('[data-add]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const key=btn.dataset.add;
+        const wrap=btn.parentElement;
+        const ti=wrap.querySelector('.ti'),tx=wrap.querySelector('.tx');
+        const t=ti.value.trim(),x=tx.value.trim();
+        if(!x){tx.focus();return}
+        data[key].tl.push({t:t||'时刻',x});
+        ti.value='';tx.value='';saveAll();rebuild();
+      });
+    });
+  }
+
+  rebuild();
+})();
+
+/* =====================================================
+   演唱会信息 + 歌单 + 感受（localStorage）
+===================================================== */
+(function(){
+  const KEY='xa2026-concert';
+  const DEFAULT={venue:'',date:'2026.08.29 晚',ticket:'',seat:'',setlist:[],feel:''};
+  let data=load(KEY,DEFAULT);
+  function saveAll(){save(KEY,data)}
+
+  const fields=['venue','date','ticket','seat'];
+  fields.forEach(f=>{
+    const el=$('c'+f.charAt(0).toUpperCase()+f.slice(1));
+    el.value=data[f]||'';
+    el.addEventListener('input',()=>{data[f]=el.value;saveAll()});
+  });
+  $('cFeel').value=data.feel||'';
+  $('cFeel').addEventListener('input',()=>{data.feel=$('cFeel').value;saveAll()});
+
+  const sl=$('setlist'),slInput=$('slInput');
+  function renderSL(){
+    sl.innerHTML=data.setlist.map((s,i)=>`
+      <li class="sl-row">
+        <span class="n">${i+1}</span>
+        <input type="text" value="${esc(s)}" maxlength="60">
+        <button class="sl-del" data-i="${i}">×</button>
+      </li>`).join('');
+    sl.querySelectorAll('input').forEach((inp,i)=>inp.addEventListener('input',()=>{data.setlist[i]=inp.value;saveAll()}));
+    sl.querySelectorAll('.sl-del').forEach(b=>b.addEventListener('click',()=>{data.setlist.splice(+b.dataset.i,1);saveAll();renderSL()}));
+  }
+  $('slAdd').addEventListener('click',()=>{
+    const v=slInput.value.trim();if(!v){slInput.focus();return}
+    data.setlist.push(v);slInput.value='';saveAll();renderSL();
+  });
+  slInput.addEventListener('keydown',e=>{if(e.key==='Enter')$('slAdd').click()});
+  renderSL();
+})();
+
+/* =====================================================
+   碎碎念（localStorage）
+===================================================== */
+(function(){
+  const KEY='xa2026-mood';
+  let notes=load(KEY,[]);
+  const input=$('moodInput'),list=$('moodList');
+  function saveAll(){save(KEY,notes);render()}
+  function render(){
+    if(!notes.length){list.innerHTML='<div class="empty-note">还没有记录。路上一个念头、一句吐槽，随时记下来。</div>';return}
+    list.innerHTML=[...notes].reverse().map((n,ri)=>{
+      const i=notes.length-1-ri;
+      const t=new Date(n.ts),pad=x=>String(x).padStart(2,'0');
+      return `<li class="mood-item"><span class="ts">${pad(t.getMonth()+1)}.${pad(t.getDate())} ${pad(t.getHours())}:${pad(t.getMinutes())}</span><span class="x">${esc(n.t)}</span><button class="del" data-i="${i}">×</button></li>`;
+    }).join('');
+    list.querySelectorAll('.del').forEach(b=>b.addEventListener('click',()=>{notes.splice(+b.dataset.i,1);saveAll()}));
+  }
+  function add(){const t=input.value.trim();if(!t){input.focus();return}notes.push({t,ts:Date.now()});input.value='';saveAll()}
+  $('moodAdd').addEventListener('click',add);
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')add()});
+  render();
+})();
+
+/* =====================================================
+   启动
+===================================================== */
+PhotoDB.init().then(()=>Gallery.refresh('all')).catch(()=>{
+  document.querySelectorAll('.gallery-tools .btn').forEach(b=>b.style.display='none');
+});
+</script>
+</body>
+</html>
