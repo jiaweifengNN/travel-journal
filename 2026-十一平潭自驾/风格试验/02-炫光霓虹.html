@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>十一 · 平潭自驾 | 炫光霓虹 NEON</title>
+<style>
+/* ============================================================
+   风格 02 · 炫光紫绿霓虹 NEON GLOW
+   来源：chuspeeism/dashi-ppt-skill（theme02 炫光紫绿 + swiss 深底壳）
+   规则：近黑深底 #07090b，多彩霓虹高亮并存，海报展示体大字，
+        焦点薄荷绿 #46e3c6，渐变光斑，卡片允许可控圆角
+============================================================ */
+:root{
+  --bg:#07090b; --bg2:#0b0e12;
+  --txt:#ffffff; --txt2:rgba(255,255,255,.66); --line:rgba(255,255,255,.14);
+  --green:#2fe07f; --purple:#9b7dff; --blue:#4ea2ff; --lime:#b9f24a;
+  --pink:#ff6fae; --amber:#ffc24a; --mint:#46e3c6;
+  --display:"Anton","Impact","Haettenschweiler","Arial Narrow Bold","Microsoft YaHei",sans-serif;
+  --sans:"Archivo","Inter","Segoe UI","PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  --mono:"Space Mono","JetBrains Mono",Consolas,"Courier New",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+::selection{background:var(--mint);color:#04110d}
+
+/* 全页渐变光斑（签名：紫绿光斑并存） */
+.glow-field{position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(38% 30% at 12% 8%,rgba(155,125,255,.16),transparent 70%),
+  radial-gradient(34% 28% at 88% 14%,rgba(47,224,127,.10),transparent 70%),
+  radial-gradient(40% 32% at 78% 78%,rgba(255,111,174,.09),transparent 70%),
+  radial-gradient(36% 30% at 18% 82%,rgba(78,162,255,.10),transparent 70%)}
+
+/* 展示体：海报式全大写 */
+.display{font-family:var(--display);text-transform:uppercase;letter-spacing:.02em;line-height:.96;font-weight:400}
+.neon-green{color:var(--green);text-shadow:0 0 22px rgba(47,224,127,.45)}
+.neon-purple{color:var(--purple);text-shadow:0 0 22px rgba(155,125,255,.5)}
+.neon-pink{color:var(--pink);text-shadow:0 0 22px rgba(255,111,174,.4)}
+
+/* 导航：点阵胶囊（焦点色拉长为 20px 胶囊） */
+nav{position:sticky;top:0;z-index:99;background:rgba(2,4,12,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:12px 20px;display:flex;gap:6px;align-items:center;overflow-x:auto;white-space:nowrap}
+nav .logo{font-family:var(--display);font-size:16px;letter-spacing:.06em;text-transform:uppercase;margin-right:12px;flex:none;background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav a{color:var(--txt2);text-decoration:none;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border:1px solid transparent;border-radius:999px;flex:none}
+nav a:hover{color:#fff;border-color:var(--line)}
+nav a.hot{color:var(--mint);border-color:rgba(70,227,198,.5)}
+
+/* HERO：发布会开场 */
+header.hero{position:relative;max-width:1200px;margin:0 auto;padding:88px 24px 64px;text-align:left}
+.hero .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--mint);display:inline-flex;align-items:center;gap:10px}
+.hero .eyebrow::before{content:"";width:34px;height:2px;background:var(--mint);box-shadow:0 0 12px var(--mint)}
+.hero h1{font-size:clamp(52px,9vw,128px);margin:18px 0 8px}
+.hero .route{font-size:clamp(14px,2vw,19px);color:var(--txt2);font-weight:600;margin-bottom:26px}
+.hero .route b{color:#fff}
+.hero .route .arr{color:var(--green);font-weight:800;padding:0 3px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:12px;color:var(--txt2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:rgba(255,255,255,.03)}
+.chip b{color:var(--amber);font-weight:700}
+.deadline{margin-top:22px;display:inline-block;border:1px solid rgba(255,111,174,.55);color:var(--pink);border-radius:12px;padding:10px 18px;font-size:13px;font-weight:600;background:rgba(255,111,174,.07)}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px 96px}
+
+.sec-title{display:flex;align-items:baseline;gap:14px;margin:72px 0 20px;flex-wrap:wrap}
+.sec-title .no{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--mint)}
+.sec-title h2{font-family:var(--display);font-size:clamp(28px,4vw,46px);text-transform:uppercase;letter-spacing:.02em}
+.sec-title h2 em{font-style:normal;color:var(--purple)}
+.sec-title .sub{font-size:12.5px;color:var(--txt2);margin-left:auto}
+
+/* 出行必看：霓虹警示框 */
+.prep{border:1px solid rgba(255,194,74,.5);border-radius:18px;padding:24px 24px 18px;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(255,194,74,.10),rgba(255,111,174,.08))}
+.prep::after{content:"⚠";position:absolute;right:20px;top:10px;font-size:44px;opacity:.5}
+.prep-count{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;color:var(--amber)}
+.prep-form{display:flex;gap:10px;margin:14px 0}
+.prep-form input{flex:1;background:rgba(2,4,12,.6);border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:#fff;font-size:14px;font-family:var(--sans)}
+.prep-form input:focus{outline:none;border-color:var(--mint);box-shadow:0 0 0 3px rgba(70,227,198,.15)}
+.prep-list{list-style:none}
+.prep-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:14px;font-size:15px;font-weight:600;margin-bottom:8px;background:rgba(2,4,12,.4);transition:border-color .2s,transform .2s}
+.prep-item:hover{border-color:rgba(70,227,198,.5);transform:translateX(3px)}
+.prep-item .box{flex:none;width:20px;height:20px;border-radius:7px;border:2px solid var(--amber);cursor:pointer;position:relative;transition:all .2s}
+.prep-item.done{opacity:.55}
+.prep-item.done .txt{text-decoration:line-through;font-weight:400}
+.prep-item.done .box{background:linear-gradient(135deg,var(--green),var(--mint));border-color:transparent}
+.prep-item.done .box::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #04110d;border-width:0 2.5px 2.5px 0;transform:rotate(42deg)}
+.prep-item .txt{flex:1;word-break:break-word}
+.prep-item .ic{cursor:pointer;border:none;background:none;color:var(--txt2);font-size:14px;flex:none;padding:3px 6px;border-radius:8px}
+.prep-item .ic:hover{color:#fff;background:rgba(255,255,255,.1)}
+.prep-item input.prep-edit{flex:1;background:var(--bg2);border:1px solid var(--mint);border-radius:9px;padding:6px 10px;color:#fff;font-size:14px;font-family:var(--sans);outline:none}
+.prep-empty{color:var(--txt2);font-size:13px;padding:14px;text-align:center;border:1px dashed var(--line);border-radius:12px;list-style:none}
+.btn{cursor:pointer;border:none;border-radius:12px;padding:11px 20px;font-size:14px;font-weight:800;font-family:var(--sans);transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.12)}
+.btn-add{background:linear-gradient(90deg,var(--green),var(--mint));color:#04110d}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--txt2);border:1px solid var(--line);font-weight:600}
+.btn-ghost:hover{color:#fff}
+
+/* 路线：发光航线 */
+.route-panel{border:1px solid var(--line);border-radius:20px;padding:26px;background:rgba(2,4,12,.5);position:relative;overflow:hidden}
+.route-panel .panel-tag{position:absolute;top:14px;left:18px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--mint)}
+.route-svg{width:100%;height:auto;display:block;margin-top:26px}
+.route-legend{display:flex;gap:22px;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--txt2);flex-wrap:wrap}
+.route-legend i{display:inline-block;width:26px;height:3px;border-radius:3px;vertical-align:middle;margin-right:8px}
+.lg-go{background:linear-gradient(90deg,var(--green),var(--blue));box-shadow:0 0 10px rgba(47,224,127,.6)}
+.lg-back{background:linear-gradient(90deg,var(--purple),var(--pink));box-shadow:0 0 10px rgba(155,125,255,.6)}
+
+/* 逐日：霓虹边框卡，六色轮换 */
+.day{--nc:var(--green);background:rgba(2,4,12,.55);border:1px solid var(--line);border-left:4px solid var(--nc);border-radius:20px;padding:26px 26px 20px;margin-bottom:24px;position:relative;overflow:hidden;opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.day.show{opacity:1;transform:none}
+.day::before{content:"";position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(90deg,color-mix(in srgb,var(--nc) 14%,transparent),transparent);pointer-events:none}
+.day-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:6px}
+.day-date{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--nc)}
+.day-head h3{font-size:clamp(19px,2.6vw,26px);font-weight:800}
+.day-badge{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt2);margin-left:auto;border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.day-sub{color:var(--txt2);font-size:14px;margin-bottom:16px}
+.drive-strip{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.drive{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;background:rgba(255,255,255,.04);border:1px dashed var(--line);border-radius:12px;padding:8px 14px}
+.drive .km{color:var(--nc);font-weight:700}
+.drive .arr{color:var(--txt2)}
+.tl{list-style:none}
+.tl li{display:flex;gap:16px;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.09)}
+.tl li:last-child{border-bottom:none}
+.tl .t{flex:none;width:58px;font-family:var(--mono);font-weight:700;font-size:13px;color:var(--nc);font-variant-numeric:tabular-nums}
+.tl .x{flex:1;font-size:15px}
+.tl .x small{display:block;color:var(--txt2);font-size:12.5px;margin-top:2px}
+.tl .x .hi{color:var(--nc);font-weight:700;text-shadow:0 0 14px color-mix(in srgb,var(--nc) 60%,transparent)}
+.tl .x b{color:#fff}
+.day-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.pill{font-size:12.5px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:7px 12px;color:var(--txt2)}
+.pill b{color:#fff}
+.pill.warn{background:rgba(255,111,174,.10);color:#ffa3cb;border-color:rgba(255,111,174,.35)}
+.pill.warn b{color:var(--pink)}
+.pill.good{background:rgba(47,224,127,.10);color:#8af0bb;border-color:rgba(47,224,127,.35)}
+.pill.good b{color:var(--green)}
+
+/* 记账 */
+.money-panel{background:linear-gradient(135deg,rgba(78,162,255,.10),rgba(155,125,255,.08));border:1px solid rgba(78,162,255,.35);border-radius:20px;padding:24px}
+.money-total{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 22px;margin-bottom:18px}
+.money-total .big{font-family:var(--display);font-size:clamp(44px,6vw,76px);letter-spacing:.02em;color:var(--blue);text-shadow:0 0 26px rgba(78,162,255,.5);font-variant-numeric:tabular-nums}
+.money-total .big small{font-family:var(--sans);font-size:14px;color:var(--txt2);letter-spacing:0;text-transform:none}
+.cat-chips{display:flex;gap:8px;flex-wrap:wrap}
+.cat-chip{font-family:var(--mono);font-size:12px;border-radius:999px;padding:3px 12px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--txt2)}
+.cat-chip b{color:#fff;font-variant-numeric:tabular-nums}
+.exp-form{display:grid;grid-template-columns:110px 1fr 120px 110px auto;gap:10px;margin-bottom:14px}
+.exp-form input,.exp-form select{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:#fff;font-size:14px;font-family:var(--sans)}
+.exp-form input:focus,.exp-form select:focus{outline:none;border-color:var(--blue)}
+.exp-row{display:grid;grid-template-columns:64px 1fr 76px 90px 34px;gap:10px;align-items:center;padding:9px 12px;border-radius:10px;font-size:14px}
+.exp-row:nth-child(odd){background:rgba(255,255,255,.03)}
+.exp-row .d{font-family:var(--mono);color:var(--txt2);font-size:12px;font-variant-numeric:tabular-nums}
+.exp-row .a{text-align:right;font-family:var(--mono);font-weight:700;color:var(--mint);font-variant-numeric:tabular-nums}
+.exp-row .cat{font-size:11px;border-radius:5px;padding:1px 7px;display:inline-block}
+.exp-row .del{cursor:pointer;color:var(--txt2);font-size:16px;border:none;background:none}
+.exp-row .del:hover{color:var(--pink)}
+.exp-empty{color:var(--txt2);font-size:13.5px;padding:18px;text-align:center;border:1px dashed var(--line);border-radius:12px}
+.money-tools{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+
+/* 相册 */
+.slide-box{position:relative;height:min(46vw,420px);border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--bg2)}
+.slide-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.slide-box img.on{opacity:1;animation:kb 6s ease-out forwards}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.06)}}
+.slide-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--txt2);text-align:center;padding:26px}
+.slide-empty .big-emoji{font-size:44px}
+.slide-cap{position:absolute;left:0;right:0;bottom:0;padding:34px 20px 14px;background:linear-gradient(transparent,rgba(2,4,12,.88));font-family:var(--mono);font-size:13px}
+.slide-cap b{color:var(--mint)}
+.slide-dots{position:absolute;top:14px;right:16px;display:flex;gap:6px}
+.slide-dots i{width:6px;height:6px;border-radius:999px;background:rgba(255,255,255,.32);transition:width .2s,background .2s}
+.slide-dots i.on{width:20px;background:var(--mint)}
+.ph-tools{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 10px}
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:10px}
+.ph{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1;border:1px solid var(--line)}
+.ph img{width:100%;height:100%;object-fit:cover;cursor:pointer}
+.ph .x{position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:99px;background:rgba(2,4,12,.8);color:#fff;border:none;font-size:12px;cursor:pointer;opacity:0;transition:opacity .2s}
+.ph:hover .x{opacity:1}
+.note-form{display:flex;gap:10px;margin:6px 0 16px}
+.note-form input{flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;color:#fff;font-size:14px}
+.note-form input:focus{outline:none;border-color:var(--purple)}
+.btn-note{background:linear-gradient(90deg,var(--purple),var(--pink));color:#fff}
+.note-list{list-style:none}
+.note-item{display:flex;gap:12px;padding:10px 4px;border-bottom:1px dashed rgba(255,255,255,.09);font-size:14.5px}
+.note-item .ts{flex:none;font-family:var(--mono);font-size:11.5px;color:var(--txt2);font-variant-numeric:tabular-nums;padding-top:3px;width:96px}
+.note-item .x{flex:1}
+.note-item .del{flex:none;border:none;background:none;color:var(--txt2);cursor:pointer;font-size:15px}
+.note-item .del:hover{color:var(--pink)}
+.local-tip{font-size:12.5px;color:var(--txt2);margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.local-tip b{color:var(--mint)}
+
+/* 水煮 */
+.sz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.sz{background:rgba(2,4,12,.55);border:1px solid var(--line);border-radius:18px;padding:20px 20px 16px;position:relative;transition:transform .25s,border-color .25s}
+.sz:hover{transform:translateY(-4px);border-color:var(--nc,var(--green))}
+.sz .rank{position:absolute;top:-10px;right:16px;background:linear-gradient(90deg,var(--pink),var(--purple));color:#fff;font-weight:800;font-size:12px;border-radius:99px;padding:3px 12px;letter-spacing:.08em}
+.sz h4{font-size:17px;font-weight:800;margin-bottom:2px}
+.sz .addr{font-family:var(--mono);font-size:11.5px;color:var(--txt2);margin-bottom:8px}
+.sz .eat{font-size:13.5px;margin-bottom:8px}
+.sz .eat b{color:var(--amber)}
+.sz .note{font-size:12.5px;color:var(--txt2);border-top:1px dashed var(--line);padding-top:8px}
+.eat-note{font-size:13px;color:var(--txt2);border-left:3px solid var(--mint);padding:10px 16px;margin-top:16px;background:rgba(70,227,198,.06);border-radius:0 12px 12px 0}
+
+/* 清单 */
+.panel{background:rgba(2,4,12,.55);border:1px solid var(--line);border-radius:20px;padding:26px}
+.ck-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px 22px}
+.ck{display:flex;align-items:center;gap:10px;padding:8px 4px;font-size:14.5px;cursor:pointer;user-select:none;border-radius:8px}
+.ck:hover{background:rgba(255,255,255,.04)}
+.ck input{display:none}
+.ck .box{flex:none;width:19px;height:19px;border:2px solid var(--txt2);border-radius:6px;position:relative;transition:all .2s}
+.ck input:checked + .box{background:linear-gradient(135deg,var(--green),var(--blue));border-color:transparent}
+.ck input:checked + .box::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #04110d;border-width:0 2.5px 2.5px 0;transform:rotate(42deg)}
+.ck input:checked ~ .lbl{color:var(--txt2);text-decoration:line-through}
+.ck .lvl{font-family:var(--mono);font-size:10px;color:var(--pink);border:1px solid var(--pink);border-radius:5px;padding:0 5px;margin-left:2px;flex:none}
+textarea{width:100%;min-height:110px;margin-top:18px;background:var(--bg2);color:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px;font-family:var(--sans);resize:vertical}
+textarea:focus{outline:none;border-color:var(--mint)}
+.saved-tip{font-family:var(--mono);font-size:12px;color:var(--mint);margin-top:8px;min-height:16px}
+
+footer{padding:36px 24px 64px;max-width:1200px;margin:0 auto;text-align:center;color:var(--txt2);font-family:var(--mono);font-size:12px;letter-spacing:.06em}
+footer b{background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+@media (max-width:640px){
+  .exp-form{grid-template-columns:1fr 1fr}
+  .exp-row{grid-template-columns:52px 1fr 70px 26px}
+  .exp-row .c{display:none}
+  .day{padding:20px 16px 16px}
+}
+</style>
+</head>
+<body>
+<div class="glow-field"></div>
+
+<nav>
+  <span class="logo">PINGTAN DECK</span>
+  <a href="#notices" class="hot">⚠ 出行必看</a>
+  <a href="#route">路线</a>
+  <a href="#days">逐日</a>
+  <a href="#money">记账</a>
+  <a href="#moments">相册</a>
+  <a href="#eat">水煮</a>
+  <a href="#pack">清单</a>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">2026 · 11 · ROAD TRIP DECK</span>
+  <h1 class="display">平潭<span class="neon-green">之</span>夏<span class="neon-purple">末</span></h1>
+  <div class="route">武汉 <span class="arr">→</span> 婺源 <span class="arr">→</span> 武夷山 <span class="arr">→</span> <b>平潭</b> <span class="arr">→</span> 抚州 <span class="arr">→</span> 南昌 <span class="arr">→</span> 武汉</div>
+  <div class="chips">
+    <span class="chip">时间 <b>9.30 晚 – 10.8</b></span>
+    <span class="chip">全程 <b>约1900km</b> 双驾轮换</span>
+    <span class="chip">硬约束 <b>10.7 南昌婚礼</b></span>
+    <span class="chip">红利 <b>高速免费8天</b></span>
+  </div>
+  <div class="deadline">出发倒排：篁岭 / 竹筏 / 滕王阁预约是硬门槛，9 月中旬前全部锁死</div>
+</header>
+
+<div class="wrap">
+
+  <div class="sec-title" id="notices">
+    <span class="no">01 / CHECK</span><h2>出行<em>前必看</em></h2><span class="sub">每趟出发前过一遍 · 增删改勾 · 存本机</span>
+  </div>
+  <div class="prep">
+    <div class="prep-count" id="prepCount"></div>
+    <div class="prep-form">
+      <input id="prepInput" type="text" maxlength="60" placeholder="加一条注意事项，比如：检查车况油量、备点现金零钱……">
+      <button class="btn btn-add" id="prepAdd">＋ 追加</button>
+    </div>
+    <ul class="prep-list" id="prepList"></ul>
+  </div>
+
+  <div class="sec-title" id="route">
+    <span class="no">02 / ROUTE</span><h2>发光<em>航线</em></h2><span class="sub">去程边走边玩 · 返程直插南昌</span>
+  </div>
+  <div class="route-panel">
+    <span class="panel-tag">ROUTE MAP — 去程 GREEN / 返程 PURPLE</span>
+    <svg class="route-svg" viewBox="0 0 600 380">
+      <defs>
+        <filter id="glowG" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glowP" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <polyline points="82,56 384,126 392,206 543,329" fill="none" stroke="#2fe07f" stroke-width="3" filter="url(#glowG)" stroke-linecap="round"/>
+      <polyline points="543,329 258,195 216,158 82,56" fill="none" stroke="#9b7dff" stroke-width="3" stroke-dasharray="2 9" filter="url(#glowP)" stroke-linecap="round"/>
+      <g font-family="Space Mono,Consolas,monospace" font-size="11.5" fill="rgba(255,255,255,.75)">
+        <circle cx="82" cy="56" r="6" fill="#2fe07f" filter="url(#glowG)"/><text x="96" y="54">武汉 · 起点 9.30 晚</text>
+        <circle cx="384" cy="126" r="6" fill="#4ea2ff" filter="url(#glowG)"/><text x="398" y="124">婺源 · 10.1 晒秋</text>
+        <circle cx="392" cy="206" r="6" fill="#2fe0c4" filter="url(#glowG)"/><text x="406" y="204">武夷山 · 10.2-10.3</text>
+        <circle cx="543" cy="329" r="8" fill="#b9f24a" filter="url(#glowG)"/><text x="428" y="356" fill="#b9f24a">平潭 · 10.3晚-10.4 环岛</text>
+        <circle cx="258" cy="195" r="5" fill="#ff6fae" filter="url(#glowP)"/><text x="272" y="193">抚州 · 10.4 深夜休整</text>
+        <circle cx="216" cy="158" r="5" fill="#9b7dff" filter="url(#glowP)"/><text x="118" y="148">南昌 · 10.5-10.7 婚礼</text>
+      </g>
+    </svg>
+    <div class="route-legend">
+      <span><i class="lg-go"></i>去程 · 边走边玩</span>
+      <span><i class="lg-back"></i>返程 · 平潭 → 抚州夜宿 → 南昌</span>
+    </div>
+  </div>
+
+  <div class="sec-title" id="days">
+    <span class="no">03 / DAY BY DAY</span><h2>逐日<em>行程</em></h2><span class="sub">9 天 1900 公里 · 随时叫我改</span>
+  </div>
+  <div id="dayList"></div>
+
+  <div class="sec-title" id="money">
+    <span class="no">04 / MONEY</span><h2>随手<em>记账</em></h2><span class="sub">输完就存 · 刷新不丢 · 一键导出</span>
+  </div>
+  <div class="money-panel">
+    <div class="money-total">
+      <span class="big"><small>已花 </small><span id="expTotal">0</span><small> 元</small></span>
+      <div class="cat-chips" id="catChips"></div>
+    </div>
+    <div class="exp-form">
+      <select id="expDay"></select>
+      <input id="expName" type="text" placeholder="干了啥？比如：北港村海景咖啡" maxlength="40">
+      <select id="expCat"><option>餐饮</option><option>交通</option><option>住宿</option><option>门票</option><option>购物</option><option>其他</option></select>
+      <input id="expAmt" type="number" placeholder="金额 ¥" min="0" step="0.01">
+      <button class="btn btn-add" id="expAdd">记一笔</button>
+    </div>
+    <div class="exp-list" id="expList"></div>
+    <div class="money-tools">
+      <button class="btn btn-ghost" id="expCsv">导出账单 CSV</button>
+      <button class="btn btn-ghost" id="expClear">清空账本</button>
+    </div>
+  </div>
+
+  <div class="sec-title" id="moments">
+    <span class="no">05 / MOMENTS</span><h2>途中<em>所见</em></h2><span class="sub">上传的照片自动循环播放</span>
+  </div>
+  <div class="slide-box" id="slideBox">
+    <div class="slide-empty" id="slideEmpty">
+      <span class="big-emoji">📷</span>
+      <b>还没有照片</b>
+      <span>往下走，传几张旅途照片——这里就会变成你的循环放映墙</span>
+    </div>
+    <div class="slide-dots" id="slideDots"></div>
+    <div class="slide-cap" id="slideCap" style="display:none"></div>
+  </div>
+  <div class="ph-tools">
+    <button class="btn btn-add" id="phBtn">＋ 上传照片</button>
+    <input type="file" id="phFile" accept="image/*" multiple style="display:none">
+  </div>
+  <div class="ph-grid" id="phGrid"></div>
+  <div class="note-form">
+    <input id="noteInput" type="text" placeholder="记个瞬间：路上听到的歌、偶遇的人、突然的念头……" maxlength="120">
+    <button class="btn btn-note" id="noteAdd">记下</button>
+  </div>
+  <ul class="note-list" id="noteList"></ul>
+  <div class="local-tip"><b>数据说明：</b>记账、趣事存浏览器本地（localStorage），照片存浏览器数据库（IndexedDB，自动压缩）。键名与主版《行程.html》一致——六个风格版本看到的是同一份数据。</div>
+
+  <div class="sec-title" id="eat">
+    <span class="no">06 / EAT</span><h2>南昌<em>水煮</em>作战图</h2><span class="sub">朋友推荐得对，这是南昌的魂</span>
+  </div>
+  <div class="sz-grid" id="szGrid"></div>
+  <div class="eat-note" id="eatNote"></div>
+
+  <div class="sec-title" id="pack">
+    <span class="no">07 / PACK</span><h2>行前<em>清单</em> &amp; 备忘</h2><span class="sub">勾选自动保存在本机</span>
+  </div>
+  <div class="panel">
+    <div class="ck-grid" id="ckGrid"></div>
+    <textarea id="memo" placeholder="备忘录：想加的店、朋友说的隐藏景点、要带的杂物……写在这里，刷新不丢。"></textarea>
+    <div class="saved-tip" id="savedTip"></div>
+  </div>
+</div>
+
+<footer>十一平潭行动手册 · <b>风格 02 / 炫光紫绿霓虹</b> · 风格来源：chuspeeism/dashi-ppt-skill（theme02 + swiss 深底壳）· #2fe07f / #9b7dff / #46e3c6</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

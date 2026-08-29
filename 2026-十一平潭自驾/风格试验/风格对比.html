@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>平潭行程页 · 六种风格试验场</title>
+<style>
+:root{
+  --bg:#101014; --card:#17171d; --line:#2a2a33; --txt:#f2f2f5; --sub:#9a9aa6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;padding:0 22px 90px}
+header{max-width:1080px;margin:0 auto;padding:66px 0 12px;text-align:center}
+header .k{letter-spacing:.4em;font-size:12px;color:#e85d5d;font-weight:700}
+header h1{font-size:clamp(30px,5vw,52px);font-weight:900;margin:14px 0 8px}
+header p{color:var(--sub);font-size:14px;max-width:640px;margin:0 auto}
+.grid{max-width:1080px;margin:36px auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+a.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;text-decoration:none;color:var(--txt);transition:transform .2s,border-color .2s}
+a.card:hover{transform:translateY(-4px);border-color:#555}
+.card .num{font-size:12px;font-weight:800;letter-spacing:.24em;color:var(--sub)}
+.card h2{font-size:22px;font-weight:900;margin:6px 0 2px}
+.card .en{font-size:11px;letter-spacing:.22em;color:var(--sub);text-transform:uppercase}
+.card .from{font-size:12px;color:var(--sub);margin-top:10px}
+.card .desc{font-size:13.5px;color:#c9c9d2;margin-top:10px;min-height:44px}
+.pal{display:flex;gap:6px;margin-top:14px}
+.pal i{flex:1;height:22px;border-radius:6px;display:block}
+.card .open{display:inline-block;margin-top:14px;font-size:13px;font-weight:800;color:#ffd23f}
+.note{max-width:1080px;margin:34px auto 0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 24px;font-size:13px;color:var(--sub)}
+.note b{color:#ffd23f}
+</style>
+</head>
+<body>
+<header>
+  <div class="k">STYLE LAB · 风格试验场</div>
+  <h1>同一份平潭行程 · 六种风格</h1>
+  <p>内容与交互完全一致（同一份行程数据、记账/清单/照片互相共享），只有设计语言不同。点开对比，留下你喜欢的。</p>
+</header>
+
+<div class="grid">
+
+  <a class="card" href="01-瑞士国际主义.html">
+    <div class="num">01 · GUIZANG</div>
+    <h2>瑞士国际主义</h2>
+    <div class="en">Swiss International</div>
+    <div class="from">alphane-ai/guizang-ppt-skill-mod · themes-swiss</div>
+    <div class="desc">亮暖纸底 + 墨黑 + 克莱因蓝单一锚点色。细线、点阵、纯色块，极致字号对比，直角零阴影——"让网格说话"。</div>
+    <div class="pal"><i style="background:#fafaf8"></i><i style="background:#0a0a0a"></i><i style="background:#002FA7"></i><i style="background:#d4d4d2"></i></div>
+    <span class="open">打开这一版 ▶</span>
+  </a>
+
+  <a class="card" href="02-炫光霓虹.html">
+    <div class="num">02 · DASHI</div>
+    <h2>炫光紫绿霓虹</h2>
+    <div class="en">Neon Glow Deck</div>
+    <div class="from">chuspeeism/dashi-ppt-skill · theme02 + swiss 深底壳</div>
+    <div class="desc">近黑深底上多彩霓虹并存：绿紫蓝粉琥珀。海报展示体大字、发光航线、焦点薄荷绿胶囊——科技发布会开场的感觉。</div>
+    <div class="pal"><i style="background:#07090b"></i><i style="background:#2fe07f"></i><i style="background:#9b7dff"></i><i style="background:#46e3c6"></i><i style="background:#ff6fae"></i></div>
+    <span class="open">打开这一版 ▶</span>
+  </a>
+
+  <a class="card" href="03-暗夜科技.html">
+    <div class="num">03 · PPT-MASTER-PLUS</div>
+    <h2>暗夜科技 · 节奏版</h2>
+    <div class="en">Dark-Tech / spec_lock</div>
+    <div class="from">gnuhpc/ppt-master-plus · spec_lock + page_rhythm</div>
+    <div class="desc">没有出厂皮肤——色板按 spec_lock 字段结构锁定在文件头。签名是"页面节奏"：每个区块标注 ANCHOR / DENSE / BREATHING，反均匀卡片墙。</div>
+    <div class="pal"><i style="background:#0b0e14"></i><i style="background:#4cc9f0"></i><i style="background:#f72585"></i><i style="background:#ffd166"></i><i style="background:#131826"></i></div>
+    <span class="open">打开这一版 ▶</span>
+  </a>
+
+  <a class="card" href="04-电影纸感.html">
+    <div class="num">04 · JINGGE</div>
+    <h2>编辑部电影纸感</h2>
+    <div class="en">Editorial Cinematic Paper</div>
+    <div class="from">jxshow/Jingge-PPT-sense-deck-skill · DESIGN.md</div>
+    <div class="desc">暖档案纸 + 宋体大标题 + 牛血红短横线。四角括号、编号事实行、2.35:1 宽银幕剧照条、圆形系统章——杂志编辑部出的旅行特辑。</div>
+    <div class="pal"><i style="background:#F1EEE4"></i><i style="background:#141311"></i><i style="background:#7A2F2B"></i><i style="background:#B8B0A1"></i></div>
+    <span class="open">打开这一版 ▶</span>
+  </a>
+
+  <a class="card" href="05-和纸柔光.html">
+    <div class="num">05 · SLIDESAGE</div>
+    <h2>和纸柔光</h2>
+    <div class="en">Japanese Editorial · Washi</div>
+    <div class="from">vedraut/slidesage · japanese-editorial</div>
+    <div class="desc">暖和纸底、大量留白分组（几乎没有卡片）、闷红×松绿双色点缀、・中点列表、呼吸的圆形日轮——最安静的一版，适合日记感。</div>
+    <div class="pal"><i style="background:#F6F3EC"></i><i style="background:#2B2A28"></i><i style="background:#B5524B"></i><i style="background:#3F6F66"></i></div>
+    <span class="open">打开这一版 ▶</span>
+  </a>
+
+  <a class="card" href="06-复古海报.html">
+    <div class="num">06 · FRONTEND-SLIDES</div>
+    <h2>复古珊瑚旅行海报</h2>
+    <div class="en">Coral · Mid-century Travel Poster</div>
+    <div class="from">zarazhangrui/frontend-slides · bold-template-pack/coral</div>
+    <div class="desc">珊瑚火 / 墨黑 / 暖奶油三个实色面硬边相接，45° 斜纹、巨型底纹编号、珊瑚顶边白卡——上世纪中叶旅行海报的味道。</div>
+    <div class="pal"><i style="background:#F5F0E8"></i><i style="background:#E85D5D"></i><i style="background:#1A1A1A"></i><i style="background:#E8E0D4"></i></div>
+    <span class="open">打开这一版 ▶</span>
+  </a>
+
+</div>
+
+<div class="note">
+  <b>怎么对比：</b>六版共用 <b>assets/data.js</b>（行程数据）与 <b>assets/app.js</b>（交互），localStorage / IndexedDB 键名与主版《行程.html》完全一致——你在任何一版记的账、传的照片、勾的清单，其余版本和主版都能看到。完整的风格研究报告见同目录 <b>风格总结.md</b>；主版仍是 <a style="color:#ffd23f" href="../行程.html">行程.html</a>。
+</div>
+</body>
+</html>
