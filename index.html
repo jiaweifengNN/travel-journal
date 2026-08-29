@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>旅行记录册 · travel-journal</title>
+<style>
+  :root{--bg:#0f1115;--card:#1a1d24;--ink:#e8eaed;--mut:#9aa0a6;--acc:#8ab4f8;--acc2:#f28b82}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.6}
+  .wrap{max-width:820px;margin:0 auto;padding:64px 24px 96px}
+  h1{font-size:2rem;font-weight:600;margin:0 0 .25em}
+  p.lede{color:var(--mut);margin:0 0 48px}
+  .trip{display:block;background:var(--card);border:1px solid #2a2f38;border-radius:12px;padding:24px 28px;margin-bottom:16px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+  .trip:hover{border-color:var(--acc);transform:translateY(-2px)}
+  .trip .t{font-size:1.15rem;font-weight:600}
+  .trip .meta{color:var(--mut);font-size:.9rem;margin-top:4px}
+  .trip .tags{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+  .tag{font-size:.78rem;padding:3px 10px;border-radius:999px;background:#22262f;color:var(--mut)}
+  .tag.acc{background:rgba(138,180,248,.15);color:var(--acc)}
+  .tag.acc2{background:rgba(242,139,130,.15);color:var(--acc2)}
+  .lab{color:var(--mut);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;margin:40px 0 14px}
+  a.lnk{color:var(--acc)}
+  footer{color:var(--mut);font-size:.82rem;margin-top:56px;border-top:1px solid #2a2f38;padding-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>旅行记录册</h1>
+  <p class="lede">每一次出发，都值得被记录。行前准备、行程、花销、日记、所见所闻。</p>
+
+  <div class="lab">旅行</div>
+  <a class="trip" href="2026-十一平潭自驾/风格试验/风格对比.html">
+    <div class="t">十一平潭自驾 · 风格试验</div>
+    <div class="meta">2026 · 6 种设计风格重做的平潭岛旅行页 + 对比索引</div>
+    <div class="tags"><span class="tag acc">风格对比</span><span class="tag">瑞士国际主义</span><span class="tag">炫光霓虹</span><span class="tag">暗夜科技</span><span class="tag">电影纸感</span><span class="tag">和纸柔光</span><span class="tag">复古海报</span></div>
+  </a>
+  <a class="trip" href="2026-十一平潭自驾/行程.html">
+    <div class="t">十一平潭自驾 · 主行程页</div>
+    <div class="meta">9 天行程 / 行前清单 / 花销 / 日记 / 照片上传</div>
+  </a>
+  <a class="trip" href="2026-08西安徐良演唱会/回忆.html">
+    <div class="t">西安 · 徐良演唱会</div>
+    <div class="meta">2026.08.28–29 · 照片墙 / 日记 / 演唱会记录</div>
+  </a>
+
+  <div class="lab">研究文档</div>
+  <a class="trip" href="2026-十一平潭自驾/风格试验/风格总结.md">风格总结.md — 6 个仓库的设计语言提炼与对比</a>
+
+  <footer>本站直接托管于 GitHub Pages（.nojekyll 模式）。源码见仓库。</footer>
+</div>
+</body>
+</html>
