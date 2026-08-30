@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 春节 · 丝绸之路回忆 | 和纸柔光</title>
+<style>
+/* ============================================================
+   风格 05 · 和纸柔光 JAPANESE EDITORIAL — WASHI & SOFT GLOW
+   丝绸之路回忆页 · 安静、治愈、手账日记感
+============================================================ */
+:root{
+  --bg:#F6F3EC; --bg-alt:#ECE6DA;
+  --ink:#2B2A28; --ink-soft:#7A756B;
+  --accent:#B5524B; --accent2:#3F6F66;
+  --sand:#C99A57;
+  --serif:Georgia,"Times New Roman","Songti SC","Source Han Serif SC","Noto Serif CJK SC","SimSun",serif;
+  --sans:"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.95;font-size:16px}
+::selection{background:var(--accent);color:#fff}
+
+nav{position:sticky;top:0;z-index:99;background:rgba(246,243,236,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(43,42,40,.08);padding:14px 24px;display:flex;gap:22px;align-items:center;justify-content:center;overflow-x:auto;white-space:nowrap}
+nav .logo{font-weight:700;font-size:14px;letter-spacing:.3em;color:var(--accent);flex:none;margin-right:8px}
+nav a{color:var(--ink-soft);text-decoration:none;font-size:13px;letter-spacing:.2em;flex:none;transition:color .2s}
+nav a:hover{color:var(--accent)}
+
+header.hero{max-width:880px;margin:0 auto;padding:110px 28px 70px;text-align:center;position:relative}
+.hero .circle-mark{width:150px;height:150px;border-radius:50%;margin:0 auto 36px;background:radial-gradient(circle at 38% 34%,rgba(181,82,75,.92),rgba(181,82,75,.75) 58%,rgba(63,111,102,.35) 59%,rgba(63,111,102,.28) 100%);box-shadow:0 14px 44px rgba(181,82,75,.16);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+.hero .kicker{font-family:var(--sans);font-size:11px;letter-spacing:.5em;color:var(--ink-soft)}
+.hero h1{font-size:clamp(34px,5.4vw,54px);font-weight:700;letter-spacing:.12em;line-height:1.4;margin:20px 0 8px}
+.hero h1 span{color:var(--accent)}
+.hero .route{font-family:var(--sans);font-size:13px;letter-spacing:.24em;color:var(--ink-soft);margin:14px 0 40px}
+.hero .route b{color:var(--ink)}
+.hero .route .dot{color:var(--accent);padding:0 6px}
+.chips{display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
+.chip{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);letter-spacing:.14em}
+.chip b{color:var(--accent2);font-weight:600}
+
+.wrap{max-width:760px;margin:0 auto;padding:0 28px 90px}
+
+.sec{margin-top:110px}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-head .no{font-family:var(--sans);font-size:10.5px;letter-spacing:.5em;color:var(--accent2)}
+.sec-head h2{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:.3em;margin-top:12px}
+.sec-head .sub{font-family:var(--sans);font-size:12px;color:var(--ink-soft);letter-spacing:.2em;margin-top:10px}
+
+/* 城市印象卡 */
+.city-impression{text-align:center;margin-bottom:60px;padding:0 20px}
+.city-impression .imp-title{font-family:var(--sans);font-size:12px;letter-spacing:.3em;color:var(--accent2);margin-bottom:16px}
+.city-impression .imp-body{font-size:17px;line-height:2.2;color:var(--ink)}
+.city-impression .imp-body .word{color:var(--accent);font-weight:600}
+
+/* 路线 SVG */
+.route-panel{text-align:center;padding:30px 0 6px}
+.route-svg{width:100%;max-width:640px;height:auto;display:block;margin:0 auto}
+.route-legend{display:flex;gap:30px;justify-content:center;margin-top:22px;font-family:var(--sans);font-size:12px;letter-spacing:.16em;color:var(--ink-soft);flex-wrap:wrap}
+.route-legend i{display:inline-block;width:26px;height:0;border-top:2px dotted var(--accent);vertical-align:middle;margin-right:8px}
+
+/* 逐日：留白分组 */
+.day{padding:38px 0 10px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.day.show{opacity:1;transform:none}
+.day-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:4px}
+.day-date{font-family:var(--sans);font-size:12px;letter-spacing:.3em;color:var(--accent)}
+.day-head h3{font-size:clamp(20px,2.8vw,26px);font-weight:700;letter-spacing:.08em}
+.day-badge{font-family:var(--sans);font-size:11px;letter-spacing:.24em;color:var(--ink-soft);margin-left:auto}
+.day-sub{color:var(--ink-soft);font-size:14.5px;margin-bottom:10px}
+.drive-strip{margin:8px 0 18px}
+.drive{display:inline-flex;align-items:baseline;gap:10px;font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);background:var(--bg-alt);border-radius:999px;padding:7px 18px;margin:0 8px 8px 0}
+.drive .km{color:var(--accent2);font-weight:600}
+.tl{list-style:none}
+.tl li{display:flex;gap:18px;padding:9px 0;position:relative}
+.tl .t{flex:none;width:58px;font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--accent2);letter-spacing:.06em;padding-top:3px;font-variant-numeric:tabular-nums}
+.tl .x{flex:1;font-size:15.5px}
+.tl .x::before{content:"・";color:var(--accent);font-weight:700;margin-right:2px}
+.tl .x small{display:block;font-family:var(--sans);color:var(--ink-soft);font-size:12.5px;margin-top:2px;padding-left:1.4em}
+.tl .x .hi{color:var(--accent);font-weight:700}
+.day-foot{margin-top:14px;padding-left:76px}
+.pill{display:inline-block;font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);margin:0 14px 8px 0;letter-spacing:.04em}
+.pill::before{content:"◦ ";color:var(--accent2)}
+.pill b{color:var(--ink)}
+.pill.warn{color:var(--accent)}
+.pill.warn b{color:var(--accent)}
+
+/* 记账 */
+.money-total{text-align:center;margin-bottom:26px}
+.money-total .big{font-size:clamp(40px,6vw,58px);font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.money-total .big small{font-family:var(--sans);font-size:13px;color:var(--ink-soft);font-weight:400;letter-spacing:.2em}
+.cat-chips{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.cat-chip{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);letter-spacing:.08em}
+.cat-chip b{color:var(--ink)}
+.exp-form{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.exp-form select,.exp-form input{background:transparent;border:none;border-bottom:1px solid rgba(43,42,40,.22);padding:9px 4px;color:var(--ink);font-size:14.5px;font-family:var(--serif)}
+.exp-form select{flex:none;width:84px}
+.exp-form input#expName{flex:1;min-width:180px}
+.exp-form input#expAmt{width:96px}
+.exp-form select:focus,.exp-form input:focus{outline:none;border-bottom-color:var(--accent)}
+.exp-list{list-style:none}
+.exp-row{display:flex;gap:16px;align-items:baseline;padding:9px 2px;font-size:15px}
+.exp-row + .exp-row{border-top:1px solid rgba(43,42,40,.07)}
+.exp-row .d{flex:none;font-family:var(--sans);font-size:12px;color:var(--ink-soft);width:52px;font-variant-numeric:tabular-nums}
+.exp-row .n{flex:1}
+.exp-row .n::before{content:"・";color:var(--accent2)}
+.exp-row .a{font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.exp-row .cat{font-family:var(--sans);font-size:11.5px;color:var(--ink-soft)}
+.exp-row .del{cursor:pointer;color:rgba(122,117,107,.6);font-size:15px;border:none;background:none}
+.exp-row .del:hover{color:var(--accent)}
+.exp-empty{text-align:center;color:var(--ink-soft);font-size:13.5px;padding:18px 0;font-family:var(--sans);letter-spacing:.1em;list-style:none}
+.money-tools{display:flex;gap:14px;justify-content:center;margin-top:22px}
+
+/* 相册 */
+.slide-box{position:relative;aspect-ratio:16/9;max-height:440px;width:100%;overflow:hidden;border-radius:22px;background:var(--bg-alt);box-shadow:0 24px 60px rgba(43,42,40,.10)}
+.slide-box img.slide-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
+.slide-box img.slide-img.on{opacity:1}
+.slide-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--ink-soft);text-align:center;padding:26px}
+.slide-empty .big-emoji{font-size:40px;opacity:.6}
+.slide-empty b{font-size:16px;letter-spacing:.3em;font-weight:700}
+.slide-empty span{font-family:var(--sans);font-size:12.5px;letter-spacing:.12em}
+.slide-cap{position:absolute;left:0;right:0;bottom:0;padding:44px 24px 18px;background:linear-gradient(transparent,rgba(43,42,40,.55));font-family:var(--sans);font-size:12.5px;letter-spacing:.12em;color:#fff}
+.slide-cap b{color:#f2d9b8}
+.slide-dots{position:absolute;top:16px;right:20px;display:flex;gap:7px}
+.slide-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.45)}
+.slide-dots i.on{background:var(--accent)}
+.ph-tools{display:flex;gap:12px;justify-content:center;margin:26px 0 18px}
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
+.ph{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1;box-shadow:0 10px 26px rgba(43,42,40,.09)}
+.ph img{width:100%;height:100%;object-fit:cover;cursor:pointer}
+.ph .x{position:absolute;top:7px;right:7px;width:24px;height:24px;border-radius:50%;background:rgba(43,42,40,.55);color:#fff;border:none;font-size:12px;cursor:pointer;opacity:0;transition:opacity .25s}
+.ph:hover .x{opacity:1}
+.note-form{display:flex;gap:12px;margin:10px 0 18px}
+.note-form input{flex:1;background:transparent;border:none;border-bottom:1px solid rgba(43,42,40,.22);padding:10px 4px;color:var(--ink);font-size:15px;font-family:var(--serif)}
+.note-form input:focus{outline:none;border-bottom-color:var(--accent)}
+.btn{cursor:pointer;border:none;background:var(--accent);color:#fff;border-radius:999px;font-family:var(--sans);font-size:13px;letter-spacing:.14em;padding:11px 26px;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(181,82,75,.24)}
+.btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid rgba(43,42,40,.2)}
+.btn-ghost:hover{box-shadow:none;color:var(--accent);border-color:var(--accent)}
+.btn-note{background:var(--accent2)}
+.note-list{list-style:none}
+.note-item{display:flex;gap:16px;padding:10px 2px;font-size:15px}
+.note-item + .note-item{border-top:1px solid rgba(43,42,40,.07)}
+.note-item .ts{flex:none;font-family:var(--sans);font-size:11px;color:var(--ink-soft);font-variant-numeric:tabular-nums;padding-top:5px;width:96px;letter-spacing:.06em}
+.note-item .x{flex:1}
+.note-item .x::before{content:"・";color:var(--accent)}
+.note-item .del{flex:none;border:none;background:none;color:rgba(122,117,107,.6);cursor:pointer;font-size:15px}
+.note-item .del:hover{color:var(--accent)}
+.local-tip{text-align:center;font-family:var(--sans);font-size:12px;color:var(--ink-soft);margin-top:44px;letter-spacing:.1em}
+.local-tip b{color:var(--accent2)}
+
+/* 城市食单 */
+.eat-section{padding:0 10px}
+.eat-city{margin-bottom:44px}
+.eat-city .city-name{font-size:20px;font-weight:700;letter-spacing:.16em;color:var(--accent);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(43,42,40,.1)}
+.eat-city .city-name .sub{font-family:var(--sans);font-size:11px;letter-spacing:.2em;color:var(--ink-soft);font-weight:400;margin-left:10px}
+.eat-item{padding:10px 0;font-size:15px;line-height:1.9}
+.eat-item::before{content:"・";color:var(--sand);font-weight:700;margin-right:4px}
+.eat-item b{color:var(--accent2);font-weight:600}
+.eat-item .price{font-family:var(--sans);font-size:12px;color:var(--ink-soft);margin-left:8px}
+
+/* 清单 */
+.ck-grid{columns:1;max-width:560px;margin:0 auto}
+.ck{display:flex;align-items:baseline;gap:14px;padding:10px 2px;font-size:15.5px;cursor:pointer;user-select:none}
+.ck input{display:none}
+.ck .box{flex:none;width:16px;height:16px;border-radius:50%;border:1.5px solid var(--ink-soft);position:relative;transform:translateY(2px);transition:all .2s}
+.ck input:checked + .box{background:var(--accent2);border-color:var(--accent2)}
+.ck input:checked + .box::after{content:"";position:absolute;left:4px;top:0;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+.ck input:checked ~ .lbl{color:var(--ink-soft);text-decoration:line-through}
+.ck .lbl::before{content:"・";color:var(--accent)}
+.ck .lvl{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;color:var(--accent);margin-left:2px;flex:none}
+textarea{width:100%;min-height:110px;margin-top:30px;background:transparent;color:var(--ink);border:none;border-bottom:1px solid rgba(43,42,40,.22);padding:12px 4px;font-size:15px;font-family:var(--serif);resize:vertical;line-height:1.9}
+textarea:focus{outline:none;border-bottom-color:var(--accent)}
+.saved-tip{text-align:center;font-family:var(--sans);font-size:11.5px;color:var(--accent2);margin-top:10px;min-height:16px;letter-spacing:.2em}
+
+footer{text-align:center;padding:80px 28px 70px;position:relative}
+footer .end-mark{width:13px;height:13px;border-radius:50%;background:var(--accent);opacity:.85;display:inline-block;margin-bottom:20px}
+footer p{font-family:var(--sans);font-size:12px;color:var(--ink-soft);letter-spacing:.18em;line-height:2.2}
+footer b{color:var(--accent)}
+
+@media (max-width:640px){
+  .exp-row .cat{display:none}
+  .day-foot{padding-left:0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">丝路行</span>
+  <a href="#impression">印象</a>
+  <a href="#route">路线</a>
+  <a href="#days">逐日</a>
+  <a href="#money">账本</a>
+  <a href="#moments">影集</a>
+  <a href="#eat">食单</a>
+  <a href="#pack">备忘</a>
+</nav>
+
+<header class="hero">
+  <div class="circle-mark"></div>
+  <div class="kicker">二〇二六 · 春节 · 河西走廊</div>
+  <h1>走丝路，<br>看<span>大漠与千佛</span>。</h1>
+  <div class="route">武汉 <span class="dot">・</span> 郑州 <span class="dot">・</span> <b>兰州</b> <span class="dot">・</span> <b>张掖</b> <span class="dot">・</span> 嘉峪关 <span class="dot">・</span> <b>敦煌</b> <span class="dot">・</span> 兰州 <span class="dot">・</span> 武汉</div>
+  <div class="chips">
+    <span class="chip">时间 <b>2.10 – 2.16</b></span>
+    <span class="chip">行程 <b>高铁+火车 · 河西走廊</b></span>
+    <span class="chip">主题 <b>地貌・人文・千佛</b></span>
+    <span class="chip">季节 <b>二月淡季 · 人少景烈</b></span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 城市印象 -->
+  <div class="sec" id="impression">
+    <div class="sec-head">
+      <span class="no">壹 ・ IMPRESSION</span>
+      <h2>城市印象</h2>
+      <span class="sub">一座桥一条河一本书一碗面 ・ 张掖看地貌 敦煌看人文</span>
+    </div>
+    <div class="city-impression">
+      <div class="imp-title">兰州</div>
+      <div class="imp-body">
+        <span class="word">一座桥</span>（中山桥）<br>
+        <span class="word">一条河</span>（黄河）<br>
+        <span class="word">一本书</span>（读者）<br>
+        <span class="word">一碗面</span>（牛肉面）
+      </div>
+    </div>
+  </div>
+
+  <!-- 路线 -->
+  <div class="sec" id="route">
+    <div class="sec-head">
+      <span class="no">贰 ・ ROUTE</span>
+      <h2>路线</h2>
+      <span class="sub">高铁西进 ・ 火车串联河西走廊</span>
+    </div>
+    <div class="route-panel">
+      <svg class="route-svg" viewBox="0 0 600 200">
+        <polyline points="60,100 180,100 300,80 380,90 500,70" fill="none" stroke="#B5524B" stroke-width="2" stroke-dasharray="1 8" stroke-linecap="round"/>
+        <polyline points="500,70 300,80 60,100" fill="none" stroke="#3F6F66" stroke-width="2" stroke-dasharray="1 9" stroke-linecap="round" opacity=".6"/>
+        <g font-family="Helvetica Neue,Arial,sans-serif" font-size="11.5" fill="#7A756B" letter-spacing="1.5">
+          <circle cx="60" cy="100" r="7" fill="none" stroke="#B5524B" stroke-width="2"/><circle cx="60" cy="100" r="2.5" fill="#B5524B"/><text x="24" y="124">武汉 · 起点</text>
+          <circle cx="180" cy="100" r="5" fill="none" stroke="#B5524B" stroke-width="1.6"/><circle cx="180" cy="100" r="1.8" fill="#B5524B"/><text x="155" y="124">郑州东 · 换乘</text>
+          <circle cx="300" cy="80" r="8" fill="none" stroke="#B5524B" stroke-width="2"/><circle cx="300" cy="80" r="3" fill="#B5524B"/><text x="272" y="62" fill="#B5524B">兰州 · 2.10</text>
+          <circle cx="380" cy="90" r="7" fill="none" stroke="#B5524B" stroke-width="1.8"/><circle cx="380" cy="90" r="2.5" fill="#B5524B"/><text x="356" y="114">张掖 · 2.11-12</text>
+          <circle cx="440" cy="80" r="5" fill="none" stroke="#B5524B" stroke-width="1.4"/><circle cx="440" cy="80" r="1.8" fill="#B5524B"/><text x="418" y="68">嘉峪关</text>
+          <circle cx="500" cy="70" r="9" fill="none" stroke="#B5524B" stroke-width="2"/><circle cx="500" cy="70" r="3.5" fill="#B5524B"/><text x="474" y="50" fill="#B5524B">敦煌 · 2.13-15</text>
+        </g>
+      </svg>
+      <div class="route-legend">
+        <span><i></i>去程 ・ 高铁西进</span>
+        <span><i style="border-top-color:var(--accent2)"></i>返程 ・ 夜卧回兰州</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 逐日 -->
+  <div class="sec" id="days">
+    <div class="sec-head">
+      <span class="no">叁 ・ DAY BY DAY</span>
+      <h2>逐日</h2>
+      <span class="sub">六天五夜 ・ 河西走廊一千五百公里</span>
+    </div>
+    <div id="dayList"></div>
+  </div>
+
+  <!-- 记账 -->
+  <div class="sec" id="money">
+    <div class="sec-head">
+      <span class="no">肆 ・ MONEY</span>
+      <h2>账本</h2>
+      <span class="sub">回忆中的花销 ・ 补记也可</span>
+    </div>
+    <div class="money-total">
+      <div class="big"><small>已记 </small><span id="expTotal">0</span><small> 元</small></div>
+      <div class="cat-chips" id="catChips"></div>
+    </div>
+    <div class="exp-form">
+      <select id="expDay"></select>
+      <input id="expName" type="text" placeholder="花了什么？比如：张掖甘州市场午餐" maxlength="40">
+      <select id="expCat"><option>餐饮</option><option>交通</option><option>住宿</option><option>门票</option><option>购物</option><option>其他</option></select>
+      <input id="expAmt" type="number" placeholder="金额 ¥" min="0" step="0.01">
+      <button class="btn" id="expAdd">记一笔</button>
+    </div>
+    <ul class="exp-list" id="expList"></ul>
+    <div class="money-tools">
+      <button class="btn btn-ghost" id="expCsv">导出账单</button>
+      <button class="btn btn-ghost" id="expClear">清空账本</button>
+    </div>
+  </div>
+
+  <!-- 影集 & 碎记 -->
+  <div class="sec" id="moments">
+    <div class="sec-head">
+      <span class="no">伍 ・ MOMENTS</span>
+      <h2>影集 &amp; 碎记</h2>
+      <span class="sub">上传的照片自动循环放映</span>
+    </div>
+    <div class="slide-box" id="slideBox">
+      <div class="slide-empty" id="slideEmpty">
+        <span class="big-emoji">◌</span>
+        <b>照片未至</b>
+        <span>传几张旅途照片，这里就是你的柔光放映厅</span>
+      </div>
+      <div class="slide-dots" id="slideDots"></div>
+      <div class="slide-cap" id="slideCap" style="display:none"></div>
+    </div>
+    <div class="ph-tools">
+      <button class="btn" id="phBtn">＋ 上传照片</button>
+      <input type="file" id="phFile" accept="image/*" multiple style="display:none">
+    </div>
+    <div class="ph-grid" id="phGrid"></div>
+    <div class="note-form">
+      <input id="noteInput" type="text" placeholder="记个瞬间：大漠的风、莫高窟的暗廊、牛肉面的热气……" maxlength="120">
+      <button class="btn btn-note" id="noteAdd">记下</button>
+    </div>
+    <ul class="note-list" id="noteList"></ul>
+    <div class="local-tip"><b>数据说明：</b>记账、趣事存浏览器本地（localStorage），照片存浏览器数据库（IndexedDB，自动压缩）。键名独立：丝路行与平潭行数据互不干扰。</div>
+  </div>
+
+  <!-- 城市食单 -->
+  <div class="sec" id="eat">
+    <div class="sec-head">
+      <span class="no">陆 ・ EAT</span>
+      <h2>食单</h2>
+      <span class="sub">一路吃过去 ・ 每城一味</span>
+    </div>
+    <div class="eat-section">
+      <div class="eat-city">
+        <div class="city-name">兰州 <span class="sub">一碗面开始的一天</span></div>
+        <div class="eat-item"><b>牛肉面</b> — 连锁店人多，找小众店体验更好<span class="price">人均 15-25</span></div>
+        <div class="eat-item"><b>甜胚子</b> — 燕麦发酵的甜饮，兰州特色</div>
+        <div class="eat-item"><b>三炮台</b> — 盖碗茶，桂圆红枣枸杞冰糖</div>
+        <div class="eat-item"><b>手抓羊肉</b> — 水煮原汁原味，一斤68<span class="price">两人两斤绰绰有余</span></div>
+        <div class="eat-item"><b>烤串</b> — 按斤卖的那种，夜市吃</div>
+      </div>
+      <div class="eat-city">
+        <div class="city-name">张掖 <span class="sub">甘州市场扫街</span></div>
+        <div class="eat-item"><b>甘州市场</b> — 本地人吃饭的地方，什么都有的小摊</div>
+      </div>
+      <div class="eat-city">
+        <div class="city-name">敦煌 <span class="sub">沙洲夜市与披肩</span></div>
+        <div class="eat-item"><b>沙洲夜市</b> — 买披肩的好地方，防晒防沙两用</div>
+        <div class="eat-item"><b>杏皮水</b> — 敦煌特色酸甜饮，解渴神器</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 备忘 -->
+  <div class="sec" id="pack">
+    <div class="sec-head">
+      <span class="no">柒 ・ NOTES</span>
+      <h2>备忘 &amp; 感悟</h2>
+      <span class="sub">勾选自动保存 · 文字留存</span>
+    </div>
+    <div class="ck-grid" id="ckGrid"></div>
+    <textarea id="memo" placeholder="感悟、遗憾、想再去一次的理由……写在这里，刷新不丢。"></textarea>
+    <div class="saved-tip" id="savedTip"></div>
+  </div>
+</div>
+
+<footer>
+  <span class="end-mark"></span>
+  <p>2026 春节丝路回忆 · <b>风格 05 / 和纸柔光</b><br>兰州・张掖・嘉峪关・敦煌 · 河西走廊 · 二月淡季</p>
+</footer>
+
+<script>
+/* =====================================================
+   丝绸之路行程数据
+===================================================== */
+const TRIP = {
+  meta: {
+    title: "2026 春节 · 丝绸之路",
+    route: ["武汉","郑州","兰州","张掖","嘉峪关","敦煌","兰州","武汉"],
+    chips: [
+      {k:"时间", v:"2.10 – 2.16"},
+      {k:"行程", v:"高铁+火车 · 河西走廊"},
+      {k:"主题", v:"地貌・人文・千佛"},
+      {k:"季节", v:"二月淡季 · 人少景烈"}
+    ]
+  },
+  days: [
+    {
+      id:"d1", date:"2.10 周二", tag:"出发日", title:"武汉 → 郑州 → 兰州",
+      c1:"#B5524B", c2:"#C99A57",
+      sub:"高铁一整天，穿越半个中国到黄河边",
+      drive:[
+        {f:"武汉",t:"郑州东",km:535,h:"高铁 13:59-16:16"},
+        {f:"郑州东",t:"兰州西",km:1000,h:"高铁 17:12-22:35"}
+      ],
+      tl:[
+        {t:"全天",x:"车上观看甘肃河西走廊纪录片",s:"提前下载好，在路上看氛围感拉满"},
+        {t:"13:59",x:"武汉出发 → 郑州东",s:"约2.5h，郑州东换乘"},
+        {t:"17:12",x:"郑州东 → 兰州西",s:"约5.5h，到兰州已晚上10:35"},
+        {t:"22:35",x:"抵达兰州西，入住宾馆",s:"西站附近，明天一早赶张掖高铁"}
+      ],
+      stay:"兰州 · 兰州西站附近",
+      pills:[{k:"warn",t:"两段高铁换乘时间1小时，提前看好换乘通道"}]
+    },
+    {
+      id:"d2", date:"2.11 周三", tag:"入河西", title:"兰州 → 张掖 · 平山湖大峡谷",
+      c1:"#C99A57", c2:"#B5524B",
+      sub:"一路绝美风光，下午进入峡谷地貌",
+      drive:[{f:"兰州西",t:"张掖西",km:500,h:"高铁 07:15-10:24"}],
+      tl:[
+        {t:"07:15",x:"兰州西 → 张掖西",s:"3小时，一路上祁连山在窗外"},
+        {t:"10:24",x:"抵达张掖西，吃午饭",s:"甘州市场觅食"},
+        {t:"下午",x:"<b>平山湖大峡谷</b>",s:"丹霞+峡谷地貌，二月人少，像进了火星"},
+        {t:"晚上",x:"回市区，钟鼓楼转转",s:"张掖西站附近住"}
+      ],
+      stay:"张掖 · 张掖西站附近",
+      pills:[{k:"warn",t:"二月峡谷风大温度低，厚羽绒+帽子必备"}]
+    },
+    {
+      id:"d3", date:"2.12 周四", tag:"丹霞日", title:"马蹄寺 · 七彩丹霞",
+      c1:"#B5524B", c2:"#3F6F66",
+      sub:"上午石窟，下午看大地调色盘",
+      drive:[
+        {f:"张掖",t:"马蹄寺",km:65,h:"约1.5h"},
+        {f:"张掖",t:"七彩丹霞",km:40,h:"约1h"}
+      ],
+      tl:[
+        {t:"上午",x:"<b>马蹄寺</b>",s:"藏传佛教石窟，建在悬崖上，雪山背景下很震撼"},
+        {t:"下午",x:"<b>七彩丹霞</b>（或冰沟丹霞/外星谷）",s:"二月日落早，下午光线正好；冰沟丹霞看形，七彩看色"},
+        {t:"傍晚",x:"丹霞日落（二月约17:30）",s:"看完日落回市区"}
+      ],
+      stay:"张掖（连住第二晚）",
+      pills:[{k:"warn",t:"丹霞景区内温差大，带厚外套；冰沟 vs 七彩选一个的话，七彩更出片"}]
+    },
+    {
+      id:"d4", date:"2.13 周五", tag:"赴敦煌", title:"张掖 → 嘉峪关 → 敦煌",
+      c1:"#3F6F66", c2:"#C99A57",
+      sub:"过雄关，入戈壁，到敦煌",
+      drive:[
+        {f:"张掖",t:"嘉峪关",km:220,h:"火车/高铁约1.5h"},
+        {f:"嘉峪关",t:"敦煌",km:370,h:"火车约4.5h"}
+      ],
+      tl:[
+        {t:"上午",x:"<b>嘉峪关关城</b>（天下第一雄关）",s:"明长城西端起点，二月几乎包场"},
+        {t:"可选",x:"悬壁长城",s:"时间紧可跳过，关城是重点"},
+        {t:"下午",x:"火车赴敦煌",s:"一路戈壁，看够了荒凉"},
+        {t:"晚上",x:"抵达敦煌，宾馆休息",s:"明天莫高窟和月牙泉是重头戏"}
+      ],
+      stay:"敦煌 · 市区",
+      pills:[
+        {k:"warn",t:"<b>莫高窟</b>每天6000张，提前一个月预约 · 春节也抢手"},
+        {k:"warn",t:"<b>月牙泉</b>188元全程套票 · 买防水袋防沙 · 披肩在沙洲夜市买"}
+      ]
+    },
+    {
+      id:"d5", date:"2.14 周六", tag:"千佛日", title:"敦煌 · 月牙泉 · 西线",
+      c1:"#C99A57", c2:"#B5524B",
+      sub:"鸣沙山看沙，西线看戈壁尽头",
+      drive:[
+        {f:"敦煌",t:"月牙泉",km:5,h:"市区边上"},
+        {f:"敦煌",t:"雅丹魔鬼城",km:180,h:"西线往返约4h"}
+      ],
+      tl:[
+        {t:"上午",x:"<b>鸣沙山 · 月牙泉</b>",s:"188元全程套票；二月骆驼可能停运，但沙漠人少，拍照绝了"},
+        {t:"下午",x:"<b>西线</b>：丝路遗产城 → 玉门关 → 雅丹魔鬼城",s:"丝路遗产城不推荐，玉门关95门票门口转一下即可"},
+        {t:"16:00",x:"<b>雅丹魔鬼城看日落</b>",s:"二月日落约18:00，16:00进18:00出正好"},
+        {t:"晚上",x:"回敦煌市区，沙洲夜市",s:"买披肩、吃杏皮水"}
+      ],
+      stay:"敦煌（连住第二晚）",
+      pills:[
+        {k:"warn",t:"西线全程戈壁无信号，加满油带够水"},
+        {k:"warn",t:"沙洲夜市披肩砍价，开价50的30能拿下"}
+      ]
+    },
+    {
+      id:"d6", date:"2.15 周日", tag:"莫高窟", title:"敦煌 · 莫高窟 → 夜卧回兰州",
+      c1:"#B5524B", c2:"#3F6F66",
+      sub:"此行灵魂：千佛洞的暗廊与壁画",
+      drive:[],
+      tl:[
+        {t:"上午",x:"<b>莫高窟</b>",s:"提前一个月预约好的票；淡季看8-12个洞，旺季只看8个"},
+        {t:"下午",x:"敦煌市区逛逛，采购特产",s:"李广杏干、锁阳咖啡"},
+        {t:"晚上",x:"夜卧火车回兰州",s:"睡一觉到兰州西，省一晚住宿"}
+      ],
+      stay:"火车上（敦煌 → 兰州）",
+      pills:[
+        {k:"warn",t:"莫高窟洞内禁止拍照，手机都收好；讲解员带哪个看哪个，别脱队"},
+        {k:"warn",t:"2.16 到兰州后转高铁回武汉，提前买好兰州西→武汉的票"}
+      ]
+    }
+  ],
+  checklist: [
+    {t:"莫高窟门票提前一个月预约（每天6000张）", lvl:1},
+    {t:"甘肃省博物馆提前三天预约（晚12点放号）", lvl:1},
+    {t:"兰州西→张掖西 高铁票", lvl:0},
+    {t:"张掖→嘉峪关→敦煌 火车票", lvl:0},
+    {t:"敦煌→兰州 夜卧火车票", lvl:0},
+    {t:"兰州→武汉 返程高铁票", lvl:0},
+    {t:"厚羽绒服+帽子+围巾（二月河西走廊零下10-15度）", lvl:0},
+    {t:"防晒霜、墨镜、唇膏（戈壁干冷UV强）", lvl:0},
+    {t:"防水袋防沙（鸣沙山用）", lvl:0},
+    {t:"充电宝、保温杯", lvl:0},
+    {t:"河西走廊纪录片提前下载", lvl:0}
+  ],
+  money: {
+    days: ["2.10","2.11","2.12","2.13","2.14","2.15"],
+    cats: ["餐饮","交通","住宿","门票","购物","其他"],
+    colors: {餐饮:"#C99A57",交通:"#3F6F66",住宿:"#B5524B",门票:"#8B5CF6",购物:"#ff2e88",其他:"#7A756B"}
+  }
+};
+
+/* ============ 逐日渲染 ============ */
+(function(){
+  const box=document.getElementById('dayList');
+  TRIP.days.forEach(d=>{
+    const el=document.createElement('section');
+    el.className='day'; el.id='day-'+d.id;
+    el.style.setProperty('--dc1',d.c1); el.style.setProperty('--dc2',d.c2);
+    el.innerHTML=`
+      <div class="day-head">
+        <span class="day-date">${d.date}</span>
+        <h3>${d.title}</h3>
+        <span class="day-badge">${d.tag}</span>
+      </div>
+      <div class="day-sub">${d.sub}</div>
+      ${d.drive.length?`<div class="drive-strip">${d.drive.map(v=>`
+        <span class="drive"><span class="f">${v.f} → ${v.t}</span><span class="km">${v.km}km</span><span class="arr">${v.h}</span></span>`).join('')}
+      </div>`:''}
+      <ul class="tl">
+        ${d.tl.map(v=>`<li><span class="t">${v.t}</span><span class="x">${v.x}${v.s?`<small>${v.s}</small>`:''}</span></li>`).join('')}
+      </ul>
+      <div class="day-foot">
+        <span class="pill">住宿 <b>${d.stay}</b></span>
+        ${d.pills.map(p=>`<span class="pill ${p.k}">${p.t}</span>`).join('')}
+      </div>`;
+    box.appendChild(el);
+  });
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.06});
+  document.querySelectorAll('.day').forEach(el=>io.observe(el));
+})();
+
+/* ============ 记账 ============ */
+(function(){
+  const KEY='sr2026-exp';
+  const CAT_COLOR=TRIP.money.colors, DAYS=TRIP.money.days;
+  let exps=[]; try{exps=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){}
+  const $=id=>document.getElementById(id);
+  const esc=s=>{const d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML};
+
+  const daySel=$('expDay');
+  DAYS.forEach(d=>{const o=document.createElement('option');o.textContent=d;daySel.appendChild(o)});
+  daySel.value = exps.length ? DAYS[Math.min(DAYS.indexOf(exps[exps.length-1].d)+1, DAYS.length-1)] || exps[exps.length-1].d : '2.10';
+
+  $('expAdd').addEventListener('click',add);
+  $('expAmt').addEventListener('keydown',e=>{if(e.key==='Enter')add()});
+  $('expName').addEventListener('keydown',e=>{if(e.key==='Enter')add()});
+  function add(){
+    const d=daySel.value, n=$('expName').value.trim(), c=$('expCat').value, a=parseFloat($('expAmt').value);
+    if(!n){$('expName').focus();return}
+    if(!(a>0)){$('expAmt').focus();return}
+    exps.push({d,n,c,a,ts:Date.now()});save();
+    $('expName').value='';$('expAmt').value='';$('expName').focus();
+  }
+  $('expCsv').addEventListener('click',()=>{
+    const csv='\ufeff日期,事项,分类,金额(元)\n'+exps.map(e=>`${e.d},"${e.n.replace(/"/g,'""')}",${e.c},${e.a}`).join('\n');
+    dl(csv,'丝绸之路账单.csv','text/csv');
+  });
+  $('expClear').addEventListener('click',()=>{
+    if(!exps.length)return;
+    if(confirm(`确定清空全部 ${exps.length} 笔账？此操作不可恢复`)){exps=[];save()}
+  });
+  function save(){localStorage.setItem(KEY,JSON.stringify(exps));render()}
+  function render(){
+    const total=exps.reduce((s,e)=>s+e.a,0);
+    $('expTotal').textContent=total%1?total.toFixed(2):total;
+    const byCat={};exps.forEach(e=>byCat[e.c]=(byCat[e.c]||0)+e.a);
+    $('catChips').innerHTML=Object.entries(byCat).map(([c,v])=>
+      `<span class="cat-chip" style="color:${CAT_COLOR[c]}">${c} <b>${v%1?v.toFixed(1):v}</b></span>`).join('');
+    const list=$('expList');
+    if(!exps.length){list.innerHTML='<div class="exp-empty">还没记账。回忆一下花了多少，补几笔。</div>';return}
+    list.innerHTML=exps.map((e,i)=>`
+      <div class="exp-row">
+        <span class="d">${e.d}</span>
+        <span class="n">${esc(e.n)}</span>
+        <span class="a">¥${e.a%1?e.a.toFixed(2):e.a}</span>
+        <span class="c"><span class="cat" style="color:${CAT_COLOR[e.c]};border:1px solid ${CAT_COLOR[e.c]}44">${e.c}</span></span>
+        <button class="del" data-i="${i}" title="删除">×</button>
+      </div>`).join('');
+    list.querySelectorAll('.del').forEach(b=>b.addEventListener('click',()=>{exps.splice(+b.dataset.i,1);save()}));
+  }
+  function dl(text,name,type){
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([text],{type:type+';charset=utf-8'}));
+    a.download=name;a.click();URL.revokeObjectURL(a.href);
+  }
+  render();
+})();
+
+/* ============ 趣事速记 ============ */
+(function(){
+  const KEY='sr2026-notes';
+  let notes=[]; try{notes=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){}
+  const input=document.getElementById('noteInput'), list=document.getElementById('noteList');
+  const esc=s=>{const d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML};
+  function save(){localStorage.setItem(KEY,JSON.stringify(notes));render()}
+  function render(){
+    if(!notes.length){list.innerHTML='<li class="exp-empty">还没有记录。旅途中或旅后，一句话记下来。</li>';return}
+    list.innerHTML=[...notes].reverse().map((n,ri)=>{
+      const i=notes.length-1-ri, t=new Date(n.ts), pad=x=>String(x).padStart(2,'0');
+      return `<li class="note-item"><span class="ts">${pad(t.getMonth()+1)}.${pad(t.getDate())} ${pad(t.getHours())}:${pad(t.getMinutes())}</span><span class="x">${esc(n.t)}</span><button class="del" data-i="${i}">×</button></li>`;
+    }).join('');
+    list.querySelectorAll('.del').forEach(b=>b.addEventListener('click',()=>{notes.splice(+b.dataset.i,1);save()}));
+  }
+  function add(){const t=input.value.trim();if(!t){input.focus();return}notes.push({t,ts:Date.now()});input.value='';save()}
+  document.getElementById('noteAdd').addEventListener('click',add);
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')add()});
+  render();
+})();
+
+/* ============ 照片墙 + 轮播 ============ */
+(function(){
+  const DB='sr2026photos';
+  const $=id=>document.getElementById(id);
+  let db;
+  function open(){
+    return new Promise((res,rej)=>{
+      const r=indexedDB.open(DB,1);
+      r.onupgradeneeded=e=>{if(!e.target.result.objectStoreNames.contains('photos'))e.target.result.createObjectStore('photos',{keyPath:'id',autoIncrement:true})};
+      r.onsuccess=e=>res(e.target.result); r.onerror=()=>rej(r.error);
+    });
+  }
+  function tx(mode,fn){
+    return new Promise((res,rej)=>{
+      const t=db.transaction('photos',mode),s=t.objectStore('photos'),q=fn(s);
+      t.oncomplete=()=>res(q&&q.result); t.onerror=()=>rej(t.error);
+    });
+  }
+  const getAll=()=>tx('readonly',s=>s.getAll());
+  const put=p=>tx('readwrite',s=>s.add(p));
+  const del=id=>tx('readwrite',s=>s.delete(id));
+  function compress(file){
+    return new Promise(res=>{
+      const img=new Image(),url=URL.createObjectURL(file);
+      img.onload=()=>{
+        const MAX=1600;let {width:w,height:h}=img;
+        if(Math.max(w,h)>MAX){const k=MAX/Math.max(w,h);w=Math.round(w*k);h=Math.round(h*k)}
+        const c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0,w,h);
+        URL.revokeObjectURL(url);
+        res({data:c.toDataURL('image/jpeg',.85),name:file.name});
+      };
+      img.onerror=()=>{URL.revokeObjectURL(url);res(null)};
+      img.src=url;
+    });
+  }
+  const esc=s=>{const d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML};
+  const btn=$('phBtn'), file=$('phFile');
+  btn.addEventListener('click',()=>file.click());
+  file.addEventListener('change',async e=>{
+    for(const f of e.target.files){const p=await compress(f);if(p)await put({...p,ts:Date.now()})}
+    e.target.value='';refresh();
+  });
+  let slideIdx=0, slideTimer=null, photos=[];
+  function refresh(){getAll().then(ps=>{photos=ps;renderGrid();renderSlide()})}
+  function renderGrid(){
+    const g=$('phGrid');
+    g.innerHTML=photos.map(p=>`
+      <div class="ph"><img src="${p.data}" data-id="${p.id}" alt="${esc(p.name)}" loading="lazy"><button class="x" data-id="${p.id}" title="删除">×</button></div>`).join('');
+    g.querySelectorAll('.x').forEach(b=>b.addEventListener('click',()=>del(+b.dataset.id).then(refresh)));
+    g.querySelectorAll('img').forEach(im=>im.addEventListener('click',()=>{
+      slideIdx=photos.findIndex(p=>p.id===+im.dataset.id);showSlide();
+      $('slideBox').scrollIntoView({behavior:'smooth',block:'center'});
+    }));
+  }
+  function renderSlide(){
+    const box=$('slideBox'), empty=$('slideEmpty'), dots=$('slideDots'), cap=$('slideCap');
+    box.querySelectorAll('img.slide-img').forEach(i=>i.remove());
+    if(!photos.length){empty.style.display='flex';dots.innerHTML='';cap.style.display='none';stopSlide();return}
+    empty.style.display='none';
+    photos.forEach(p=>{const im=document.createElement('img');im.src=p.data;im.className='slide-img';im.alt=p.name;box.insertBefore(im,dots)});
+    dots.innerHTML=photos.map((_,i)=>`<i class="${i===slideIdx?'on':''}"></i>`).join('');
+    cap.style.display='block';
+    slideIdx=Math.min(slideIdx,photos.length-1);
+    showSlide();startSlide();
+  }
+  function showSlide(){
+    const imgs=[...document.querySelectorAll('#slideBox img.slide-img')];
+    if(!imgs.length)return;
+    imgs.forEach((im,i)=>im.classList.toggle('on',i===slideIdx));
+    const dots=$('slideDots');
+    [...dots.children].forEach((d,i)=>d.classList.toggle('on',i===slideIdx));
+    const p=photos[slideIdx], t=new Date(p.ts), pad=x=>String(x).padStart(2,'0');
+    $('slideCap').innerHTML=`<b>${pad(t.getMonth()+1)}.${pad(t.getDate())} ${pad(t.getHours())}:${pad(t.getMinutes())}</b> · ${esc(p.name)} <span style="opacity:.7">(${slideIdx+1}/${photos.length})</span>`;
+  }
+  function startSlide(){stopSlide();if(photos.length>1)slideTimer=setInterval(()=>{slideIdx=(slideIdx+1)%photos.length;showSlide()},4000)}
+  function stopSlide(){if(slideTimer){clearInterval(slideTimer);slideTimer=null}}
+  open().then(d=>{db=d;refresh()}).catch(()=>{btn.style.display='none'});
+})();
+
+/* ============ 备忘 ============ */
+(function(){
+  const KEY='sr2026-pack';
+  let state={}; try{state=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
+  const grid=document.getElementById('ckGrid');
+  const esc=s=>{const d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML};
+  TRIP.checklist.forEach((c,i)=>{
+    const lab=document.createElement('label');
+    lab.className='ck';
+    lab.innerHTML=`<input type="checkbox" data-i="${i}" ${state['ck'+i]?'checked':''}><span class="box"></span><span class="lbl">${esc(c.t)}</span>${c.lvl?'<span class="lvl">要预约</span>':''}`;
+    grid.appendChild(lab);
+  });
+  grid.addEventListener('change',e=>{
+    if(e.target.matches('input[type=checkbox]')){state['ck'+e.target.dataset.i]=e.target.checked;save()}
+  });
+  const memo=document.getElementById('memo'), tip=document.getElementById('savedTip');
+  memo.value=state.memo||'';
+  let tmr;
+  memo.addEventListener('input',()=>{
+    state.memo=memo.value;clearTimeout(tmr);
+    tmr=setTimeout(()=>{save();tip.textContent='已自动保存';setTimeout(()=>tip.textContent='',1800)},600);
+  });
+  function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+})();
+</script>
+</body>
+</html>
