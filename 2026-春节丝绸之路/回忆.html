@@ -111,6 +111,23 @@ header.hero{max-width:880px;margin:0 auto;padding:110px 28px 70px;text-align:cen
 .exp-empty{text-align:center;color:var(--ink-soft);font-size:13.5px;padding:18px 0;font-family:var(--sans);letter-spacing:.1em;list-style:none}
 .money-tools{display:flex;gap:14px;justify-content:center;margin-top:22px}
 
+/* 已定开销表 */
+.fixed-cost{background:var(--bg-alt);border-radius:20px;padding:28px 26px 22px;margin-bottom:38px}
+.fixed-title{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.3em;color:var(--accent);margin-bottom:18px}
+.cost-table{width:100%;border-collapse:collapse;font-size:14.5px;margin-bottom:14px}
+.cost-table th,.cost-table td{padding:9px 8px;text-align:left;border-bottom:1px solid rgba(43,42,40,.1)}
+.cost-table th{font-family:var(--sans);font-size:11.5px;letter-spacing:.2em;color:var(--ink-soft);font-weight:400}
+.cost-table td{color:var(--ink)}
+.cost-table .num{text-align:right;font-variant-numeric:tabular-nums;padding-right:6px}
+.cost-table .tag{display:inline-block;font-family:var(--sans);font-size:11px;letter-spacing:.1em;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--tc) 12%,transparent);color:var(--tc)}
+.cost-table tfoot td{border-bottom:none;color:var(--accent);font-weight:700}
+.cost-table tfoot .num{font-size:16px}
+.fixed-summary{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-family:var(--sans);font-size:12px;letter-spacing:.1em;color:var(--ink-soft)}
+.fixed-summary b{color:var(--ink);font-size:14px;margin-left:4px}
+.fixed-summary span:nth-child(1) b{color:#3F6F66}
+.fixed-summary span:nth-child(2) b{color:#B5524B}
+.fixed-summary span:nth-child(3) b{color:var(--accent)}
+
 /* 相册 */
 .slide-box{position:relative;aspect-ratio:16/9;max-height:440px;width:100%;overflow:hidden;border-radius:22px;background:var(--bg-alt);box-shadow:0 24px 60px rgba(43,42,40,.10)}
 .slide-box img.slide-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
@@ -274,6 +291,35 @@ footer b{color:var(--accent)}
       <h2>账本</h2>
       <span class="sub">回忆中的花销 ・ 补记也可</span>
     </div>
+
+    <div class="fixed-cost">
+      <div class="fixed-title">已定开销 · 交通 & 住宿</div>
+      <table class="cost-table">
+        <thead><tr><th>日期</th><th>项目</th><th class="num">金额</th><th>分类</th></tr></thead>
+        <tbody>
+          <tr><td>2.10</td><td>武汉 → 兰州西高铁（2人）</td><td class="num">1,413</td><td><span class="tag" style="--tc:#3F6F66">交通</span></td></tr>
+          <tr><td>2.10</td><td>兰州西宾馆</td><td class="num">130.8</td><td><span class="tag" style="--tc:#B5524B">住宿</span></td></tr>
+          <tr><td>2.11</td><td>兰州西 → 张掖西（2人）</td><td class="num">299</td><td><span class="tag" style="--tc:#3F6F66">交通</span></td></tr>
+          <tr><td>2.11</td><td>张掖西酒店一日</td><td class="num">130.8</td><td><span class="tag" style="--tc:#B5524B">住宿</span></td></tr>
+          <tr><td>2.13</td><td>张掖 → 敦煌卧铺（2人）</td><td class="num">308</td><td><span class="tag" style="--tc:#3F6F66">交通</span></td></tr>
+          <tr><td>2.13</td><td>敦煌酒店两日（2.13-2.14）</td><td class="num">274.06</td><td><span class="tag" style="--tc:#B5524B">住宿</span></td></tr>
+          <tr><td>2.14</td><td>敦煌租车一天</td><td class="num">180</td><td><span class="tag" style="--tc:#3F6F66">交通</span></td></tr>
+          <tr><td>2.15</td><td>敦煌 → 兰州西（2人）</td><td class="num">523</td><td><span class="tag" style="--tc:#3F6F66">交通</span></td></tr>
+          <tr><td>2.15</td><td>兰州回武汉飞机（2人）</td><td class="num">1,000</td><td><span class="tag" style="--tc:#3F6F66">交通</span></td></tr>
+          <tr><td>2.11</td><td>张掖租车两天</td><td class="num">338</td><td><span class="tag" style="--tc:#3F6F66">交通</span></td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2">小计</td><td class="num">4,586.66</td><td></td></tr></tfoot>
+      </table>
+      <div class="fixed-summary">
+        <span>交通 <b>3,061</b></span>
+        <span>住宿 <b>535.66</b></span>
+        <span>已确定 <b>4,586.66</b></span>
+      </div>
+      <div class="money-tools" style="margin-top:16px">
+        <button class="btn btn-ghost" id="importFixed">导入到下方账本</button>
+      </div>
+    </div>
+
     <div class="money-total">
       <div class="big"><small>已记 </small><span id="expTotal">0</span><small> 元</small></div>
       <div class="cat-chips" id="catChips"></div>
@@ -377,7 +423,7 @@ const TRIP = {
     route: ["武汉","郑州","兰州","张掖","嘉峪关","敦煌","兰州","武汉"],
     chips: [
       {k:"时间", v:"2.10 – 2.16"},
-      {k:"行程", v:"高铁+火车 · 河西走廊"},
+      {k:"行程", v:"高铁+火车+飞机 · 河西走廊"},
       {k:"主题", v:"地貌・人文・千佛"},
       {k:"季节", v:"二月淡季 · 人少景烈"}
     ]
@@ -471,19 +517,23 @@ const TRIP = {
       ]
     },
     {
-      id:"d6", date:"2.15 周日", tag:"莫高窟", title:"敦煌 · 莫高窟 → 夜卧回兰州",
+      id:"d6", date:"2.15 周日", tag:"返程日", title:"敦煌 · 莫高窟 → 兰州 → 武汉",
       c1:"#B5524B", c2:"#3F6F66",
-      sub:"此行灵魂：千佛洞的暗廊与壁画",
-      drive:[],
+      sub:"此行灵魂：千佛洞的暗廊与壁画，晚上飞回家",
+      drive:[
+        {f:"敦煌",t:"兰州西",km:1100,h:"动车约 4h"},
+        {f:"兰州",t:"武汉",km:1300,h:"飞机"}
+      ],
       tl:[
         {t:"上午",x:"<b>莫高窟</b>",s:"提前一个月预约好的票；淡季看8-12个洞，旺季只看8个"},
         {t:"下午",x:"敦煌市区逛逛，采购特产",s:"李广杏干、锁阳咖啡"},
-        {t:"晚上",x:"夜卧火车回兰州",s:"睡一觉到兰州西，省一晚住宿"}
+        {t:"傍晚",x:"敦煌 → 兰州西",s:"动车约4小时，到兰州后直奔机场"},
+        {t:"晚上",x:"兰州中川机场 → 武汉",s:"飞机回武汉，春节返程提前值机"}
       ],
-      stay:"火车上（敦煌 → 兰州）",
+      stay:"回家",
       pills:[
         {k:"warn",t:"莫高窟洞内禁止拍照，手机都收好；讲解员带哪个看哪个，别脱队"},
-        {k:"warn",t:"2.16 到兰州后转高铁回武汉，提前买好兰州西→武汉的票"}
+        {k:"warn",t:"兰州机场距市区较远，动车到兰州西后留足转场时间"}
       ]
     }
   ],
@@ -493,12 +543,18 @@ const TRIP = {
     {t:"兰州西→张掖西 高铁票", lvl:0},
     {t:"张掖→嘉峪关→敦煌 火车票", lvl:0},
     {t:"敦煌→兰州 夜卧火车票", lvl:0},
-    {t:"兰州→武汉 返程高铁票", lvl:0},
-    {t:"厚羽绒服+帽子+围巾（二月河西走廊零下10-15度）", lvl:0},
-    {t:"防晒霜、墨镜、唇膏（戈壁干冷UV强）", lvl:0},
-    {t:"防水袋防沙（鸣沙山用）", lvl:0},
-    {t:"充电宝、保温杯", lvl:0},
-    {t:"河西走廊纪录片提前下载", lvl:0}
+    {t:"兰州→武汉 返程机票/高铁票", lvl:0},
+    {t:"厚羽绒服 / 冲锋衣（二月河西走廊零下10-15度）", lvl:0},
+    {t:"帽子、围巾、手套、暖宝宝", lvl:0},
+    {t:"防晒霜、墨镜、唇膏、保湿霜（戈壁干冷UV强）", lvl:0},
+    {t:"手机防沙袋 / 防水袋（鸣沙山用）", lvl:0},
+    {t:"充电宝、充电线、保温杯", lvl:0},
+    {t:"身份证、驾驶证（张掖/敦煌租车需要）", lvl:0},
+    {t:"常用药品：感冒药、肠胃药、晕车药、创可贴", lvl:0},
+    {t:"少量现金（部分景区/小摊信号差）", lvl:0},
+    {t:"河西走廊纪录片提前下载，车上看氛围拉满", lvl:0},
+    {t:"沙洲夜市披肩记得砍价（开价50可砍到30）", lvl:0},
+    {t:"鸣沙山鞋套可租，防沙比光脚省心", lvl:0}
   ],
   money: {
     days: ["2.10","2.11","2.12","2.13","2.14","2.15"],
@@ -552,6 +608,31 @@ const TRIP = {
   $('expAdd').addEventListener('click',add);
   $('expAmt').addEventListener('keydown',e=>{if(e.key==='Enter')add()});
   $('expName').addEventListener('keydown',e=>{if(e.key==='Enter')add()});
+
+  const FIXED_EXPENSES=[
+    {d:'2.10',n:'武汉 → 兰州西高铁（2人）',c:'交通',a:1413},
+    {d:'2.10',n:'兰州西宾馆',c:'住宿',a:130.8},
+    {d:'2.11',n:'兰州西 → 张掖西（2人）',c:'交通',a:299},
+    {d:'2.11',n:'张掖西酒店一日',c:'住宿',a:130.8},
+    {d:'2.13',n:'张掖 → 敦煌卧铺（2人）',c:'交通',a:308},
+    {d:'2.13',n:'敦煌酒店两日（2.13-2.14）',c:'住宿',a:274.06},
+    {d:'2.14',n:'敦煌租车一天',c:'交通',a:180},
+    {d:'2.15',n:'敦煌 → 兰州西（2人）',c:'交通',a:523},
+    {d:'2.15',n:'兰州回武汉飞机（2人）',c:'交通',a:1000},
+    {d:'2.11',n:'张掖租车两天',c:'交通',a:338}
+  ];
+  const importBtn=$('importFixed');
+  if(importBtn)importBtn.addEventListener('click',()=>{
+    const ids=new Set(exps.map(e=>`${e.d}|${e.n}|${e.a}`));
+    let added=0;
+    FIXED_EXPENSES.forEach(e=>{
+      const k=`${e.d}|${e.n}|${e.a}`;
+      if(!ids.has(k)){exps.push({...e,ts:Date.now()+added});ids.add(k);added++}
+    });
+    if(added){save();importBtn.textContent=`已导入 ${added} 笔`}else{importBtn.textContent='已是最新，无需导入'}
+    setTimeout(()=>importBtn.textContent='导入到下方账本',2400);
+  });
+
   function add(){
     const d=daySel.value, n=$('expName').value.trim(), c=$('expCat').value, a=parseFloat($('expAmt').value);
     if(!n){$('expName').focus();return}
