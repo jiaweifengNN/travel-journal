@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F6F3EC">
+<title>2026 十一 · 惠州自驾 | 山海・老味・露宿</title>
+<style>
+/* ============================================================
+   风格 05 · 和纸柔光 JAPANESE EDITORIAL — WASHI & SOFT GLOW
+   惠州自驾行动手册 · 安静、治愈、手账日记感
+
+   【字体体系 · 全局唯一规则】
+   --serif 衬线：所有正文、标题、店名、叙述性文字
+   --sans  黑体：所有标签、日期、数值、时间戳、按钮、说明小字
+   禁止在元素上写死 font-family，一律引用变量，杜绝字体不一致。
+============================================================ */
+:root{
+  --bg:#F6F3EC; --bg-alt:#ECE6DA; --bg-deep:#E3DBCB;
+  --ink:#2B2A28; --ink-soft:#7A756B; --ink-faint:#A39C90;
+  --accent:#B5524B;      /* 闷红 · 强调 */
+  --accent2:#3F6F66;     /* 松绿 · 次级 */
+  --sand:#C99A57;        /* 沙金 · 点缀 */
+  --line:rgba(43,42,40,.10);
+  --line-strong:rgba(43,42,40,.22);
+  --serif:Georgia,"Times New Roman","Songti SC","Source Han Serif SC","Noto Serif CJK SC","STSong","SimSun",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --radius:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--serif);          /* 全局唯一正文字体来源 */
+  line-height:1.95;font-size:16.5px;
+  overflow-x:hidden;
+}
+::selection{background:var(--accent);color:#fff}
+
+/* ---------- 导航 ---------- */
+nav{
+  position:sticky;top:0;z-index:99;
+  background:rgba(246,243,236,.93);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  padding:13px 18px;display:flex;gap:20px;align-items:center;justify-content:center;
+  overflow-x:auto;white-space:nowrap;scrollbar-width:none;
+}
+nav::-webkit-scrollbar{display:none}
+nav .logo{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.32em;color:var(--accent);flex:none}
+nav a{color:var(--ink-soft);text-decoration:none;font-family:var(--sans);font-size:12.5px;letter-spacing:.18em;flex:none;transition:color .2s}
+nav a:hover,nav a:active{color:var(--accent)}
+
+/* ---------- Hero ---------- */
+header.hero{max-width:860px;margin:0 auto;padding:76px 26px 58px;text-align:center;position:relative}
+.hero .circle-mark{
+  width:132px;height:132px;border-radius:50%;margin:0 auto 30px;
+  background:radial-gradient(circle at 36% 32%,rgba(181,82,75,.92),rgba(181,82,75,.72) 56%,rgba(63,111,102,.34) 57%,rgba(63,111,102,.26) 100%);
+  box-shadow:0 14px 44px rgba(181,82,75,.16);
+  animation:breathe 7s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+.hero .kicker{font-family:var(--sans);font-size:10.5px;letter-spacing:.5em;color:var(--ink-soft)}
+.hero h1{font-size:clamp(30px,6.4vw,50px);font-weight:700;letter-spacing:.1em;line-height:1.42;margin:18px 0 6px}
+.hero h1 span{color:var(--accent)}
+.hero .route{font-family:var(--sans);font-size:12.5px;letter-spacing:.2em;color:var(--ink-soft);margin:12px 0 34px;line-height:2.4}
+.hero .route b{color:var(--ink);font-weight:600}
+.hero .route .dot{color:var(--accent);padding:0 5px}
+.chips{display:flex;gap:22px;justify-content:center;flex-wrap:wrap}
+.chip{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);letter-spacing:.1em}
+.chip b{color:var(--accent2);font-weight:600}
+
+/* ---------- 通用容器 ---------- */
+.wrap{max-width:780px;margin:0 auto;padding:0 24px 84px}
+.sec{margin-top:92px}
+.sec-head{text-align:center;margin-bottom:40px}
+.sec-head .no{font-family:var(--sans);font-size:10.5px;letter-spacing:.5em;color:var(--accent2)}
+.sec-head h2{font-size:clamp(21px,3.2vw,29px);font-weight:700;letter-spacing:.26em;margin-top:11px}
+.sec-head .sub{font-family:var(--sans);font-size:12px;color:var(--ink-soft);letter-spacing:.16em;margin-top:9px;line-height:1.9}
+
+/* ---------- 此行印象 ---------- */
+.city-impression{text-align:center;margin-bottom:54px;padding:0 18px}
+.city-impression .imp-title{font-family:var(--sans);font-size:11px;letter-spacing:.3em;color:var(--accent2);margin-bottom:16px}
+.city-impression .imp-body{font-size:17px;line-height:2.2;color:var(--ink)}
+.city-impression .imp-body .word{color:var(--accent);font-weight:600}
+
+/* ---------- 关键事实卡 ---------- */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:34px}
+.fact{background:var(--bg-alt);border-radius:var(--radius);padding:22px 20px;text-align:center}
+.fact .k{font-family:var(--sans);font-size:10.5px;letter-spacing:.28em;color:var(--ink-soft)}
+.fact .v{font-size:22px;font-weight:700;color:var(--accent);margin:9px 0 4px;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.fact .n{font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);letter-spacing:.06em;line-height:1.7}
+
+/* ---------- 路线 SVG ---------- */
+.route-panel{text-align:center;padding:24px 0 8px}
+.route-svg{width:100%;max-width:660px;height:auto;display:block;margin:0 auto}
+.route-legend{display:flex;gap:26px;justify-content:center;margin-top:20px;font-family:var(--sans);font-size:11.5px;letter-spacing:.14em;color:var(--ink-soft);flex-wrap:wrap}
+.route-legend i{display:inline-block;width:24px;border-top:2px dotted var(--accent);vertical-align:middle;margin-right:7px}
+.route-legend i.b2{border-top:2px solid var(--accent2)}
+
+/* ---------- 逐日行程 ---------- */
+.day{padding:34px 0 12px;opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.day.show{opacity:1;transform:none}
+.day-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:2px}
+.day-date{font-family:var(--sans);font-size:11.5px;letter-spacing:.26em;color:var(--accent);flex:none}
+.day-head h3{font-size:clamp(19px,2.9vw,25px);font-weight:700;letter-spacing:.06em;flex:1;min-width:150px}
+.day-badge{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;color:#fff;background:var(--accent2);border-radius:999px;padding:4px 13px;flex:none}
+.day-badge.camp{background:var(--sand)}
+.day-badge.drive{background:var(--ink-soft)}
+.day-sub{color:var(--ink-soft);font-size:14.5px;margin-bottom:12px;line-height:1.9}
+.drive-strip{margin:6px 0 16px}
+.drive{display:inline-flex;align-items:baseline;gap:9px;font-family:var(--sans);font-size:12px;color:var(--ink-soft);background:var(--bg-alt);border-radius:999px;padding:6px 16px;margin:0 7px 7px 0;letter-spacing:.04em}
+.drive .km{color:var(--accent2);font-weight:600;font-variant-numeric:tabular-nums}
+.tl{list-style:none}
+.tl li{display:flex;gap:16px;padding:8px 0}
+.tl .t{flex:none;width:56px;font-family:var(--sans);font-size:12px;font-weight:600;color:var(--accent2);letter-spacing:.04em;padding-top:4px;font-variant-numeric:tabular-nums}
+.tl .x{flex:1;font-size:15.5px;line-height:1.9}
+.tl .x::before{content:"・";color:var(--accent);font-weight:700;margin-right:3px}
+.tl .x small{display:block;font-family:var(--sans);color:var(--ink-soft);font-size:12.5px;margin-top:3px;padding-left:1.3em;line-height:1.8}
+.tl .x .hi{color:var(--accent);font-weight:700}
+.tl .x .shop{color:var(--accent2);font-weight:600}
+.day-foot{margin-top:14px;padding-left:72px}
+.pill{display:block;font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);margin:0 0 8px;letter-spacing:.03em;line-height:1.8}
+.pill::before{content:"◦ ";color:var(--accent2)}
+.pill b{color:var(--ink);font-weight:600}
+.pill.warn::before{content:"⚠ ";color:var(--accent)}
+.pill.warn{color:var(--accent)}
+
+/* ---------- 露营地卡片 ---------- */
+.camp-list{display:flex;flex-direction:column;gap:18px}
+.camp-card{background:var(--bg-alt);border-radius:var(--radius);padding:24px 22px;border-left:3px solid var(--sand)}
+.camp-card.top{border-left-color:var(--accent);background:linear-gradient(180deg,rgba(181,82,75,.05),var(--bg-alt))}
+.camp-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.camp-top .rk{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;color:#fff;background:var(--sand);border-radius:999px;padding:3px 11px;flex:none}
+.camp-card.top .rk{background:var(--accent)}
+.camp-top h3{font-size:18.5px;font-weight:700;letter-spacing:.06em;flex:1;min-width:130px}
+.camp-score{font-family:var(--sans);font-size:12px;color:var(--accent2);font-weight:600;flex:none;font-variant-numeric:tabular-nums}
+.camp-where{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);letter-spacing:.04em;margin-bottom:12px;line-height:1.8}
+.camp-desc{font-size:15px;line-height:1.95;margin-bottom:14px}
+.camp-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.meta-tag{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.6);color:var(--ink);border:1px solid var(--line)}
+.meta-tag.ok{color:var(--accent2);border-color:rgba(63,111,102,.3)}
+.meta-tag.no{color:var(--ink-faint)}
+.camp-price{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);letter-spacing:.05em;line-height:1.9;padding-top:10px;border-top:1px dashed var(--line-strong)}
+.camp-price b{color:var(--accent);font-weight:600}
+.camp-tip{font-family:var(--sans);font-size:12px;color:var(--accent2);letter-spacing:.03em;margin-top:8px;line-height:1.8}
+.camp-nav{display:inline-block;margin-top:10px;font-family:var(--sans);font-size:12px;color:var(--accent2);text-decoration:none;border:1px solid rgba(63,111,102,.3);border-radius:999px;padding:6px 15px;transition:.2s}
+.camp-nav:hover{background:rgba(63,111,102,.08)}
+
+/* ---------- 食单 ---------- */
+.eat-area{margin-bottom:40px}
+.eat-name{font-size:19px;font-weight:700;letter-spacing:.14em;color:var(--accent);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.eat-name .sub{font-family:var(--sans);font-size:11px;letter-spacing:.16em;color:var(--ink-soft);font-weight:400;margin-left:9px}
+.eat-item{padding:9px 0;font-size:15.5px;line-height:1.9}
+.eat-item::before{content:"・";color:var(--sand);font-weight:700;margin-right:4px}
+.eat-item b{color:var(--accent2);font-weight:600}
+.eat-item em{font-style:normal;color:var(--accent);font-weight:600}
+.eat-item .why{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);display:block;padding-left:1.1em;margin-top:2px;line-height:1.8}
+.eat-item .addr{font-family:var(--sans);font-size:11.5px;color:var(--ink-faint);display:block;padding-left:1.1em;margin-top:2px}
+
+/* ---------- 景点 ---------- */
+.spot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.spot{background:var(--bg-alt);border-radius:var(--radius);padding:22px 20px}
+.spot h3{font-size:17.5px;font-weight:700;letter-spacing:.08em;margin-bottom:8px}
+.spot .zone{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;color:var(--accent2);display:block;margin-bottom:10px}
+.spot p{font-size:14.5px;line-height:1.9;color:var(--ink)}
+.spot .tick{font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);margin-top:10px;padding-top:9px;border-top:1px dashed var(--line-strong);line-height:1.8}
+.spot .tick b{color:var(--accent)}
+
+/* ---------- 记账 ---------- */
+.money-total{text-align:center;margin-bottom:24px}
+.money-total .big{font-size:clamp(38px,7vw,56px);font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:.02em;line-height:1.3}
+.money-total .big small{font-family:var(--sans);font-size:12.5px;color:var(--ink-soft);font-weight:400;letter-spacing:.2em}
+.cat-chips{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.cat-chip{font-family:var(--sans);font-size:12px;color:var(--ink-soft);letter-spacing:.06em}
+.cat-chip b{color:var(--ink);font-weight:600}
+.exp-form{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.exp-form select,.exp-form input{
+  background:transparent;border:none;border-bottom:1px solid var(--line-strong);
+  padding:10px 4px;color:var(--ink);font-size:16px;font-family:var(--serif);border-radius:0;
+}
+.exp-form select{flex:none;width:82px}
+.exp-form input#expName{flex:1;min-width:160px}
+.exp-form input#expAmt{width:92px}
+.exp-form select:focus,.exp-form input:focus{outline:none;border-bottom-color:var(--accent)}
+.exp-list{list-style:none}
+.exp-row{display:flex;gap:14px;align-items:baseline;padding:10px 2px;font-size:15px}
+.exp-row + .exp-row{border-top:1px solid var(--line)}
+.exp-row .d{flex:none;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);width:46px;font-variant-numeric:tabular-nums}
+.exp-row .n{flex:1;line-height:1.7}
+.exp-row .n::before{content:"・";color:var(--accent2)}
+.exp-row .a{font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;flex:none}
+.exp-row .cat{font-family:var(--sans);font-size:11px;color:var(--ink-faint);flex:none}
+.exp-row .del{cursor:pointer;color:var(--ink-faint);font-size:16px;border:none;background:none;padding:0 2px;flex:none}
+.exp-row .del:hover{color:var(--accent)}
+.exp-empty{text-align:center;color:var(--ink-soft);font-family:var(--sans);font-size:13px;padding:20px 0;letter-spacing:.1em;list-style:none}
+.money-tools{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+
+/* 预算参考表 */
+.budget-box{background:var(--bg-alt);border-radius:var(--radius);padding:24px 22px 18px;margin-bottom:34px}
+.budget-title{text-align:center;font-family:var(--sans);font-size:11.5px;letter-spacing:.3em;color:var(--accent);margin-bottom:16px}
+.budget-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;font-size:15px;border-bottom:1px solid var(--line)}
+.budget-row:last-of-type{border-bottom:none}
+.budget-row .l{flex:1}
+.budget-row .l::before{content:"・";color:var(--accent2)}
+.budget-row .l small{display:block;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);padding-left:1.1em;line-height:1.7}
+.budget-row .r{font-family:var(--sans);font-size:14px;color:var(--accent);font-weight:600;flex:none;padding-left:12px;font-variant-numeric:tabular-nums}
+.budget-sum{text-align:center;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line-strong)}
+.budget-sum .t{font-family:var(--sans);font-size:11.5px;letter-spacing:.24em;color:var(--ink-soft)}
+.budget-sum .n{font-size:26px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+
+/* ---------- 相册 ---------- */
+.slide-box{position:relative;aspect-ratio:16/10;width:100%;overflow:hidden;border-radius:22px;background:var(--bg-alt);box-shadow:0 22px 56px rgba(43,42,40,.10)}
+.slide-box img.slide-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
+.slide-box img.slide-img.on{opacity:1;animation:kb 9s ease-out}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+.slide-empty{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:var(--ink-soft);text-align:center;padding:24px}
+.slide-empty .big-emoji{font-size:38px;opacity:.55}
+.slide-empty b{font-size:16px;letter-spacing:.26em;font-weight:700}
+.slide-empty span{font-family:var(--sans);font-size:12px;letter-spacing:.1em;line-height:1.9}
+.slide-cap{position:absolute;left:0;right:0;bottom:0;padding:40px 20px 16px;background:linear-gradient(transparent,rgba(43,42,40,.6));font-family:var(--sans);font-size:12px;letter-spacing:.1em;color:#fff;line-height:1.7}
+.slide-cap b{color:#F2D9B8}
+.slide-dots{position:absolute;top:14px;right:16px;display:flex;gap:6px}
+.slide-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45)}
+.slide-dots i.on{background:var(--accent)}
+.ph-tools{display:flex;gap:12px;justify-content:center;margin:22px 0 16px;flex-wrap:wrap}
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.ph{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1;box-shadow:0 8px 22px rgba(43,42,40,.09)}
+.ph img{width:100%;height:100%;object-fit:cover;cursor:pointer;display:block}
+.ph .x{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;background:rgba(43,42,40,.55);color:#fff;border:none;font-size:13px;cursor:pointer;opacity:1;transition:.25s}
+.note-form{display:flex;gap:10px;margin:8px 0 16px}
+.note-form input{flex:1;background:transparent;border:none;border-bottom:1px solid var(--line-strong);padding:11px 4px;color:var(--ink);font-size:16px;font-family:var(--serif);border-radius:0}
+.note-form input:focus{outline:none;border-bottom-color:var(--accent)}
+.btn{cursor:pointer;border:none;background:var(--accent);color:#fff;border-radius:999px;font-family:var(--sans);font-size:12.5px;letter-spacing:.14em;padding:12px 26px;transition:.2s}
+.btn:hover{box-shadow:0 8px 22px rgba(181,82,75,.24)}
+.btn-ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--line-strong)}
+.btn-ghost:hover{color:var(--accent);border-color:var(--accent);box-shadow:none}
+.btn-note{background:var(--accent2)}
+.note-list{list-style:none}
+.note-item{display:flex;gap:14px;padding:10px 2px;font-size:15px;line-height:1.85}
+.note-item + .note-item{border-top:1px solid var(--line)}
+.note-item .ts{flex:none;font-family:var(--sans);font-size:11px;color:var(--ink-soft);font-variant-numeric:tabular-nums;padding-top:5px;width:88px;letter-spacing:.04em}
+.note-item .x{flex:1}
+.note-item .x::before{content:"・";color:var(--accent)}
+.note-item .del{flex:none;border:none;background:none;color:var(--ink-faint);cursor:pointer;font-size:16px;padding:0 2px}
+.note-item .del:hover{color:var(--accent)}
+.local-tip{text-align:center;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);margin-top:40px;letter-spacing:.06em;line-height:2}
+.local-tip b{color:var(--accent2)}
+
+/* ---------- 清单 ---------- */
+.ck-group{margin-bottom:26px}
+.ck-group-t{font-family:var(--sans);font-size:11.5px;letter-spacing:.28em;color:var(--accent);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.ck-grid{max-width:580px}
+.ck{display:flex;align-items:flex-start;gap:13px;padding:9px 2px;font-size:15.5px;cursor:pointer;user-select:none;line-height:1.85}
+.ck input{display:none}
+.ck .box{flex:none;width:17px;height:17px;border-radius:50%;border:1.5px solid var(--ink-soft);position:relative;transform:translateY(5px);transition:.2s}
+.ck input:checked + .box{background:var(--accent2);border-color:var(--accent2)}
+.ck input:checked + .box::after{content:"";position:absolute;left:4.5px;top:1px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(42deg)}
+.ck input:checked ~ .lbl{color:var(--ink-faint);text-decoration:line-through}
+.ck .lbl{flex:1}
+.ck .lbl::before{content:"・";color:var(--accent)}
+.ck .lvl{font-family:var(--sans);font-size:10px;letter-spacing:.14em;color:var(--accent);margin-left:3px;flex:none;transform:translateY(4px)}
+textarea{width:100%;min-height:110px;margin-top:26px;background:transparent;color:var(--ink);border:none;border-bottom:1px solid var(--line-strong);padding:12px 4px;font-size:16px;font-family:var(--serif);resize:vertical;line-height:1.9;border-radius:0}
+textarea:focus{outline:none;border-bottom-color:var(--accent)}
+.saved-tip{text-align:center;font-family:var(--sans);font-size:11px;color:var(--accent2);margin-top:8px;min-height:16px;letter-spacing:.2em}
+
+/* ---------- Footer ---------- */
+footer{text-align:center;padding:70px 24px 64px}
+footer .end-mark{width:12px;height:12px;border-radius:50%;background:var(--accent);opacity:.85;display:inline-block;margin-bottom:18px}
+footer p{font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);letter-spacing:.16em;line-height:2.3}
+footer b{color:var(--accent)}
+
+/* ---------- 移动端 ---------- */
+@media (max-width:640px){
+  body{font-size:16px;line-height:1.9}
+  header.hero{padding:52px 20px 40px}
+  .hero .circle-mark{width:104px;height:104px;margin-bottom:24px}
+  .wrap{padding:0 18px 66px}
+  .sec{margin-top:66px}
+  .facts{grid-template-columns:1fr 1fr;gap:11px}
+  .fact{padding:17px 14px}
+  .fact .v{font-size:19px}
+  .exp-row .cat{display:none}
+  .day-foot{padding-left:0}
+  .tl .t{width:48px;font-size:11.5px}
+  .tl .x{font-size:15px}
+  .spot-grid{grid-template-columns:1fr}
+  .ph-grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px}
+  .note-item .ts{width:74px;font-size:10.5px}
+  .camp-card{padding:20px 17px}
+  .exp-form input#expAmt{width:80px}
+  .btn{padding:11px 20px;font-size:12px}
+  nav{gap:16px;padding:11px 14px}
+}
+@media (max-width:380px){
+  .facts{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .day{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">惠州 2026</span>
+  <a href="#overview">总览</a>
+  <a href="#route">路线</a>
+  <a href="#days">逐日</a>
+  <a href="#camp">露营</a>
+  <a href="#spots">景点</a>
+  <a href="#food">食单</a>
+  <a href="#money">记账</a>
+  <a href="#album">相册</a>
+  <a href="#pack">清单</a>
+</nav>
+
+<header class="hero">
+  <div class="circle-mark"></div>
+  <div class="kicker">2026 国 庆 · 自 驾 手 册</div>
+  <h1>去<span>惠州</span>，把车停在浪边</h1>
+  <div class="route">
+    武汉 <span class="dot">·</span> 赣州 <span class="dot">·</span> <b>罗浮山</b> <span class="dot">·</span> <b>惠城</b> <span class="dot">·</span> <b>双月湾</b> <span class="dot">·</span> <b>盐洲岛</b> <span class="dot">·</span> 回程
+  </div>
+  <div class="chips">
+    <span class="chip">时间 <b>9.30 – 10.5</b></span>
+    <span class="chip">里程 <b>约 2150 km</b></span>
+    <span class="chip">露营 <b>3 晚</b></span>
+    <span class="chip">预算 <b>约 3600 元</b></span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ 总览 ============ -->
+  <section class="sec" id="overview">
+    <div class="sec-head">
+      <div class="no">O V E R V I E W</div>
+      <h2>此行骨架</h2>
+      <div class="sub">一句话：去程慢慢走，海边扎三晚，返程分两天</div>
+    </div>
+
+    <div class="city-impression">
+      <div class="imp-title">惠 州 三 件 事</div>
+      <div class="imp-body">
+        一座<span class="word">西湖</span>半城山色，一条<span class="word">老街</span>藏着四十年老铺，
+        一段<span class="word">海岸线</span>把双月、龟湾、黑排角串成项链。<br>
+        客家、广府、潮汕三味在此交汇 —— 它不喧哗，慢慢吃才对。
+      </div>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><div class="k">总 里 程</div><div class="v">2150</div><div class="n">km · 含返程</div></div>
+      <div class="fact"><div class="k">驾驶时长</div><div class="v">26</div><div class="n">h · 分 6 天摊</div></div>
+      <div class="fact"><div class="k">露 营</div><div class="v">3</div><div class="n">晚 · 10.1–10.3</div></div>
+      <div class="fact"><div class="k">预算/人</div><div class="v">3600</div><div class="n">元 · 含油过路食宿</div></div>
+    </div>
+
+    <div class="pill" style="padding-left:0;margin-top:24px">
+      <b>行程逻辑</b>：武汉南下经江西到广东，地理上是「<b>赣州 → 河源 → 博罗（罗浮山）→ 惠城 → 惠东海边</b>」一条直线，
+      去程先把罗浮山和城区扫了，海边留整整 3 天不挪窝，10.4 中午启程返赣，10.5 一天开回武汉。
+      <b>全程不回头、不绕路。</b>
+    </div>
+  </section>
+
+  <!-- ============ 路线 ============ -->
+  <section class="sec" id="route">
+    <div class="sec-head">
+      <div class="no">R O U T E</div>
+      <h2>路线图</h2>
+      <div class="sub">虚线为示意走向，实际以高速导航为准</div>
+    </div>
+    <div class="route-panel">
+      <svg class="route-svg" viewBox="0 0 680 400" role="img" aria-label="武汉到惠州自驾路线示意图">
+        <!-- 去程线 -->
+        <path d="M70 30 C 130 90, 150 130, 175 175" fill="none" stroke="#B5524B" stroke-width="2" stroke-dasharray="5 6" opacity=".85"/>
+        <path d="M175 175 C 205 220, 215 250, 245 268" fill="none" stroke="#B5524B" stroke-width="2" stroke-dasharray="5 6" opacity=".85"/>
+        <path d="M245 268 C 290 285, 320 275, 350 268" fill="none" stroke="#B5524B" stroke-width="2" stroke-dasharray="5 6" opacity=".85"/>
+        <path d="M350 268 C 405 262, 450 258, 495 252" fill="none" stroke="#B5524B" stroke-width="2" stroke-dasharray="5 6" opacity=".85"/>
+        <path d="M495 252 C 540 245, 570 235, 600 224" fill="none" stroke="#B5524B" stroke-width="2" stroke-dasharray="5 6" opacity=".85"/>
+        <!-- 返程线 -->
+        <path d="M600 224 C 520 205, 430 180, 350 160" fill="none" stroke="#3F6F66" stroke-width="1.6" stroke-dasharray="3 7" opacity=".5"/>
+        <path d="M350 160 C 260 138, 150 100, 78 44" fill="none" stroke="#3F6F66" stroke-width="1.6" stroke-dasharray="3 7" opacity=".5"/>
+
+        <!-- 节点 -->
+        <circle cx="70" cy="30" r="7" fill="#B5524B"/>
+        <text x="70" y="18" text-anchor="middle" class="lbl" fill="#2B2A28" style="font-size:13px;font-family:serif">武汉</text>
+
+        <circle cx="175" cy="175" r="6" fill="#C99A57"/>
+        <text x="175" y="198" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">赣州</text>
+
+        <circle cx="245" cy="268" r="7" fill="#B5524B"/>
+        <text x="245" y="291" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">罗浮山</text>
+
+        <circle cx="350" cy="268" r="7" fill="#B5524B"/>
+        <text x="350" y="291" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">惠城</text>
+
+        <circle cx="495" cy="252" r="8" fill="#B5524B"/>
+        <text x="495" y="276" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">双月湾</text>
+
+        <circle cx="600" cy="224" r="8" fill="#B5524B"/>
+        <text x="600" y="248" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">盐洲岛</text>
+
+        <!-- 里程标注 -->
+        <text x="112" y="98" fill="#7A756B" style="font-size:11px;font-family:sans-serif">550km</text>
+        <text x="212" y="228" fill="#7A756B" style="font-size:11px;font-family:sans-serif">360km</text>
+        <text x="298" y="256" fill="#7A756B" style="font-size:11px;font-family:sans-serif">60km</text>
+        <text x="420" y="248" fill="#7A756B" style="font-size:11px;font-family:sans-serif">110km</text>
+        <text x="548" y="228" fill="#7A756B" style="font-size:11px;font-family:sans-serif">40km</text>
+
+        <!-- 返回 -->
+        <text x="420" y="168" fill="#3F6F66" style="font-size:11px;font-family:sans-serif" opacity=".8">10.4–10.5 返程</text>
+
+        <text x="340" y="360" text-anchor="middle" fill="#A39C90" style="font-size:11px;font-family:sans-serif;letter-spacing:.2em">单程 960–1143 km ｜ 走 G45 大广高速为主</text>
+      </svg>
+      <div class="route-legend">
+        <span><i></i>去程 · 9.30–10.2</span>
+        <span><i class="b2"></i>返程 · 10.4–10.5</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 逐日 ============ -->
+  <section class="sec" id="days">
+    <div class="sec-head">
+      <div class="no">I T I N E R A R Y</div>
+      <h2>逐日安排</h2>
+      <div class="sub">六天，从车流到海浪</div>
+    </div>
+    <div id="daysBox"></div>
+  </section>
+
+  <!-- ============ 露营 ============ -->
+  <section class="sec" id="camp">
+    <div class="sec-head">
+      <div class="no">C A M P I N G</div>
+      <h2>过夜营地</h2>
+      <div class="sub">按你要的：安静 · 有水 · 有厕所，筛过的</div>
+    </div>
+    <div class="camp-list" id="campBox"></div>
+  </section>
+
+  <!-- ============ 景点 ============ -->
+  <section class="sec" id="spots">
+    <div class="sec-head">
+      <div class="no">S I G H T S</div>
+      <h2>看点清单</h2>
+      <div class="sub">山、湖、双月、龟湾、玄武岩</div>
+    </div>
+    <div class="spot-grid" id="spotBox"></div>
+  </section>
+
+  <!-- ============ 美食 ============ -->
+  <section class="sec" id="food">
+    <div class="sec-head">
+      <div class="no">F O O D</div>
+      <h2>食单</h2>
+      <div class="sub">本地人选出来的，不是投出来的</div>
+    </div>
+    <div id="foodBox"></div>
+    <div class="local-tip">
+      <b>点海鲜心法</b>：别在双月湾/巽寮湾景区门口当「水鱼」，多开 10 分钟到<b>港口镇、平海镇</b>，本地人扎堆的大排档，
+      人均能便宜三到五成。<br>进阶玩法：市场上买好鲜活海获，让店里只做加工，加工费约 <b>15 元/斤</b>。
+    </div>
+  </section>
+
+  <!-- ============ 记账 ============ -->
+  <section class="sec" id="money">
+    <div class="sec-head">
+      <div class="no">A C C O U N T</div>
+      <h2>随手记账</h2>
+      <div class="sub">花了就记一笔，回车即存</div>
+    </div>
+
+    <div class="budget-box">
+      <div class="budget-title">预 算 参 考（单 人 / 六 天）</div>
+      <div id="budgetRows"></div>
+      <div class="budget-sum"><div class="t">合 计</div><div class="n">约 3600 元</div></div>
+    </div>
+
+    <div class="money-total">
+      <div class="big"><small>已记 </small><span id="expTotal">0</span><small> 元</small></div>
+      <div class="cat-chips" id="catChips"></div>
+    </div>
+
+    <div class="exp-form">
+      <select id="expDate"></select>
+      <select id="expCat">
+        <option value="油费">油费</option>
+        <option value="过路">过路</option>
+        <option value="住宿">住宿</option>
+        <option value="营地">营地</option>
+        <option value="餐饮" selected>餐饮</option>
+        <option value="门票">门票</option>
+        <option value="其他">其他</option>
+      </select>
+      <input id="expName" placeholder="干了啥…" autocomplete="off">
+      <input id="expAmt" type="number" inputmode="decimal" placeholder="金额" autocomplete="off">
+      <button class="btn" id="expAdd">记 一 笔</button>
+    </div>
+
+    <ul class="exp-list" id="expList"></ul>
+
+    <div class="money-tools">
+      <button class="btn btn-ghost" id="expExport">导出 CSV</button>
+      <button class="btn btn-ghost" id="expClear">清空</button>
+    </div>
+    <div class="local-tip">数据存在<b>你这台设备的浏览器里</b>，换设备不同步。要归档跟我说一声。</div>
+  </section>
+
+  <!-- ============ 相册 ============ -->
+  <section class="sec" id="album">
+    <div class="sec-head">
+      <div class="no">A L B U M</div>
+      <h2>影集 · 碎记</h2>
+      <div class="sub">传照片自动轮播，一句话随手存档</div>
+    </div>
+
+    <div class="slide-box">
+      <div class="slide-empty" id="slideEmpty">
+        <div class="big-emoji">▤</div>
+        <b>还没有照片</b>
+        <span>上传后这里会循环播放<br>每 4 秒换一张</span>
+      </div>
+      <div class="slide-dots" id="slideDots"></div>
+      <div class="slide-cap" id="slideCap" style="display:none"></div>
+    </div>
+
+    <div class="ph-tools">
+      <label class="btn" for="phInput">＋ 上传照片</label>
+      <input type="file" id="phInput" accept="image/*" multiple style="display:none">
+      <button class="btn btn-ghost" id="phExport">导出清单</button>
+    </div>
+    <div class="ph-grid" id="phGrid"></div>
+
+    <div class="note-form" style="margin-top:34px">
+      <input id="noteText" placeholder="此刻在想什么…" autocomplete="off">
+      <button class="btn btn-note" id="noteAdd">存</button>
+    </div>
+    <ul class="note-list" id="noteList"></ul>
+  </section>
+
+  <!-- ============ 清单 ============ -->
+  <section class="sec" id="pack">
+    <div class="sec-head">
+      <div class="no">C H E C K L I S T</div>
+      <h2>行前清单</h2>
+      <div class="sub">点一下就勾掉，自动记住</div>
+    </div>
+    <div id="ckBox"></div>
+    <textarea id="myNote" placeholder="感想 / 备忘 / 回来想补的话…"></textarea>
+    <div class="saved-tip" id="savedTip"></div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="end-mark"></div>
+  <p>
+    2026 国庆 · 武汉 → 惠州<br>
+    <b>2150 公里</b> · 3 夜露宿 · 一桌老味<br>
+    <span style="opacity:.7">慢一点，沿途本身就是目的地</span>
+  </p>
+</footer>
+
+<script>
+/* ============================================================
+   数据区 —— 想改行程直接改这里，页面自动生成
+============================================================ */
+const TRIP = {
+  days:[
+    {
+      id:"d0", date:"9.30 周二", tag:"赶路夜", badge:"DRIVE", badgeCls:"drive",
+      title:"武汉 → 赣州",
+      sub:"下午出发，把最难的一段先吃掉一半",
+      drive:[{t:"武汉 → 赣州", km:"550 km", h:"6.5 h"},{t:"路线", km:"G45 大广高速"}],
+      tl:[
+        {t:"13:30", x:"武汉出发", s:"走武鄂高速 → 武汉绕城 → 沪渝高速 → 大广高速南下"},
+        {t:"17:30", x:"服务区休整", s:"九江/南昌段之前先把油加满，江西段服务区间距偏大"},
+        {t:"20:30", x:"抵达赣州，宿章贡区", s:"推荐住老城区，方便次日一早走，也方便晚上找吃的"},
+        {t:"21:00", x:"晚餐：赣州本地馆子", s:"到酒店放下东西就近吃，别折腾"}
+      ],
+      stay:"赣州市区（章贡区）",
+      pills:[
+        {k:"warn",t:"高速免费以<b>驶离出口时间</b>为准：10.1 0:00 起。9.30 这晚要正常缴费，单程过路费约 250 元。"},
+        {t:"想省钱可以 9.30 在服务区眯到 0 点后再下高速 —— 但人会很疲，<b>不建议</b>。"},
+        {t:"国庆首日车流大，别指望平均时速超过 90。"}
+      ]
+    },
+    {
+      id:"d1", date:"10.1 周三", tag:"罗浮山 + 城区", badge:"CAMP 1", badgeCls:"camp",
+      title:"赣州 → 罗浮山 → 惠城",
+      sub:"岭南第一山，与城里的老铺",
+      drive:[{t:"赣州 → 罗浮山", km:"360 km", h:"4 h"},{t:"罗浮山 → 惠城", km:"60 km", h:"1 h"}],
+      tl:[
+        {t:"08:00", x:"赣州出发", s:"早餐路上解决，出发前满油"},
+        {t:"12:00", x:"抵达博罗 · 罗浮山下", s:"先在山脚吃午饭"},
+        {t:"12:30", x:"午餐：<span class='shop'>客家窑鸡</span>", s:"山脚农家乐或广窑记。土窑锡纸包，撕开那一瞬间香气混着汁水一起炸开 —— 这是罗浮山最该吃的一顿"},
+        {t:"14:00", x:"<span class='hi'>罗浮山</span>", s:"门票 43 元。冲虚古观（葛洪炼丹处）→ 朱明洞；体力好就走 <b>飞云顶</b>（1296m，往返 2–3h），偷懒就坐索道单程 70 元"},
+        {t:"16:30", x:"下山前喝碗<span class='shop'>山水豆腐花</span>", s:"罗浮山泉 + 本地黄豆，甜口配糖、咸口配酱油香菜，两种都尝"},
+        {t:"17:30", x:"驱车 → 惠城区", s:"约 1 小时"},
+        {t:"18:30", x:"晚餐：<span class='shop'>乌记饭店</span>", s:"惠城区五一路中山公园旁，百年老宅。招牌咕噜肉、梅菜扣肉 58 元/例。备选：<b>老车田客家菜</b>（酿豆腐、咸香鸡）"},
+        {t:"20:00", x:"夜游<span class='hi'>水东街 · 合江楼</span>", s:"东江边走走，这段夜景是惠州最好的免费内容"},
+        {t:"22:00", x:"宵夜：<span class='shop'>娟姨炖品店</span>", s:"桥东花园前街，30 年老店。椰子炖家鸡、花旗参炖乌鸡，清润不腻"}
+      ],
+      stay:"惠城区（准备次日出海）",
+      pills:[
+        {k:"warn",t:"罗浮山 10.1 人会不少，<b>索道建议提前线上买</b>，现场排队可能半小时以上。"},
+        {t:"今天的重点是把补给买齐：<b>水、零食、驱蚊、防晒</b>，明天开始在海边补货贵且远。"},
+        {t:"带上露营装备（帐篷/天幕/睡袋/防潮垫/头灯）—— 接下来三晚靠它。"}
+      ]
+    },
+    {
+      id:"d2", date:"10.2 周四", tag:"出海 · 双月湾", badge:"CAMP 2", badgeCls:"camp",
+      title:"惠城 → 双月湾，扎第一晚",
+      sub:"左湾静如镜，右湾浪涛涌",
+      drive:[{t:"惠城 → 双月湾", km:"110 km", h:"1.5 h"},{t:"途经", km:"广惠高速 → 惠东"}],
+      tl:[
+        {t:"07:00", x:"早餐：<span class='shop'>陈记饮食店</span>", s:"桥东四清路菜园墩 34 号（市二中后门），<b>凌晨 3 点现包</b>的蒸云吞 + 牛腩捞面 + 丝瓜汤，人均 15 元。<b>7:30 前到</b>，卖完就收"},
+        {t:"08:00", x:"<span class='hi'>惠州西湖</span>", s:"丰渚园 → 泗洲塔 → 苏堤。免费，晨间人少，一小时足够"},
+        {t:"11:00", x:"出发 → 惠东", s:"顺手带上已经买的补给"},
+        {t:"12:30", x:"午餐：<span class='shop'>聚鲜阁海鲜大排档</span>", s:"平海镇 213 县道虹海湾一期。<b>16 年老店、24 小时营业</b>，人均约 77 元。皮皮虾、白灼虾、姜葱炒蟹、海胆炒饭。备选：港口<b>老地方</b>、<b>海之星</b>，都是本地口碑的大排档"},
+        {t:"14:30", x:"抵达<span class='hi'>双月湾</span>，扎营 / 入住", s:"先搭帐篷再玩，晚了会被夕阳赶"},
+        {t:"16:00", x:"双月湾沙滩", s:"东侧静水湾适合踩水，西侧风大更适合看浪"},
+        {t:"17:40", x:"<span class='hi'>大星山观景台</span>看日落", s:"双月湾唯一能拍全「双月」的位置，车能开到山脚，徒步 15 分钟。<b>务必提前 40 分钟上山占位</b>"},
+        {t:"19:30", x:"营地晚餐", s:"卡式炉煮面 / 海鲜加工，简单的东西在海边吃都变好吃"},
+        {t:"21:00", x:"海边夜话", s:"听浪、看星，早点睡 —— 明早有日出"}
+      ],
+      stay:"双月湾 / 港口镇营地（详见露营章）",
+      pills:[
+        {k:"warn",t:"大星山日落国庆<strong>超级堵</strong>，17:00 前必须到山脚，不然上不去。"},
+        {t:"海鲜别在景区门口买 —— 多开 10 分钟到<b>港口镇 / 平海镇</b>，价格差三到五成。"},
+        {t:"海边风大，<b>防风绳、长袖外套</b>必带；特别注意<b>潮汐</b>，别把帐篷搭在涨潮线上。"}
+      ]
+    },
+    {
+      id:"d3", date:"10.3 周五", tag:"龟湾 · 黑排角", badge:"CAMP 3", badgeCls:"camp",
+      title:"双月湾 → 海龟湾 → 盐洲岛",
+      sub:"从海湾到玄武岩的一段转移",
+      drive:[{t:"双月湾 → 海龟湾", km:"10 km", h:"20 min"},{t:"→ 盐洲岛 / 黑排角", km:"40 km", h:"50 min"}],
+      tl:[
+        {t:"06:10", x:"双月湾日出", s:"起得来就看，帐篷门拉开即是"},
+        {t:"08:00", x:"早餐：镇上汤粉店", s:"惠东本地肠粉 / 汤粉，随便进家人多的都不踩雷"},
+        {t:"09:00", x:"<span class='hi'>海龟湾</span>", s:"门票约 30 元。国家级海龟保护区，<b>会仙桥栈道</b>是这一段最出片的地方，走在礁石与浪之间"},
+        {t:"11:00", x:"回营地收营", s:"务必把垃圾全部带走 —— 无痕露营"},
+        {t:"12:30", x:"午餐：黄埠镇本地小馆", s:"避开景区，往镇里开"},
+        {t:"14:00", x:"抵达<span class='hi'>盐洲岛 / 黑排角</span>", s:"扎第二处营地，换个风景"},
+        {t:"15:30", x:"<span class='hi'>黑排角玄武岩</span>徒步", s:"黑色火山岩 + 白浪，广东少见的地质景观。鞋子要硬底防滑"},
+        {t:"17:00", x:"彩石滩 / 白沙村红树林", s:"退潮后可赶海；傍晚白鹭归巢，红树林水道很安静"},
+        {t:"18:30", x:"海边日落 + 赶海", s:"挖蛤蜊、抓小螃蟹，穿溯溪鞋"},
+        {t:"20:00", x:"营地夜", s:"如果装备够，来一顿正经的海边炉子饭"}
+      ],
+      stay:"盐洲岛 / 黑排角营地（详见露营章）",
+      pills:[
+        {t:"黑排角<b>浪大且崖高</b>，拍照别踩到湿滑边缘；<b>不建议下海游泳</b>，无救生员。"},
+        {k:"warn",t:"海边营地<b>国庆务必提前 3–7 天预约</b>，尤其有水有厕所的那几个，临时去基本满。"},
+        {t:"提前买足<b>饮用水和食材</b>—— 营地周边超市远、选择少，夜里饿了没处买。"}
+      ]
+    },
+    {
+      id:"d4", date:"10.4 周六", tag:"巽寮湾 → 返程", badge:"DRIVE", badgeCls:"drive",
+      title:"巽寮湾 → 赣州",
+      sub:"最后一段海，然后往回折",
+      drive:[{t:"盐洲岛 → 巽寮湾", km:"30 km", h:"40 min"},{t:"巽寮湾 → 赣州", km:"470 km", h:"5.5 h"}],
+      tl:[
+        {t:"07:00", x:"营地早餐 / 最后看一次海", s:"早点起来，光线最好"},
+        {t:"08:30", x:"收营出发", s:"检查有无遗留装备、垃圾是否清干净"},
+        {t:"09:30", x:"<span class='hi'>磨子石公园</span>", s:"巽寮湾的标志性礁石群，人比双月湾少，适合拍地貌。早到几乎没人"},
+        {t:"11:00", x:"天后宫民俗街", s:"尝瑶柱酥、买伴手礼（矮陂梅菜干、罗浮山百草油、真空阿嬷叫）"},
+        {t:"12:00", x:"最后一顿海鲜", s:"巽寮湾或稔山，找家明码标价的（如肥仔海鲜）"},
+        {t:"13:00", x:"正式返程，目标赣州", s:"走大广高速北上。国庆返程高峰，<b>别指望飙车</b>"},
+        {t:"18:30", x:"抵达赣州，晚餐 + 住宿", s:"到赣州吃顿正经的赣州菜，犒劳一下"}
+      ],
+      stay:"赣州市区",
+      pills:[
+        {k:"warn",t:"10.4 是返程高峰，<b>13:00 出发是硬线</b>。拖到下午五点，470 km 能开到深夜。"},
+        {t:"如果 10.4 下午实在走不动，就在<b>河源 / 龙川</b>歇，但那样 10.5 要开 900 km，太累 —— <b>不建议</b>。"},
+        {t:"给 10.5 留足体力：这天开到赣州就够了，别硬撑。"}
+      ]
+    },
+    {
+      id:"d5", date:"10.5 周日", tag:"回家", badge:"HOME", badgeCls:"drive",
+      title:"赣州 → 武汉",
+      sub:"白天开回去，晚上睡自己的床",
+      drive:[{t:"赣州 → 武汉", km:"520 km", h:"6 h"}],
+      tl:[
+        {t:"08:00", x:"赣州出发", s:"早餐在市区解决"},
+        {t:"12:00", x:"服务区午餐", s:"江西段服务区，别挑，填饱肚子继续"},
+        {t:"14:30", x:"抵达武汉", s:"行程结束"}
+      ],
+      stay:"家",
+      pills:[
+        {t:"到达当天<b>别安排别的事</b>，洗个澡、早点睡。"},
+        {t:"回来后把帐记完 —— 数据只在本地，换设备会丢。"}
+      ]
+    }
+  ],
+
+  camps:[
+    {
+      rk:"首 选", top:true, name:"碧港湾 · 港口门露营基地", score:"5.0",
+      where:"惠东县平海镇 007 乡道 · 碧海湾区域",
+      desc:"车能直接开到营位，卸装备不用扛。沙滩开阔、沙细水清、人少。最关键是配套到位 —— 洗澡、洗漱<b>都有热水</b>，卫生间同样有热水供应，晚上过夜体面。可明火烧烤、可篝火、可放烟花，宠物友好。",
+      tags:[{t:"热水洗澡",ok:1},{t:"卫生间",ok:1},{t:"车到营位",ok:1},{t:"明火可",ok:1},{t:"宠物友好",ok:1},{t:"可赶海",ok:1}],
+      price:"车辆 15 元 · 过夜 45 元/人 · 场地费 68 元",
+      tip:"缺点是<b>位置偏、周边没超市和饭店</b> —— 进营地前务必在港口镇/平海镇把吃喝食材买齐。"
+    },
+    {
+      rk:"次 选", top:false, name:"伴山海景营地（妈祖沙滩）", score:"4.8",
+      where:"惠东县 · 妈祖沙滩（天后宫旁 500m）",
+      desc:"三四公里长的原生态白沙滩，沙细水清。<b>人真的少</b> —— 离村庄几百米，知道的人不多，夜里安静。营地会不定时清理沙滩垃圾，比开发早的双月湾干净很多。这里可能是整段海岸线里最舒服的一晚。",
+      tags:[{t:"淡水冲澡",ok:1},{t:"厕所",ok:1},{t:"停车",ok:1},{t:"宠物友好",ok:1},{t:"明火可",ok:1},{t:"赶海钓鱼",ok:1}],
+      price:"20 元/人（含淡水冲澡 + 厕所 + 停车）",
+      tip:"省钱备选：车可<b>免费停天后宫大门前</b>，步行 500m 进沙滩，只要不到营地区域就免费。"
+    },
+    {
+      rk:"风景牌", top:false, name:"黑排角 GoSafari 营地", score:"4.8",
+      where:"惠东县黄埠镇西冲村委杨屋村",
+      desc:"建在崖壁上的<b>无边悬崖海景</b>营位，脚下就是黑排角玄武岩与白浪。视觉上这一趟最强的一个，适合看日出。往下就是黑排角徒步线。",
+      tags:[{t:"悬崖海景",ok:1},{t:"基础水电",ok:1},{t:"紧邻景区",ok:1}],
+      price:"营位收费，节假日建议提前致电确认",
+      tip:"崖边<b>风极大</b>，帐篷必须打防风绳、用重物压角；有长焦/无人机的带上是唯一机会。"
+    },
+    {
+      rk:"口碑王", top:false, name:"晚安地球人露营地（湾仔沙滩店）", score:"5.0",
+      where:"惠东县黄埠镇盐洲湾仔村 · 湾仔沙滩园地 18 号",
+      desc:"盐洲湾仔村的精致小营地，评分拉满。安静、干净，靠近<span style='color:#3F6F66'>盐洲大桥与红树林湿地</span>。适合那种「什么都不干、就躺着」的一晚。",
+      tags:[{t:"安静",ok:1},{t:"卫生间",ok:1},{t:"近红树林",ok:1},{t:"看白鹭",ok:1}],
+      price:"营位收费，节假日需预约",
+      tip:"盐洲岛一带<b>朝拍日出、晚拍白鹭</b>，出片率比这一路其他景点都高。"
+    },
+    {
+      rk:"免费版", top:false, name:"小桂滨海公园露营地", score:"4.5",
+      where:"大亚湾区 · 小桂滨海公园（导航「衙前村」）",
+      desc:"三面环山一面临海，10 公里滨海绿道禁止机动车。<b>免费入园</b>，草坪随便搭，<span style='color:#B5524B'>有公共卫生间、有咖啡店小超市奶茶店</span> —— 免费营地里配套算顶配了。可钓鱼、赶海、放风筝。",
+      tags:[{t:"免费",ok:1},{t:"公共卫生间",ok:1},{t:"有小超市",ok:1},{t:"骑行绿道",ok:1},{t:"过夜可",ok:1}],
+      price:"免费（停车也免费）",
+      tip:"<b>位置靠近惠城方向</b>，适合安排在行程头或尾。缺点：周末人多，<b>上午 11 点前到才占得到好位置</b>，且夜里风大。"
+    },
+    {
+      rk:"备 用", top:false, name:"缤纷岛露营基地", score:"4.3",
+      where:"惠城区汝湖镇 · 东江畔",
+      desc:"占地 400 亩的超大临江营地，以「江景、落日、芦苇、星空」出名。距市区近、消费门槛低，<b>有厕所和水源</b>，可烧烤可篝火，对新手极友好。",
+      tags:[{t:"有厕所",ok:1},{t:"有水源",ok:1},{t:"距市区近",ok:1},{t:"新手友好",ok:1}],
+      price:"低门槛，具体以现场为准",
+      tip:"这是<b>Plan B</b> —— 要是某个海边的预约满了，或者天气恶劣不适合露营地扎帐，就来这里。"
+    }
+  ],
+
+  spots:[
+    {z:"惠城 · 人文", h:"惠州西湖", p:"苎萝西子，六湖九桥。丰渚园粉墙黛瓦、泗洲塔可登顶鸟瞰全城、苏堤玩月岭南味十足。市中心的免费高质量内容。", t:"免费 · <b>建议 1.5h</b>"},
+    {z:"惠城 · 夜景", h:"水东街 · 合江楼", p:"东江边的历史街区，骑楼一条街。合江楼夜景是这里最好的「免费演出」，吃完饭走一圈刚刚好。", t:"免费 · <b>20:00 后最佳</b>"},
+    {z:"惠城 · 骑行", h:"红花湖", p:"环湖绿道 18 公里，惠州人自己周末遛的地方。骑车一圈一小时多，是消化掉一顿客家菜的地方。", t:"免费 · 租车约 20 元"},
+    {z:"博罗 · 山岳", h:"罗浮山", p:"岭南第一山，道教第七洞天。主峰飞云顶 1296 米，云雾缭绕。冲虚古观是葛洪炼丹处，人文厚度广东第一梯队。", t:"门票 <b>43 元</b> · 索道单程 70 元"},
+    {z:"惠东 · 海湾", h:"双月湾", p:"大亚湾与红海湾交汇形成的双半月形海湾 —— 左湾静、右湾涌。同名度假区设施齐全，但人也最多。", t:"免费 · <b>看点是观景台</b>"},
+    {z:"惠东 · 观景", h:"大星山观景台", p:"双月湾唯一能同时框进「双月」的机位。日落时分封神，但国庆一定堵，必须提前 40 分钟上山。", t:"免费 · <b>17:40 日落</b>"},
+    {z:"惠东 · 生态", h:"海龟湾", p:"国家级海龟自然保护区，也是国内唯一一处海龟产卵地。会仙桥栈道沿礁石栈身而过，走 Instagram 风大片的必去地。", t:"门票约 <b>30 元</b> · 建议 1.5h"},
+    {z:"惠东 · 地质", h:"黑排角 · 彩石滩", p:"黑色玄武岩配白浪，<b>整个华南罕见</b>的地貌。附近彩石滩的石头在退潮后色泽最浓。摄影价值极高。", t:"免费 · <b>穿硬底防滑鞋</b>"},
+    {z:"惠东 · 原生态", h:"盐洲岛", p:"未被过度开发的海岛，有红树林湿地与成群白鹭。傍晚码头归航、白鹭回林，是这里最好的一张画面。", t:"免费 · 包船出海 300 元起"},
+    {z:"惠东 · 礁石", h:"磨子石公园", p:"巽寮湾标志性的巨型花岗岩群，海浪拍石很有气势。人比双月湾少得多，清早几乎包场。", t:"免费或低价 · <b>1h</b>"},
+    {z:"惠东 · 古城", h:"平海古城", p:"始建于明朝的军事要塞，城墙与十字街保存尚好。逛完吃碗稔山黄酒鸡，正好接上晚饭。", t:"免费 · 顺路过即可"}
+  ],
+
+  food:[
+    {
+      area:"惠 城 · 早 餐", sub:"本地人从小吃到大的那几家",
+      items:[
+        {n:"陈记饮食店（菜园墩店）", why:"40 年老店，凌晨 3 点开始手工包云吞。皮薄透亮、肉馅有颗粒感，不是机器绞的。配一碗丝瓜汤或枸杞汤，17 块钱解决。", addr:"惠城区桥东四清路菜园墩 34 号（市二中后门）｜ 5:30–11:00，卖完即止，<b>7:30 前到</b>"},
+        {n:"横沥金华汤粉店", why:"近 20 年老店，汤底是虾壳 + 猪骨慢熬，乳白鲜甜。<b>猪脚牛腩粉</b>是标准答案，浇猪脚软糯、牛腩劲道。10 元左右。", addr:"惠城区新建路 50-1 号"},
+        {n:"惠康汤粉店（惠新中街店）", why:"惠州学子的青春回忆，30 多年。卤蛋牛腩粉、猪脚粉，老毕业生回来必吃。", addr:"惠城区桥东惠新中街 27 号"},
+        {n:"兴旺早点", why:"本地人扎堆的老派早茶，蒸笼手工点心，三拼饺子汁水足，排骨凤爪必点。没有网红套路。", addr:"惠城区，建议地图搜同名就近店"}
+      ]
+    },
+    {
+      area:"惠 城 · 正 餐", sub:"粤菜与客家，全是开了几十年的",
+      items:[
+        {n:"乌记饭店", why:"藏在百年老宅里的粤菜老牌子，本地人从小吃到大。招牌<b>咕噜肉</b>外皮金黄酥脆、酸甜比例刚好；<b>梅菜扣肉</b> 58 元/例，惠州三宝之一。", addr:"惠城区五一路中山公园旁"},
+        {n:"老车田 · 客家菜（悦湖会店）", why:"惠州客家菜排队王，家庭聚餐首选老店。<b>车田酿豆腐</b>嫩滑多汁、豆香浓；<b>客家咸香鸡</b>咸香入味肉质紧实。", addr:"惠城区白泥路悦湖会 5 栋"},
+        {n:"黎记大排档", why:"西湖边开了三十多年，锅气十足。<b>萝卜干鸡煲</b>咸鲜独此一家，汤汁拌饭能吃三碗；自家酿豆腐、脆皮大肠也稳。", addr:"惠城区慈云路黎屋巷 38 号"},
+        {n:"坤兴餐馆", why:"桥东二中旁的几十年家常老店，老师傅守老手艺。<b>招牌烧肉</b>外脆里糯；<b>油条炒蚬肉</b>鲜香独特，别处很难吃到。", addr:"惠城区永平路桥东第二中学旁"},
+        {n:"古仔小海鲜", why:"开了 36 年的街坊食堂，粤菜+客家菜。<b>海鲜八宝盆、沙煲焗鸡、捞花甲、咸蛋黄虾</b>，基本盲点不踩雷，本地人常来打包。", addr:"地图搜「古仔小海鲜」就近店"},
+        {n:"福禄冬瓜盅火锅", why:"先喝一碗原味鲜鸡汤，再涮各种食材 —— 冬瓜盅能涮出原汁原味的鲜甜。最后把冬瓜肉刮下来做冬瓜汤。", addr:"地图搜同名就近店"}
+      ]
+    },
+    {
+      area:"惠 东 · 海 鲜", sub:"宗旨：多开十分钟，别当水鱼",
+      items:[
+        {n:"聚鲜阁海鲜大排档", why:"平海镇 <b>16 年老店</b>，24 小时营业，600㎡ 能坐 300 人。人均约 77 元，在本地宵夜榜排前列。明码标价、不用预约，海鲜以本地小渔船为主。", addr:"惠东县平海镇 213 县道东旭鸿基·虹海湾一期"},
+        {n:"海之星海鲜大排档", why:"港口片区老店，<b>更贴合本地人口味</b>（椒盐皮皮虾、白灼虾）。经营超 5 年，出餐快，适合临时决定。", addr:"平海镇港口片区"},
+        {n:"港口老地方海鲜大排档", why:"港口镇中心、离居民区近，主打小体量海鲜的烹饪，<b>价格亲民、标价公开无隐形消费</b>。想避开游客价的选它。", addr:"港口镇中心区域"},
+        {n:"巽寮湾肥仔海鲜饭店", why:"明码标价、消费透明，室内大厅可接小团队。品类含波龙、老虎斑、皮皮虾，加工方式可按你要求调。", addr:"巽寮湾滨海旅游带"},
+        {n:"当地菜市场自购 + 加工", why:"<b>省钱大招</b>：港口码头/稔山市场买鲜活，拿去店里加工，加工费约 <b>15 元/斤</b>。看得到海获，不用担心被换。", addr:"港口镇 / 稔山沿街均可问"}
+      ]
+    },
+    {
+      area:"博 罗 · 罗 浮 山", sub:"爬山前后的两顿",
+      items:[
+        {n:"客家窑鸡", why:"<b>这一趟最值得专程吃的一顿</b>。土窑烧热后取出的锡纸包，撕开的瞬间香气和汁水一起迸发。推荐山脚任意一家人多的农家乐，或广窑记（河南岸悦湖会店）。", addr:"罗浮山脚下农家乐 / 广窑记"},
+        {n:"罗浮山山水豆腐花", why:"山泉水 + 本地黄豆磨制，传统工艺点制，质地嫩滑如凝脂。甜口配白糖蜂蜜、咸口配酱油香菜，<b>两种都要尝</b>。夏天冰的解腻。", addr:"罗浮山景区周边小店，现做现卖"},
+        {n:"博罗麻陂肉丸", why:"本地招牌。新鲜猪后腿肉<b>手工捶打 2 小时</b>，不加淀粉全靠肉的黏性成型。Q 弹爆汁，煮汤或配粉都好。", addr:"博罗老城区肉丸店，现做现卖"}
+      ]
+    },
+    {
+      area:"小 吃 ・ 手 信", sub:"便宜且独属于惠州",
+      items:[
+        {n:"阿嬷叫", why:"惠州小吃的头号名片，<b>300 多年历史</b>，名字源于香味能馋得老奶奶都出门寻找。白萝卜丝挤干 + 虾米 + 肉粒，裹浆炸成小碗状。外皮酥脆掉渣、内里软绵湿润，蘸白醋更绝。<b>必买</b>。", addr:"水东街、步行街老摊，现炸现卖"},
+        {n:"横沥汤粉", why:"惠州人的早餐灵魂，近乎非遗。猪骨 + 大地鱼干 + 虾壳熬 4 小时以上，奶白鲜香。配料扎实：卤猪脚、麻陂肉丸、猪肝、卤蛋。<b>10 块钱左右</b>。", addr:"横沥老街的老店最正宗"},
+        {n:"沥林碌鹅", why:"沥林镇招牌，惠州人聚餐下酒必点。本地土鹅秘制酱料慢火碌制，色泽红亮、鹅皮弹牙、肉质细嫩，酱汁咸中带甜，<b>连骨头都入味</b>。", addr:"沥林镇一带餐馆"},
+        {n:"东江盐焗鸡", why:"三黄鸡或胡须鸡，沙姜粗盐腌制后用海盐焗。皮脆肉嫩、骨都有味。惠州三大名片之一。", addr:"本地客家菜馆基本都有"},
+        {n:"惠阳淡水酥丸", why:"淡水镇传统小吃。手工打泥挤丸油炸至金黄，外皮酥脆掉渣、内里弹牙多汁，蘸甜辣酱更开胃。淡水老街的「酥丸王」最正宗。", addr:"惠阳淡水老街"},
+        {n:"客家萝卜粄 / 艾粄", why:"糯米粉皮裹腊肉虾米萝卜丝馅，蒸制。<span style='color:#B5524B'>Q 弹不粘牙，腊肉油香 + 虾米提鲜</span>，热乎吃最好。艾粄是加了艾草的版本，清明前后最常见。", addr:"老城区茶果店现蒸现卖"},
+        {n:"矮陂梅菜 / 罗浮山百草油", why:"<b>手信首选</b>。矮陂梅菜干做扣肉一绝；罗浮山百草油是本地的老字号药油。还有真空包装的阿菊粽，方便带回去。", addr:"超市 / 天后宫民俗街"}
+      ]
+    }
+  ],
+
+  budget:[
+    {l:"油费", s:"约 2150 km", r:"1100"},
+    {l:"过路费", s:"10.1 起高速免费，9.30 段照收", r:"约 400"},
+    {l:"住宿", s:"赣州 × 2 晚，国庆价", r:"600"},
+    {l:"营地", s:"海边 3 晚", r:"300"},
+    {l:"门票", s:"罗浮山 + 索道 + 海龟湾", r:"180"},
+    {l:"餐饮", s:"6 天，本地馆子为主", r:"900"},
+    {l:"其他", s:"伴手礼、装备补给", r:"150"}
+  ]
+};
+
+const LS = { exp:"hz2026-exp", note:"hz2026-notes", pack:"hz2026-pack", my:"hz2026-mynote" };
+const DB_NAME = "hz2026-photos";
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ================= 渲染：逐日 ================= */
+(function renderDays(){
+  const box = $("daysBox");
+  box.innerHTML = TRIP.days.map(d => `
+    <div class="day" id="${d.id}">
+      <div class="day-head">
+        <span class="day-date">${d.date}</span>
+        <h3>${d.title}</h3>
+        <span class="day-badge ${d.badgeCls}">${d.badge}</span>
+      </div>
+      <div class="day-sub">${d.sub}</div>
+      <div class="drive-strip">
+        ${d.drive.map(x => `<span class="drive">${x.t}<span class="km"> ${x.km}</span> ${x.h ? "· "+x.h : ""}</span>`).join("")}
+      </div>
+      <ul class="tl">
+        ${d.tl.map(x => `<li><span class="t">${x.t}</span><span class="x">${x.x}${x.s ? `<small>${x.s}</small>` : ""}</span></li>`).join("")}
+      </ul>
+      <div class="day-foot">
+        <span class="pill">住 <b>${d.stay}</b></span>
+        ${d.pills.map(p => `<div class="pill ${p.k==="warn"?"warn":""}">${p.t}</div>`).join("")}
+      </div>
+    </div>
+  `).join("");
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("show"); io.unobserve(e.target);} }), {threshold:.08});
+  document.querySelectorAll(".day").forEach(el => io.observe(el));
+})();
+
+/* ================= 渲染：露营 ================= */
+$("campBox").innerHTML = TRIP.camps.map(c => `
+  <div class="camp-card ${c.top?"top":""}">
+    <div class="camp-top">
+      <span class="rk">${c.rk}</span>
+      <h3>${c.name}</h3>
+      <span class="camp-score">★ ${c.score}</span>
+    </div>
+    <div class="camp-where">${c.where}</div>
+    <div class="camp-desc">${c.desc}</div>
+    <div class="camp-meta">${c.tags.map(t => `<span class="meta-tag ${t.ok?"ok":""}">${t.t}</span>`).join("")}</div>
+    <div class="camp-price">费用：<b>${c.price}</b></div>
+    <div class="camp-tip">${c.tip}</div>
+    <a class="camp-nav" target="_blank" rel="noopener" href="https://uri.amap.com/search?keyword=${encodeURIComponent(c.name)}&city=${encodeURIComponent("惠州")}">地图导航 →</a>
+  </div>
+`).join("");
+
+/* ================= 渲染：景点 ================= */
+$("spotBox").innerHTML = TRIP.spots.map(s => `
+  <div class="spot">
+    <span class="zone">${s.z}</span>
+    <h3>${s.h}</h3>
+    <p>${s.p}</p>
+    <div class="tick">${s.t}</div>
+  </div>
+`).join("");
+
+/* ================= 渲染：美食 ================= */
+$("foodBox").innerHTML = TRIP.food.map(g => `
+  <div class="eat-area">
+    <div class="eat-name">${g.area}<span class="sub">${g.sub}</span></div>
+    ${g.items.map(it => `
+      <div class="eat-item">
+        <b>${it.n}</b>
+        <span class="why">${it.why}</span>
+        <span class="addr">${it.addr}</span>
+      </div>
+    `).join("")}
+  </div>
+`).join("");
+
+/* ================= 渲染：预算 ================= */
+$("budgetRows").innerHTML = TRIP.budget.map(b => `
+  <div class="budget-row">
+    <span class="l">${b.l}<small>${b.s}</small></span>
+    <span class="r">${b.r} 元</span>
+  </div>
+`).join("");
+
+/* ================= 日期下拉 ================= */
+$("expDate").innerHTML = TRIP.days
+  .map(d => { const v = d.date.split(" ")[0]; return `<option value="${v}">${d.date}</option>`; })
+  .join("");
+
+/* ================= 记账 ================= */
+let expenses = JSON.parse(localStorage.getItem(LS.exp) || "[]");
+
+function saveExp(){ localStorage.setItem(LS.exp, JSON.stringify(expenses)); }
+
+function renderExp(){
+  $("expTotal").textContent = expenses.reduce((s,e) => s + (+e.a || 0), 0).toLocaleString("zh-CN",{maximumFractionDigits:2});
+  const cats = {};
+  expenses.forEach(e => cats[e.c] = (cats[e.c]||0) + (+e.a||0));
+  $("catChips").innerHTML = Object.entries(cats).sort((a,b)=>b[1]-a[1])
+    .map(([c,v]) => `<span class="cat-chip">${c} <b>${v.toLocaleString("zh-CN",{maximumFractionDigits:2})}</b></span>`).join("")
+    || `<span class="cat-chip">还没有记录</span>`;
+
+  $("expList").innerHTML = expenses.length
+    ? [...expenses].sort((a,b) => (b.ts||0)-(a.ts||0)).map((e,i) => `
+      <li class="exp-row">
+        <span class="d">${e.d}</span>
+        <span class="n">${esc(e.n)}<span class="cat"> ${e.c}</span></span>
+        <span class="a">${(+e.a).toLocaleString("zh-CN",{maximumFractionDigits:2})}</span>
+        <button class="del" data-i="${e.ts}" aria-label="删除">×</button>
+      </li>`).join("")
+    : `<li class="exp-empty">还 没 有 记 录</li>`;
+
+  document.querySelectorAll(".exp-row .del").forEach(b => b.onclick = () => {
+    expenses = expenses.filter(x => String(x.ts) !== b.dataset.i);
+    saveExp(); renderExp();
+  });
+}
+
+function addExp(){
+  const n = $("expName").value.trim();
+  const a = parseFloat($("expAmt").value);
+  if (!n || isNaN(a)) { $("expName").focus(); return; }
+  expenses.push({ d: $("expDate").value, c: $("expCat").value, n, a, ts: Date.now() });
+  saveExp(); renderExp();
+  $("expName").value = ""; $("expAmt").value = "";
+  $("expName").focus();
+}
+
+$("expAdd").onclick = addExp;
+["expName","expAmt"].forEach(id => $(id).addEventListener("keydown", e => { if (e.key === "Enter") addExp(); }));
+
+$("expExport").onclick = () => {
+  if (!expenses.length) { alert("还没有记录"); return; }
+  const head = "日期,分类,项目,金额\n";
+  const rows = expenses.map(e => `${e.d},${e.c},"${String(e.n).replace(/"/g,'""')}",${e.a}`).join("\n");
+  const blob = new Blob(["\ufeff"+head+rows], {type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "惠州自驾-花销.csv";
+  a.click();
+};
+
+$("expClear").onclick = () => {
+  if (confirm("确定清空全部花销记录？此操作不可恢复。")) { expenses = []; saveExp(); renderExp(); }
+};
+
+renderExp();
+
+/* ================= 相册（IndexedDB） ================= */
+let photos = [], slideIdx = 0, slideTimer = null;
+
+const idb = {
+  open(){
+    return new Promise((res, rej) => {
+      const r = indexedDB.open(DB_NAME, 1);
+      r.onupgradeneeded = () => r.result.createObjectStore("p", {keyPath:"id"});
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+    });
+  },
+  async all(){
+    const db = await this.open();
+    return new Promise(res => {
+      const rq = db.transaction("p").objectStore("p").getAll();
+      rq.onsuccess = () => res(rq.result.sort((a,b) => b.ts - a.ts));
+    });
+  },
+  async put(item){
+    const db = await this.open();
+    return new Promise(res => {
+      const rq = db.transaction("p","readwrite").objectStore("p").put(item);
+      rq.onsuccess = () => res(true);
+    });
+  },
+  async del(id){
+    const db = await this.open();
+    return new Promise(res => {
+      const rq = db.transaction("p","readwrite").objectStore("p").delete(id);
+      rq.onsuccess = () => res(true);
+    });
+  }
+};
+
+function renderPhotos(){
+  const grid = $("phGrid");
+  grid.innerHTML = photos.map(p => `
+    <div class="ph">
+      <img src="${p.src}" alt="${esc(p.name)}" loading="lazy">
+      <button class="x" data-id="${p.id}" aria-label="删除">×</button>
+    </div>`).join("");
+  grid.querySelectorAll(".x").forEach(b => b.onclick = async () => {
+    if (!confirm("删除这张照片？")) return;
+    await idb.del(b.dataset.id);
+    photos = photos.filter(p => String(p.id) !== b.dataset.id);
+    renderPhotos(); buildSlides();
+  });
+
+  const empty = $("slideEmpty");
+  empty.style.display = photos.length ? "none" : "flex";
+  $("slideDots").innerHTML = photos.map((_,i) => `<i class="${i===0?"on":""}"></i>`).join("");
+  if (photos.length) showSlide(0);
+}
+
+function buildSlides(){
+  document.querySelectorAll(".slide-img").forEach(el => el.remove());
+  const box = document.querySelector(".slide-box");
+  photos.forEach((p,i) => {
+    const img = document.createElement("img");
+    img.className = "slide-img"; img.src = p.src; img.alt = esc(p.name);
+    box.insertBefore(img, $("slideCap"));
+  });
+  if (photos.length) showSlide(0);
+}
+
+function showSlide(i){
+  slideIdx = (i + photos.length) % photos.length;
+  const imgs = document.querySelectorAll(".slide-img");
+  imgs.forEach((el,k) => el.classList.toggle("on", k === slideIdx));
+  document.querySelectorAll("#slideDots i").forEach((el,k) => el.classList.toggle("on", k === slideIdx));
+  const p = photos[slideIdx];
+  const cap = $("slideCap");
+  cap.style.display = "block";
+  cap.innerHTML = `<b>${esc(p.name)}</b> · ${(p.dt||"").replace("T"," ")}`;
+}
+
+function startSlide(){
+  clearInterval(slideTimer);
+  if (photos.length > 1) slideTimer = setInterval(() => showSlide(slideIdx + 1), 4000);
+}
+
+$("phInput").addEventListener("change", async e => {
+  const files = [...e.target.files];
+  if (!files.length) return;
+  for (const f of files) {
+    const dataUrl = await new Promise(res => {
+      const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(f);
+    });
+    const img = new Image();
+    await new Promise(res => { img.onload = res; img.src = dataUrl; });
+    const MAX = 1600;
+    let {width:w, height:h} = img;
+    if (Math.max(w,h) > MAX){ const r = MAX/Math.max(w,h); w = Math.round(w*r); h = Math.round(h*r); }
+    const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+    cv.getContext("2d").drawImage(img, 0, 0, w, h);
+    photos.unshift({ id: Date.now() + "_" + Math.random().toString(36).slice(2,7), name: f.name.replace(/\.[^.]+$/, ""), src: cv.toDataURL("image/jpeg", .82), dt: new Date().toISOString().slice(0,16), ts: Date.now() });
+  }
+  for (const p of photos.slice(0, files.length)) await idb.put(p);
+  buildSlides(); renderPhotos(); startSlide();
+  e.target.value = "";
+});
+
+$("phExport").onclick = () => {
+  if (!photos.length) { alert("还没有照片"); return; }
+  const txt = photos.map((p,i) => `${i+1}. ${p.name} — ${(p.dt||"").replace("T"," ")}`).join("\n");
+  const blob = new Blob(["\ufeff惠州自驾 · 照片清单\n\n"+txt], {type:"text/plain;charset=utf-8"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+  a.download = "惠州自驾-照片清单.txt"; a.click();
+};
+
+(async () => { photos = await idb.all().catch(() => []); renderPhotos(); buildSlides(); startSlide(); })();
+
+/* ================= 碎记 ================= */
+let notes = JSON.parse(localStorage.getItem(LS.note) || "[]");
+
+function renderNotes(){
+  $("noteList").innerHTML = notes.length
+    ? notes.map(n => `
+      <li class="note-item">
+        <span class="ts">${n.ts}</span>
+        <span class="x">${esc(n.t)}</span>
+        <button class="del" data-i="${n.id}" aria-label="删除">×</button>
+      </li>`).join("")
+    : "";
+  $("noteList").querySelectorAll(".del").forEach(b => b.onclick = () => {
+    notes = notes.filter(n => String(n.id) !== b.dataset.i);
+    localStorage.setItem(LS.note, JSON.stringify(notes)); renderNotes();
+  });
+}
+
+$("noteAdd").onclick = () => {
+  const t = $("noteText").value.trim();
+  if (!t) return;
+  const d = new Date();
+  notes.unshift({ id: Date.now(), t, ts: `${d.getMonth()+1}.${d.getDate()} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}` });
+  localStorage.setItem(LS.note, JSON.stringify(notes));
+  $("noteText").value = ""; renderNotes();
+};
+$("noteText").addEventListener("keydown", e => { if (e.key === "Enter") $("noteAdd").click(); });
+renderNotes();
+
+/* ================= 清单 ================= */
+const PACK = [
+  { g:"车 与 证 件", items:[
+    {t:"驾照、行驶证、身份证", lvl:"必需"},
+    {t:"车辆保养/胎压/玻璃水检查（出发前 3 天）", lvl:"必需"},
+    {t:"ETC 余额充足 + 充电线/支架", lvl:null},
+    {t:"备胎、千斤顶、拖车绳", lvl:null},
+    {t:"国庆高速免费时间核对（10.1 0:00 起）", lvl:"省钱"}
+  ]},
+  { g:"露 营 装 备", items:[
+    {t:"帐篷 + 防潮垫 + 睡袋/厚毯（海边夜里凉）", lvl:"必需"},
+    {t:"天幕 + 折叠桌 + 折叠椅", lvl:null},
+    {t:"防风绳 + 地钉（海边风大，务必加长加重）", lvl:"必需"},
+    {t:"头灯 / 营地灯（充好电）", lvl:"必需"},
+    {t:"卡式炉 + 气罐 + 锅具 + 餐具", lvl:null},
+    {t:"保温壶 + 大桶饮用水（营地方购物远）", lvl:"必需"},
+    {t:"垃圾袋（无痕露营，走时全带走）", lvl:"必需"}
+  ]},
+  { g:"海 边 专 用", items:[
+    {t:"防晒霜（SPF50+）、墨镜、遮阳帽", lvl:"必需"},
+    {t:"驱蚊液 / 蚊香（海边草地蚊虫多）", lvl:"必需"},
+    {t:"溯溪鞋 / 硬底防滑鞋（黑排角礁石很滑）", lvl:"必需"},
+    {t:"长袖外套 + 薄毯（夜间海风很凉）", lvl:null},
+    {t:"防水袋（手机相机防沙防水）", lvl:null},
+    {t:"赶海桶 + 小铲（退潮时能用）", lvl:null},
+    {t:"游泳装备 — 但野滩无救生员，不建议下海", lvl:"注意"}
+  ]},
+  { g:"预 约 与 补 给", items:[
+    {t:"海边营地提前 3–7 天预约（尤其有水厕所的）", lvl:"必需"},
+    {t:"赣州住宿 × 2 晚（9.30 / 10.4）", lvl:"必需"},
+    {t:"罗浮山门票 + 索道（能线上买就线上买）", lvl:null},
+    {t:"港口镇采购食材（进营地前最后一站）", lvl:"必需"},
+    {t:"提前下载离线地图（部分海域信号弱）", lvl:null}
+  ]}
+];
+
+let packState = JSON.parse(localStorage.getItem(LS.pack) || "{}");
+
+function renderPack(){
+  $("ckBox").innerHTML = PACK.map(g => `
+    <div class="ck-group">
+      <div class="ck-group-t">${g.g}</div>
+      <div class="ck-grid">
+        ${g.items.map((it,i) => {
+          const key = g.g + "_" + i;
+          return `<label class="ck">
+            <input type="checkbox" data-k="${key}" ${packState[key]?"checked":""}>
+            <span class="box"></span>
+            <span class="lbl">${it.t}</span>
+            ${it.lvl ? `<span class="lvl">${it.lvl}</span>` : ""}
+          </label>`;
+        }).join("")}
+      </div>
+    </div>
+  `).join("");
+  $("ckBox").querySelectorAll("input").forEach(el => el.onchange = () => {
+    packState[el.dataset.k] = el.checked;
+    localStorage.setItem(LS.pack, JSON.stringify(packState));
+  });
+}
+renderPack();
+
+/* ================= 感想 ================= */
+const myNote = $("myNote");
+myNote.value = localStorage.getItem(LS.my) || "";
+let tipTimer;
+myNote.addEventListener("input", () => {
+  localStorage.setItem(LS.my, myNote.value);
+  $("savedTip").textContent = "已自动保存";
+  clearTimeout(tipTimer);
+  tipTimer = setTimeout(() => $("savedTip").textContent = "", 1800);
+});
+</script>
+</body>
+</html>
