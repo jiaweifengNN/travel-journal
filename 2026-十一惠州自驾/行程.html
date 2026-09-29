@@ -94,6 +94,8 @@ header.hero{max-width:860px;margin:0 auto;padding:76px 26px 58px;text-align:cent
 /* ---------- 路线 SVG ---------- */
 .route-panel{text-align:center;padding:24px 0 8px}
 .route-svg{width:100%;max-width:660px;height:auto;display:block;margin:0 auto}
+.route-svg text.sf{font-family:var(--serif)}
+.route-svg text.sa{font-family:var(--sans)}
 .route-legend{display:flex;gap:26px;justify-content:center;margin-top:20px;font-family:var(--sans);font-size:11.5px;letter-spacing:.14em;color:var(--ink-soft);flex-wrap:wrap}
 .route-legend i{display:inline-block;width:24px;border-top:2px dotted var(--accent);vertical-align:middle;margin-right:7px}
 .route-legend i.b2{border-top:2px solid var(--accent2)}
@@ -385,37 +387,37 @@ footer b{color:var(--accent)}
 
         <!-- 节点 -->
         <circle cx="70" cy="30" r="7" fill="#B5524B"/>
-        <text x="70" y="18" text-anchor="middle" class="lbl" fill="#2B2A28" style="font-size:13px;font-family:serif">武汉</text>
+        <text x="70" y="18" text-anchor="middle" class="lbl" fill="#2B2A28" class="sf" style="font-size:13px">武汉</text>
 
         <circle cx="175" cy="175" r="6" fill="#C99A57"/>
-        <text x="175" y="198" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">赣州</text>
+        <text x="175" y="198" text-anchor="middle" fill="#2B2A28" class="sf" style="font-size:13px">赣州</text>
 
         <circle cx="208" cy="222" r="4.5" fill="#C99A57" opacity=".9"/>
-        <text x="196" y="215" text-anchor="middle" fill="#7A756B" style="font-size:11px;font-family:sans-serif">河源</text>
+        <text x="196" y="215" text-anchor="middle" fill="#7A756B" class="sa" style="font-size:11px">河源</text>
 
         <circle cx="245" cy="268" r="7" fill="#B5524B"/>
-        <text x="245" y="291" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">博罗</text>
+        <text x="245" y="291" text-anchor="middle" fill="#2B2A28" class="sf" style="font-size:13px">博罗</text>
 
         <circle cx="350" cy="268" r="7" fill="#B5524B"/>
-        <text x="350" y="291" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">惠城</text>
+        <text x="350" y="291" text-anchor="middle" fill="#2B2A28" class="sf" style="font-size:13px">惠城</text>
 
         <circle cx="495" cy="252" r="8" fill="#B5524B"/>
-        <text x="495" y="276" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">双月湾</text>
+        <text x="495" y="276" text-anchor="middle" fill="#2B2A28" class="sf" style="font-size:13px">双月湾</text>
 
         <circle cx="600" cy="224" r="8" fill="#B5524B"/>
-        <text x="600" y="248" text-anchor="middle" fill="#2B2A28" style="font-size:13px;font-family:serif">盐洲岛</text>
+        <text x="600" y="248" text-anchor="middle" fill="#2B2A28" class="sf" style="font-size:13px">盐洲岛</text>
 
         <!-- 里程标注 -->
-        <text x="112" y="98" fill="#7A756B" style="font-size:11px;font-family:sans-serif">650km</text>
-        <text x="258" y="246" fill="#7A756B" style="font-size:11px;font-family:sans-serif">360km</text>
-        <text x="298" y="256" fill="#7A756B" style="font-size:11px;font-family:sans-serif">60km</text>
-        <text x="420" y="248" fill="#7A756B" style="font-size:11px;font-family:sans-serif">110km</text>
-        <text x="548" y="228" fill="#7A756B" style="font-size:11px;font-family:sans-serif">40km</text>
+        <text x="112" y="98" fill="#7A756B" class="sa" style="font-size:11px">650km</text>
+        <text x="258" y="246" fill="#7A756B" class="sa" style="font-size:11px">360km</text>
+        <text x="298" y="256" fill="#7A756B" class="sa" style="font-size:11px">60km</text>
+        <text x="420" y="248" fill="#7A756B" class="sa" style="font-size:11px">110km</text>
+        <text x="548" y="228" fill="#7A756B" class="sa" style="font-size:11px">40km</text>
 
         <!-- 返回 -->
-        <text x="420" y="168" fill="#3F6F66" style="font-size:11px;font-family:sans-serif" opacity=".8">10.4–10.5 返程</text>
+        <text x="420" y="168" fill="#3F6F66" class="sa" style="font-size:11px" opacity=".8">10.4–10.5 返程</text>
 
-        <text x="340" y="360" text-anchor="middle" fill="#A39C90" style="font-size:11px;font-family:sans-serif;letter-spacing:.2em">单程约 1070 km ｜ 武阳高速 + G45 大广高速</text>
+        <text x="340" y="360" text-anchor="middle" fill="#A39C90" class="sa" style="font-size:11px;letter-spacing:.2em">单程约 1070 km ｜ 武阳高速 + G45 大广高速</text>
       </svg>
       <div class="route-legend">
         <span><i></i>去程 · 9.30–10.2</span>
@@ -562,7 +564,7 @@ footer b{color:var(--accent)}
   <div class="end-mark"></div>
   <p>
     2026 国庆 · 武汉 → 惠州<br>
-    <b>2150 公里</b> · 3 夜露宿 · 一桌老味<br>
+    <b>2380 公里</b> · 3 夜露宿 · 一桌老味<br>
     <span style="opacity:.7">慢一点，沿途本身就是目的地</span>
   </p>
 </footer>
