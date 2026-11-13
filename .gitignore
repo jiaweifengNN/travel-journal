@@ -15,3 +15,6 @@ desktop.ini
 *.mp4
 *.mov
 *.avi
+
+# 本地 AI 工作目录（含 secrets/github_token.txt）—— 本仓库是 PUBLIC，绝不能上传
+.workbuddy/
