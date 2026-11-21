@@ -18,3 +18,7 @@ desktop.ini
 
 # 本地 AI 工作目录（含 secrets/github_token.txt）—— 本仓库是 PUBLIC，绝不能上传
 .workbuddy/
+
+# 参考图：抓取的第三方游客照片，仅本地查看，不公开分发
+2027-春节前云南贵州/ref-photos/
+2027-春节前云南贵州/参考照片.html
