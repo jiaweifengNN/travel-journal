@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>云南三条线 · 自驾玩法与里程 | 2027 春节前</title>
+<style>
+:root{
+  --serif: Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --paper:#F6F3EC; --paper-2:#EFEAE0; --card:#FFFDF8;
+  --ink:#2E2C28; --ink-2:#4A463F; --mute:#8C8678; --line:#DCD5C6;
+  --a:#3F6F66;  --a-l:#E4EDEA;
+  --b:#B5824B;  --b-l:#F5EADB;
+  --c:#B05C3E;  --c-l:#F7E5DE;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}
+
+/* hero */
+.hero{padding:64px 0 40px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 88% 12%,rgba(63,111,102,.14),transparent 46%),
+  radial-gradient(circle at 8% 78%,rgba(181,130,75,.14),transparent 46%),
+  radial-gradient(circle at 52% 108%,rgba(176,92,62,.12),transparent 46%)}
+.kicker{display:inline-block;font-size:12px;letter-spacing:.2em;color:var(--mute);border:1px solid var(--line);border-radius:100px;padding:5px 14px;margin-bottom:22px;position:relative;background:rgba(255,253,248,.7)}
+h1{font-family:var(--serif);font-size:clamp(32px,8.6vw,54px);line-height:1.1;font-weight:400;letter-spacing:-.02em;position:relative}
+h1 span{display:block;font-size:.5em;color:var(--mute);margin-top:12px;letter-spacing:.02em}
+.lede{font-size:16px;color:var(--ink-2);max-width:580px;margin-top:22px;position:relative}
+.lede b{color:var(--ink);font-weight:600}
+
+/* 通用 */
+.sec{padding:52px 0}
+.sec-hd{margin-bottom:28px}
+.sec-no{font-family:var(--serif);font-size:12.5px;letter-spacing:.3em;color:var(--mute);display:block;margin-bottom:10px}
+h2{font-family:var(--serif);font-size:clamp(24px,6vw,33px);font-weight:400;line-height:1.26;letter-spacing:-.01em}
+h2 .hl{background:linear-gradient(transparent 62%,rgba(201,154,87,.3) 62%)}
+.sub{color:var(--mute);font-size:14px;margin-top:10px}
+
+/* 里程总表 */
+.tbl{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.tbl-r{display:grid;grid-template-columns:1.5fr 1fr 1fr 0.9fr;gap:8px;padding:13px 16px;border-bottom:1px solid var(--line);font-size:13.5px;align-items:center}
+.tbl-r:last-child{border-bottom:none}
+.tbl-h{background:var(--paper-2);font-size:11.5px;letter-spacing:.1em;color:var(--mute);padding:10px 16px}
+.tbl-n{font-family:var(--serif);font-size:14.5px;display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.tbl-v{font-variant-numeric:tabular-nums;color:var(--ink-2);font-size:13px}
+.tbl-v b{font-family:var(--serif);font-size:16px;color:var(--ink);font-weight:400}
+.lv{font-size:11.5px;padding:3px 9px;border-radius:100px;display:inline-block}
+.lv.lo{background:var(--a-l);color:var(--a)}
+.lv.mid{background:var(--b-l);color:var(--b)}
+.lv.hi{background:var(--c-l);color:var(--c)}
+
+/* 线路大卡 */
+.route{background:var(--card);border:1px solid var(--line);border-radius:20px;margin-bottom:24px;overflow:hidden}
+.rt-top{padding:24px 22px 0}
+.rt-tag{display:inline-block;font-size:11.5px;letter-spacing:.14em;padding:4px 11px;border-radius:100px;margin-bottom:12px}
+.rt-h{font-family:var(--serif);font-size:clamp(22px,5.6vw,28px);line-height:1.28;margin-bottom:8px}
+.rt-d{font-size:14px;color:var(--mute);margin-bottom:20px}
+.rt-a .rt-tag{background:var(--a-l);color:var(--a)}
+.rt-a .rt-h{color:var(--a)}
+.rt-b .rt-tag{background:var(--b-l);color:var(--b)}
+.rt-b .rt-h{color:var(--b)}
+.rt-c .rt-tag{background:var(--c-l);color:var(--c)}
+.rt-c .rt-h{color:var(--c)}
+
+/* 路线示意 svg 容器 */
+.map{padding:0 12px 6px;overflow-x:auto}
+.map svg{display:block;width:100%;min-width:520px;height:auto}
+
+/* 数据条 */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fact{background:var(--card);padding:14px 10px;text-align:center}
+.fact-k{font-size:10.5px;letter-spacing:.1em;color:var(--mute);margin-bottom:3px}
+.fact-v{font-family:var(--serif);font-size:20px;line-height:1.2}
+.fact-n{font-size:10.5px;color:var(--mute);margin-top:2px}
+
+/* 玩什么 */
+.plays{padding:20px 22px 4px}
+.plays-t{font-size:11px;letter-spacing:.16em;color:var(--mute);margin-bottom:12px}
+.play{display:flex;gap:12px;padding:9px 0;font-size:14px;color:var(--ink-2);border-bottom:1px dashed var(--line)}
+.play:last-child{border-bottom:none}
+.play i{font-style:normal;font-family:var(--serif);font-size:12px;color:var(--mute);flex-shrink:0;width:16px;padding-top:2px}
+.play b{color:var(--ink);font-weight:600}
+
+/* 逐日 */
+.days{padding:18px 22px 22px}
+.day{display:flex;gap:12px;padding:8px 0;font-size:13.5px;color:var(--ink-2);align-items:flex-start}
+.day-d{flex-shrink:0;font-family:var(--serif);font-size:12.5px;color:var(--mute);width:26px;padding-top:2px}
+.day-x{flex:1}
+.day-k{flex-shrink:0;font-size:11.5px;color:var(--mute);font-variant-numeric:tabular-nums;padding-top:2px}
+
+/* 提示 */
+.note{border-radius:12px;padding:14px 16px;font-size:13.5px;color:var(--ink-2);margin:0 22px 22px}
+.note b{font-weight:600}
+.note.a{background:var(--a-l)}.note.a b{color:var(--a)}
+.note.b{background:var(--b-l)}.note.b b{color:var(--b)}
+.note.c{background:var(--c-l)}.note.c b{color:var(--c)}
+
+/* 自驾专项 */
+.self{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:14px}
+.self-t{font-family:var(--serif);font-size:17px;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.self-t em{font-style:normal;font-size:15px}
+.self-i{display:flex;gap:10px;padding:8px 0;font-size:13.5px;color:var(--ink-2);border-bottom:1px dashed var(--line)}
+.self-i:last-child{border-bottom:none}
+.self-i::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--mute);flex-shrink:0;margin-top:9px}
+.self-i b{color:var(--ink);font-weight:600}
+
+/* 结论 */
+.pick{background:var(--ink);color:var(--paper);border-radius:20px;padding:36px 26px;position:relative;overflow:hidden}
+.pick::before{content:"";position:absolute;top:-110px;right:-110px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(181,130,75,.4),transparent 68%)}
+.pick-k{font-size:11.5px;letter-spacing:.24em;color:var(--b);margin-bottom:14px;position:relative}
+.pick-h{font-family:var(--serif);font-size:clamp(28px,7vw,40px);line-height:1.12;margin-bottom:16px;position:relative}
+.pick p{font-size:14.5px;color:#C8C3B8;max-width:540px;position:relative;margin-bottom:10px}
+.pick p b{color:var(--paper)}
+
+/* 照片指南 */
+.where{background:var(--paper-2);border-radius:16px;padding:20px 22px;margin-top:16px}
+.where-i{display:flex;gap:11px;padding:9px 0;font-size:13.5px;color:var(--ink-2);border-bottom:1px dashed var(--line)}
+.where-i:last-child{border-bottom:none}
+.where-i b{color:var(--ink);font-weight:600}
+.kw{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 7px;font-size:12.5px;color:var(--ink-2);margin:2px 3px 2px 0}
+
+footer{padding:46px 0 60px;border-top:1px solid var(--line);margin-top:36px;font-size:12.5px;color:var(--mute);line-height:1.9}
+footer b{color:var(--ink-2)}
+
+/* SVG 路线图 */
+.mp-city{font-family:var(--serif);font-size:15px;fill:var(--ink);text-anchor:middle}
+.mp-sub{font-family:var(--sans);font-size:10px;fill:var(--mute);text-anchor:middle}
+.mp-km{font-family:var(--sans);font-size:10.5px;fill:var(--mute);text-anchor:middle}
+.mp-sp{font-family:var(--sans);font-size:9.5px;fill:var(--mute);text-anchor:middle}
+.mp-line{fill:none;stroke-width:2.5;stroke-linecap:round}
+.mp-base{fill:none;stroke:var(--line);stroke-width:1.2;stroke-dasharray:3 4}
+.mp-spur{fill:none;stroke-width:1.3;stroke-dasharray:4 4}
+.mp-dot{stroke:var(--card);stroke-width:3}
+.n-a{fill:var(--a)}.n-b{fill:var(--b)}.n-c{fill:var(--c)}
+.r-a{stroke:var(--a)}.r-b{stroke:var(--b)}.r-c{stroke:var(--c)}
+
+@media(max-width:560px){
+  .tbl-r{grid-template-columns:1.3fr 1fr 0.8fr;font-size:12.5px}
+  .tbl-r .tbl-lv{display:none}
+  .fact{padding:12px 6px}
+  .fact-v{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">2027 春节前 · 云南自驾</span>
+    <h1>三条线，<br>你要哪一条？<span>哪条玩什么 · 总里程 · 每天开多久</span></h1>
+    <p class="lede">
+      既然落地租车自驾，选线的标准就变了 —— 不是哪条风景更好，而是
+      <b>哪条线你愿意一天开几个小时</b>。下面把三条路摊开算清楚。
+    </p>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <span class="sec-no">01 / OVERVIEW</span>
+      <h2>先把账算明白</h2>
+      <p class="sub">按 5 天 4 晚、昆明取车还车（或丽江还车）口径。</p>
+    </div>
+
+    <div class="tbl rv">
+      <div class="tbl-r tbl-h"><div>线路</div><div>总里程</div><div>最长单日</div><div class="tbl-lv">难度</div></div>
+      <div class="tbl-r">
+        <div class="tbl-n"><span class="dot" style="background:var(--a)"></span>A · 昆大丽</div>
+        <div class="tbl-v"><b>900</b> km</div>
+        <div class="tbl-v">331 km</div>
+        <div class="tbl-lv"><span class="lv lo">低</span></div>
+      </div>
+      <div class="tbl-r">
+        <div class="tbl-n"><span class="dot" style="background:var(--b)"></span>B · 元阳建水</div>
+        <div class="tbl-v"><b>800</b> km</div>
+        <div class="tbl-v">220 km</div>
+        <div class="tbl-lv"><span class="lv hi">高</span></div>
+      </div>
+      <div class="tbl-r">
+        <div class="tbl-n"><span class="dot" style="background:var(--c)"></span>C · 西双版纳</div>
+        <div class="tbl-v"><b>1,360</b> km</div>
+        <div class="tbl-v">540 km</div>
+        <div class="tbl-lv"><span class="lv mid">中</span></div>
+      </div>
+    </div>
+
+    <div class="note a rv" style="margin:20px 0 0">
+      <b>反直觉的地方</b>：里程最短的是 B 线（元阳），但它是三条里唯一要开大量盘山路的 —— 从河谷爬到海拔 1600 米，弯多、耳朵会闷。
+      C 线（西双版纳）虽然几乎全是高速，但第一天和最后一天各要开 540km / 6.5–7 小时，<b>单日强度最大</b>。
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <span class="sec-no">02 / ROUTE A</span>
+      <h2>昆大丽 · <span class="hl">最稳的那条</span></h2>
+      <p class="sub">古城 + 高原湖 + 雪山，三个维度一次凑齐。</p>
+    </div>
+
+    <div class="route rt-a rv">
+      <div class="rt-top">
+        <span class="rt-tag">A · 昆明进 · 丽江出</span>
+        <div class="rt-h">昆明 → 大理 → 丽江</div>
+        <div class="rt-d">全程几乎都是高速，是三条线里唯一不用绷着神经开车的</div>
+      </div>
+
+      <div class="map">
+        <svg viewBox="0 0 700 178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A线路线示意：昆明331公里到大理，180公里到丽江">
+          <line class="mp-base" x1="70" y1="96" x2="630" y2="96"/>
+          <path class="mp-line r-a" d="M70 96 L336 96"/>
+          <path class="mp-line r-a" d="M344 96 L606 96"/>
+          <ellipse class="mp-spur r-a" cx="340" cy="96" rx="30" ry="20"/>
+          <path class="mp-spur r-a" d="M610 104 L610 136"/>
+          <circle class="mp-dot n-a" cx="70" cy="96" r="6"/>
+          <circle class="mp-dot n-a" cx="340" cy="96" r="6"/>
+          <circle class="mp-dot n-a" cx="610" cy="96" r="6"/>
+          <text class="mp-city" x="70" y="78">昆明</text>
+          <text class="mp-sub" x="70" y="118">取车 · 红嘴鸥</text>
+          <text class="mp-city" x="340" y="62">大理</text>
+          <text class="mp-sub" x="410" y="100">环洱海 120</text>
+          <text class="mp-city" x="610" y="78">丽江</text>
+          <text class="mp-sub" x="610" y="118">还车 · 玉龙雪山</text>
+          <text class="mp-km" x="205" y="86">331 km · 3.5–4h</text>
+          <text class="mp-km" x="475" y="86">180 km · 2–2.5h</text>
+          <text class="mp-sp" x="610" y="150">雪山往返 60</text>
+        </svg>
+      </div>
+
+      <div class="facts">
+        <div class="fact"><div class="fact-k">总 里 程</div><div class="fact-v">≈900</div><div class="fact-n">km · 丽江还车</div></div>
+        <div class="fact"><div class="fact-k">最长单日</div><div class="fact-v">331</div><div class="fact-n">km · 约 4h</div></div>
+        <div class="fact"><div class="fact-k">高 速 占 比</div><div class="fact-v">85%</div><div class="fact-n">新手友好</div></div>
+      </div>
+
+      <div class="plays">
+        <div class="plays-t">主 要 玩 什 么</div>
+        <div class="play"><i>①</i><div><b>环洱海一圈 120km</b> —— 喜洲古镇的破酥粑粑、海舌公园、双廊、挖色。顺时针走光线更顺，随停随拍是自驾最大的优势</div></div>
+        <div class="play"><i>②</i><div><b>玉龙雪山</b> —— 大索道直上 4500m 冰川公园，下山顺路蓝月谷（晴天是蓝绿色）。<b>索道实名预约、每日限量，要提前抢</b></div></div>
+        <div class="play"><i>③</i><div><b>两座古城气质完全不同</b> —— 大理偏文艺（扎染、咖啡、民谣），丽江偏热闹（四方街酒吧到深夜）。安静选大理，热闹选丽江</div></div>
+        <div class="play"><i>④</i><div><b>昆明海埂大坝红嘴鸥</b> —— 落地当天顺路就能看，免费，冬天限定</div></div>
+      </div>
+
+      <div class="days" style="border-top:1px dashed var(--line);margin-top:14px;padding-top:16px">
+        <div class="plays-t">逐 日 里 程</div>
+        <div class="day"><div class="day-d">D1</div><div class="day-x">昆明取车 · 市区 + 滇池海埂大坝</div><div class="day-k">60 km</div></div>
+        <div class="day"><div class="day-d">D2</div><div class="day-x">昆明 → 大理，下午洱海东岸（双廊 / 挖色）</div><div class="day-k">331 km</div></div>
+        <div class="day"><div class="day-d">D3</div><div class="day-x">环洱海一圈 → 傍晚开往丽江</div><div class="day-k">300 km</div></div>
+        <div class="day"><div class="day-d">D4</div><div class="day-x">玉龙雪山 + 蓝月谷，晚上丽江古城</div><div class="day-k">60 km</div></div>
+        <div class="day"><div class="day-d">D5</div><div class="day-x">丽江还车飞回（开回昆明则 +520km / 5h）</div><div class="day-k">—</div></div>
+      </div>
+
+      <div class="note a">
+        <b>唯一要提前抢的东西</b>：玉龙雪山大索道票。实名预约、每日限量，旺季现场基本买不到当天的。出发前 3 天就盯着。
+      </div>
+    </div>
+
+    <div class="sec-hd rv" style="margin-top:44px">
+      <span class="sec-no">03 / ROUTE B</span>
+      <h2>元阳建水 · <span class="hl">最出片的那条</span></h2>
+      <p class="sub">冬季梯田灌水是全年独一份，代价是盘山路。</p>
+    </div>
+
+    <div class="route rt-b rv">
+      <div class="rt-top">
+        <span class="rt-tag">B · 昆明起止</span>
+        <div class="rt-h">昆明 → 建水 → 元阳 → 蒙自</div>
+        <div class="rt-d">里程最短，但山路最多 —— 从河谷一路爬到海拔 1600m</div>
+      </div>
+
+      <div class="map">
+        <svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="B线路线示意：昆明220公里到建水，131公里到元阳">
+          <line class="mp-base" x1="70" y1="96" x2="630" y2="96"/>
+          <path class="mp-line r-b" d="M70 96 L276 96"/>
+          <path class="mp-line r-b" d="M284 96 L486 96"/>
+          <path class="mp-spur r-b" d="M390 104 L390 140"/>
+          <path class="mp-spur r-b" d="M120 104 Q 380 175 610 108"/>
+          <circle class="mp-dot n-b" cx="70" cy="96" r="6"/>
+          <circle class="mp-dot n-b" cx="280" cy="96" r="6"/>
+          <circle class="mp-dot n-b" cx="490" cy="96" r="6"/>
+          <text class="mp-city" x="70" y="78">昆明</text>
+          <text class="mp-sub" x="70" y="118">取车</text>
+          <text class="mp-city" x="280" y="78">建水</text>
+          <text class="mp-sub" x="280" y="118">古城 · 烧豆腐</text>
+          <text class="mp-city" x="490" y="78">元阳</text>
+          <text class="mp-sub" x="490" y="118">新街镇 · 梯田</text>
+          <text class="mp-km" x="172" y="86">220 km · 3h</text>
+          <text class="mp-km" x="385" y="86">131 km · 2.5–3h</text>
+          <text class="mp-sp" x="390" y="155">多依树 / 坝达 / 老虎嘴 · 内部 70</text>
+          <text class="mp-sp" x="360" y="182">返程 蒙自 100 → 昆明 280</text>
+        </svg>
+      </div>
+
+      <div class="facts">
+        <div class="fact"><div class="fact-k">总 里 程</div><div class="fact-v">≈800</div><div class="fact-n">km · 最短</div></div>
+        <div class="fact"><div class="fact-k">最长单日</div><div class="fact-v">220</div><div class="fact-n">km · 但含山路</div></div>
+        <div class="fact"><div class="fact-k">山 路 占 比</div><div class="fact-v">40%</div><div class="fact-n">盘山弯道多</div></div>
+      </div>
+
+      <div class="plays">
+        <div class="plays-t">主 要 玩 什 么</div>
+        <div class="play"><i>①</i><div><b>元阳梯田，分四个时段看</b> —— 多依树看日出（<b>6:30 前必须到位</b>）、上午 9–10 点爱春看蓝梯田（要无风）、下午阿者科看蘑菇房、傍晚坝达或老虎嘴看日落</div></div>
+        <div class="play"><i>②</i><div><b>建水古城</b> —— 朝阳楼（比北京天安门早建 28 年）、朱家花园、全国最大的地方性文庙、双龙桥十七孔。冬天斜阳角度低，屋脊影子拉得长，最好看</div></div>
+        <div class="play"><i>③</i><div><b>建水烧豆腐</b> —— 大板井甜水点制，《舌尖上的中国》拍过。炭火铁箅上烤到鼓成金黄小球，蘸腐乳汁，摊主用玉米粒数数算钱</div></div>
+        <div class="play"><i>④</i><div><b>汽锅鸡</b> —— 建水五色陶土做的汽锅，全程不加水，靠蒸汽凝成汤，蒸三四小时。掀盖那下汤面浮着金黄油花</div></div>
+        <div class="play"><i>⑤</i><div><b>蒙自碧色寨</b> —— 滇越铁路特等站，《芳华》取景地。百年前有云南第一块红土网球场，人称「东方小巴黎」。收官吃菊花过桥米线</div></div>
+      </div>
+
+      <div class="days" style="border-top:1px dashed var(--line);margin-top:14px;padding-top:16px">
+        <div class="plays-t">逐 日 里 程</div>
+        <div class="day"><div class="day-d">D1</div><div class="day-x">昆明 → 建水，古城半日 + 晚上烧豆腐</div><div class="day-k">220 km</div></div>
+        <div class="day"><div class="day-d">D2</div><div class="day-x">建水 → 元阳新街镇，下午老虎嘴日落</div><div class="day-k">131 km</div></div>
+        <div class="day"><div class="day-d">D3</div><div class="day-x">多依树日出 → 爱春 → 阿者科 → 坝达日落</div><div class="day-k">70 km</div></div>
+        <div class="day"><div class="day-d">D4</div><div class="day-x">下山 → 蒙自碧色寨 + 南湖 + 过桥米线</div><div class="day-k">100 km</div></div>
+        <div class="day"><div class="day-d">D5</div><div class="day-x">蒙自 → 昆明还车</div><div class="day-k">280 km</div></div>
+      </div>
+
+      <div class="note b">
+        <b>三条硬规矩</b>：① <b>绝不摸黑走山路</b> —— 上山公路弯多雾大，天黑后能见度极低，宁可早起也别赶夜路；② 盘山爬到 1600m 耳朵会闷，备点口香糖；③ 民宿按城市酒店标准看会失望，老房子隔音热水都一般，下单前看近期评价。
+      </div>
+    </div>
+
+    <div class="sec-hd rv" style="margin-top:44px">
+      <span class="sec-no">04 / ROUTE C</span>
+      <h2>西双版纳 · <span class="hl">最暖的那条</span></h2>
+      <p class="sub">25℃，真能脱掉羽绒服。但单日 540km 的往返是真累。</p>
+    </div>
+
+    <div class="route rt-c rv">
+      <div class="rt-top">
+        <span class="rt-tag">C · 昆明起止</span>
+        <div class="rt-h">昆明 → 普洱 → 景洪</div>
+        <div class="rt-d">几乎全程昆磨高速，但首尾两天各要开 6.5–7 小时</div>
+      </div>
+
+      <div class="map">
+        <svg viewBox="0 0 700 178" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="C线路程示意：昆明400公里到普洱，130公里到景洪">
+          <line class="mp-base" x1="70" y1="96" x2="630" y2="96"/>
+          <path class="mp-line r-c" d="M70 96 L326 96"/>
+          <path class="mp-line r-c" d="M334 96 L586 96"/>
+          <path class="mp-spur r-c" d="M590 88 L640 62"/>
+          <path class="mp-spur r-c" d="M590 96 L648 96"/>
+          <path class="mp-spur r-c" d="M590 104 L640 132"/>
+          <circle class="mp-dot n-c" cx="70" cy="96" r="6"/>
+          <circle class="mp-dot n-c" cx="330" cy="96" r="6"/>
+          <circle class="mp-dot n-c" cx="590" cy="96" r="6"/>
+          <text class="mp-city" x="70" y="78">昆明</text>
+          <text class="mp-sub" x="70" y="118">取车</text>
+          <text class="mp-city" x="330" y="78">普洱</text>
+          <text class="mp-sub" x="330" y="118">那柯里古镇</text>
+          <text class="mp-city" x="590" y="78">景洪</text>
+          <text class="mp-sub" x="590" y="118">告庄 · 夜市</text>
+          <text class="mp-km" x="200" y="86">400 km · 5–5.5h</text>
+          <text class="mp-km" x="460" y="86">130 km · 2h</text>
+          <text class="mp-sp" x="664" y="60">野象谷 40</text>
+          <text class="mp-sp" x="672" y="100">植物园 70</text>
+          <text class="mp-sp" x="664" y="136">望天树 150</text>
+        </svg>
+      </div>
+
+      <div class="facts">
+        <div class="fact"><div class="fact-k">总 里 程</div><div class="fact-v">≈1,360</div><div class="fact-n">km · 最长</div></div>
+        <div class="fact"><div class="fact-k">最长单日</div><div class="fact-v">540</div><div class="fact-n">km · 6.5–7h</div></div>
+        <div class="fact"><div class="fact-k">高 速 占 比</div><div class="fact-v">90%</div><div class="fact-n">但弯道多</div></div>
+      </div>
+
+      <div class="plays">
+        <div class="plays-t">主 要 玩 什 么</div>
+        <div class="play"><i>①</i><div><b>告庄星光夜市</b> —— 澜沧江边，傣味烧烤、手工艺品、大金塔夜景。租一套傣装拍照是这里的标配</div></div>
+        <div class="play"><i>②</i><div><b>中科院热带植物园</b> —— 中国面积最大的植物园，西区必游（王莲池、奇花异卉园）。<b>建议买观光车</b>，走完 4–5 小时</div></div>
+        <div class="play"><i>③</i><div><b>野象谷</b> —— 高空栈道看亚洲象。对大象兴趣一般的话可以换成基诺山寨</div></div>
+        <div class="play"><i>④</i><div><b>曼听公园 + 总佛寺</b> —— 傣王御花园，联票，3 小时够。总佛寺是东南亚风格</div></div>
+        <div class="play"><i>⑤</i><div><b>傣味</b> —— 香茅草烤鱼、菠萝饭、包烧金针菇、泡鲁达。这里可以放开吃</div></div>
+      </div>
+
+      <div class="days" style="border-top:1px dashed var(--line);margin-top:14px;padding-top:16px">
+        <div class="plays-t">逐 日 里 程</div>
+        <div class="day"><div class="day-d">D1</div><div class="day-x">昆明 → 普洱（那柯里古镇，高速停车区直达）</div><div class="day-k">400 km</div></div>
+        <div class="day"><div class="day-d">D2</div><div class="day-x">普洱 → 景洪，曼听公园 + 总佛寺 + 星光夜市</div><div class="day-k">130 km</div></div>
+        <div class="day"><div class="day-d">D3</div><div class="day-x">野象谷 + 原始森林公园（东线）</div><div class="day-k">110 km</div></div>
+        <div class="day"><div class="day-d">D4</div><div class="day-x">中科院植物园 + 傣族园</div><div class="day-k">180 km</div></div>
+        <div class="day"><div class="day-d">D5</div><div class="day-x">景洪 → 昆明还车（建议早出发，避开傍晚）</div><div class="day-k">540 km</div></div>
+      </div>
+
+      <div class="note c">
+        <b>自驾提醒</b>：普洱到版纳段弯道多、大车多，要控速；<b>2026 年起边境检查常态化，身份证、驾驶证、行驶证随身带</b>；版纳市区非机动车道少、车位紧张，建议把车停酒店，市内骑共享电动车。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-hd rv">
+      <span class="sec-no">05 / SELF DRIVE</span>
+      <h2>租车自驾，<span class="hl">这几件事别踩坑</span></h2>
+    </div>
+
+    <div class="self rv">
+      <div class="self-t"><em>🚗</em>取还车</div>
+      <div class="self-i"><b>昆明长水机场取车</b>是最优解 —— 航班落地直接开走，不用先进城</div>
+      <div class="self-i"><b>异地还车费约 ¥300–500</b>（昆明取、丽江还）。部分平台做活动会免，比价时看清这一项</div>
+      <div class="self-i">A 线走丽江还可省 520km 路程；<b>B / C 线必须回昆明还</b>，因为目的地是环形的</div>
+      <div class="self-i">冬季是云南淡季，<b>日均租金 ¥120–250</b>（SUV / 紧凑型），比旺季便宜近一半</div>
+    </div>
+
+    <div class="self rv d1">
+      <div class="self-t"><em>⛰️</em>车型与路况</div>
+      <div class="self-i"><b>B 线（元阳）务必选底盘高一点的车</b> —— 盘山路、部分路段有碎石，轿车容易托底</div>
+      <div class="self-i">A 线和 C 线普通紧凑型轿车 / SUV 都够，全程高速</div>
+      <div class="self-i">高海拔（丽江 2400m）自然吸气车动力会掉，超车要比平时多留距离</div>
+      <div class="self-i"><b>冬季清晨高海拔路段可能结冰</b> —— 元阳、丽江早上 10 点前路面湿滑，别急刹</div>
+    </div>
+
+    <div class="self rv d2">
+      <div class="self-t"><em>⛽</em>油与费</div>
+      <div class="self-i">云南油价略高于内地，<b>昆明出发前加满</b></div>
+      <div class="self-i">过路费参考：A 线约 ¥300–400；C 线昆明→景洪单程约 ¥245（ETC 95 折）</div>
+      <div class="self-i"><b>云南高速区间测速密集</b>，尤其昆磨高速，别按导航的"预计时间"掐点赶路</div>
+      <div class="self-i">元阳、版纳山区加油站间距大，<b>油箱低于半箱就找站</b></div>
+    </div>
+
+    <div class="self rv">
+      <div class="self-t"><em>📋</em>其他</div>
+      <div class="self-i">古城和热门景区停车紧张，<b>订酒店时先问有没有停车位</b></div>
+      <div class="self-i">玉龙雪山、植物园等景区对私家车有换乘规定，按现场指引停</div>
+      <div class="self-i">租车买<b>不计免赔</b>，山路多，几十块买个安心</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="pick rv">
+      <div class="pick-k">M Y   P I C K</div>
+      <div class="pick-h">还是 B 线，<br>但先把轮胎想清楚</div>
+      <p>三条里只有 B 线是<b>「这个季节才会有的东西」</b>—— 梯田灌水、建水烧豆腐、碧色寨的黄墙，都跟季节绑在一起。A 线风景确实稳，但昆大丽你什么时候来都差不多。</p>
+      <p>如果你更在意<b>开车轻松</b>，选 A；如果就想<b>脱掉羽绒服晒太阳</b>，选 C；如果愿意为一次日出和一口热豆腐多开几段山路，选 B。</p>
+      <p style="color:#8C8678;font-size:13px">补一句：B 线里程只有 800km，是三条里最短的 —— 你付出的不是里程，是<b>山路弯道</b>。</p>
+    </div>
+
+    <div class="where rv d1">
+      <div style="font-family:var(--serif);font-size:16px;margin-bottom:12px">想先看实拍照片，搜这几个词</div>
+      <div class="where-i"><div><b>小红书</b>：<span class="kw">元阳梯田 多依树 日出</span><span class="kw">建水 烧豆腐</span><span class="kw">洱海 环湖 自驾</span><span class="kw">告庄 星光夜市</span> —— 实拍最多，按最新排序</div></div>
+      <div class="where-i"><div><b>马蜂窝 / 携程景点页</b>：搜景点名，看用户实拍和机位坐标，比攻略里的精修图更真实</div></div>
+      <div class="where-i"><div><b>B 站 / 抖音</b>：搜「元阳梯田 自驾 vlog」「昆磨高速 自驾」，能直接看到路况和开车难度</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>里程口径</b>　距离取自地图路线规划（昆明→大理 331km / 大理→丽江 180–192km / 昆明→元阳 293–330km / 建水→元阳 123–131km / 昆明→景洪 515–540km），逐日合计取整<br>
+    <b>时间口径</b>　地图纯驾驶时间，实际含休息、找车位、山路减速，建议每天 +30–60 分钟<br>
+    <b>记录于</b>　2026 年 11 月 21 日 · travel-journal
+  </div>
+</footer>
+
+<script>
+(function(){
+  var items = document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){
+    for(var i=0;i<items.length;i++) items[i].classList.add('on');
+    return;
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+    });
+  },{threshold:0.1, rootMargin:'0px 0px -30px 0px'});
+  for(var j=0;j<items.length;j++) io.observe(items[j]);
+})();
+</script>
+
+</body>
+</html>
